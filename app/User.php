@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relationt to profile table.
+     * @return App\Profile
+     */
+    public function profile()
+    {
+        return $this->hasOne("App\Profile");
+    }
+
+    public function accessLevel()
+    {
+        return $this->hasManyThrough('App\AccessLevel', 'App\Profile');
+    }
 }

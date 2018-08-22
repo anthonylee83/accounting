@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccessLevel extends Model
 {
+    public const STANDARD = 1;
+    public const MANAGER = 2;
+    public const ADMIN = 3;
+
     protected $fillable = ['level'];
 
     /**

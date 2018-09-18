@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
+
+    protected $fillable = ['access_level_id', 'user_id'];
     /**
      * Access level of profile
      *

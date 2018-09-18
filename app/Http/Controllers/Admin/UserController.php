@@ -5,15 +5,20 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\AccessLevel;
+use App\Profile;
+use App\User;
+use DB;
+use App\Http\Requests\NewUserRequest;
 
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     public function showUsers(){
-        return view('admin.users');
+        $users = User::paginate(15);
+        return view('admin.users', compact('users'));
     }
     
     public function viewUser($id){
@@ -23,11 +28,23 @@ class UserController extends Controller
 
     public function newUser(){
         $accessLevels = AccessLevel::all();
-        return view('create-user', compact('accessLevels'));
+        return view('admin.create-user', compact('accessLevels'));
     }
 
-    public function storeUser(Request $request){
-        $user = User::create($request->all());
+    public function storeUser(NewUserRequest $request){
+        
+        DB::beginTransaction();
+        
+            $user = User::create($request->all());
+            $profile = Profile::create(
+                [
+                    'access_level_id' => $request->access_level_id,
+                    'user_id' => $user->id
+                ]
+            );
+        
+        DB::commit();
+        
         return redirect()->action('Admin\UserController@showUsers');
     }
 

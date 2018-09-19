@@ -1,7 +1,10 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+//Font awesome
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 // Variables
 @import 'variables';
 
@@ -11,4 +14,15 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.btn-circle.btn-lg {
+  font-size: 17px;
+  padding: 10px 14px;
+  line-height: 1.33;
+  width: 45px;
+  height: 45px;
+  border-radius: 25px;
+  margin-bottom: -1rem;
+  margin-right: -1rem;
 }

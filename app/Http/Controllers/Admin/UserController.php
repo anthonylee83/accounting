@@ -8,22 +8,33 @@ use App\AccessLevel;
 use App\Profile;
 use App\User;
 use DB;
+use Hash;
 use App\Http\Requests\NewUserRequest;
 
 class UserController extends Controller
 {
     public function __construct(){
-        //$this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware('admin');
     }
 
-    public function showUsers(){
-        $users = User::paginate(15);
-        return view('admin.users', compact('users'));
+    public function showUsers(Request $request, $deleted = false){
+        $user = "";
+        if($deleted === false)
+        {
+            $users = User::paginate(15);
+        } else
+        {
+            $users = User::withTrashed()->paginate(15);
+        }
+        $path = $request->path();
+        return view('admin.users', compact('users', 'path'));
     }
     
     public function viewUser($id){
-        $user = User::findOrFail($id);
-        return view('admin.user', compact('user'));
+        $user = User::withTrashed()->findOrFail($id);
+        $accessLevels = AccessLevel::all();
+        return view('admin.view-user', compact('user', 'accessLevels'));
     }
 
     public function newUser(){
@@ -49,20 +60,26 @@ class UserController extends Controller
     }
 
     public function disableUser(Request $request){
-        User::find($request->user_id);
+        $user = User::find($request->id);
         $user->delete();
         return redirect()->action('Admin\UserController@showUsers');
     }
 
     public function updateUser(Request $request){
-        $user = User::fill($request->all());
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->profile->access_level_id = $request->access_level_id;
+        if($request->has('password'))
+            $user->password = Hash::make($request->password);
         $user->save();
+        $user->profile->save();
         return redirect()->action('Admin\UserController@showUsers');
     }
 
     public function activateUser(Request $request){
-        $user = User::find($request->user_id);
-        $user->deleted_at = null;
-        $user->save();
+        $user = User::withTrashed()->find($request->id);
+        $user->restore();
+        return redirect()->action('Admin\UserController@showUsers');
     }
 }

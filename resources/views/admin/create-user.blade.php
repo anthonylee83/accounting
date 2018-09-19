@@ -14,18 +14,18 @@
         {{csrf_field()}}
         <div class="form-group">
         <label for="name" class="sr-only">Full Name</label>
-        <input type="text" class="form-control" name="name" required="required" placeholder="Full Name" />
+        <input id="name" type="text" class="form-control" name="name" required="required" placeholder="Full Name" />
         </div>
         <div class="form-group">
         <label for="email" class="sr-only">Email Address</label>
-        <input type="email" class="form-control" name="email" required="required" placeholder="Email Address" />
+        <input id="email" type="email" class="form-control" name="email" required="required" placeholder="Email Address" />
         </div>
         <div class='form-group'>
             <label for='password' class="sr-only">Password</label>
-            <input type='password' class='form-control' name='password' required='required' placeholder="Password" />
+            <input id="password" type='password' class='form-control' name='password' required='required' placeholder="Password" />
         </div>
         <div class="form-group">
-            <select class="form-control" name="access_level_id" required>
+            <select id="access_level_id" class="form-control" name="access_level_id" required>
                 <option disabled value="">Select Access Level</option>
                 @forelse($accessLevels as $level)
                     <option value="{{$level->id}}">{{ $level->level}}</option>

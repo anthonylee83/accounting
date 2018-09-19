@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $activeUserCount = \App\User::all()->count();
+        $disabledUserCount = \App\User::onlyTrashed()->count();
+        return view('home', compact('activeUserCount', 'disabledUserCount'));
     }
 }

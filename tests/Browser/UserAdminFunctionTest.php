@@ -10,6 +10,7 @@ use App\User;
 class UserAdminFunctionTest extends DuskTestCase
 {
     private $standardUser;
+
     /** @test */
     public function adminCanViewUsers()
     {
@@ -46,13 +47,15 @@ class UserAdminFunctionTest extends DuskTestCase
     }
 
     /** @test */
-    public function standardUserCanLoginCannotViewUsers(){
+    public function standardUserCanLoginUsers(){
         $user = $this->standardUser;
         $this->browse(function (Browser $browser) use($user){
-            $browser->type("#email", $user->email)
+            $browser->type("#email", User::whereHas('profile', function($query){
+                $query->where('access_level_id', 1);
+            })->first()->email)
             ->type("#password", 'secret')
-            ->press('login')
-            ->assertSee('dashboard');
+            ->press('Login')
+            ->assertSee('Dashboard');
         });
     }
 
@@ -60,8 +63,7 @@ class UserAdminFunctionTest extends DuskTestCase
     public function standardUserCannotViewUsers()
     {
         $this->browse(function (Browser $browser){
-            $browser->clickLink($this->standardUser->name)
-                ->assertDontSee('Users')
+            $browser
                 ->visit('/admin/users')
                 ->assertSee('You are not authorized to view this page');
 

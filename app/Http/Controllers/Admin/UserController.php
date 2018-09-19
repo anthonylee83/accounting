@@ -47,6 +47,8 @@ class UserController extends Controller
         DB::beginTransaction();
         
             $user = User::create($request->all());
+            $user->password = Hash::make($request->password);
+            $user->save();
             $profile = Profile::create(
                 [
                     'access_level_id' => $request->access_level_id,

@@ -32,7 +32,7 @@
                 @forelse($accessLevels as $level)
                     <option value="{{$level->id}}" @if($level->id === $user->profile->access_level_id) Selected @endif>{{ $level->level}}</option>
                 @empty
-                    <option value="" disabled>A problem has occured</option>
+                    <option value="" disabled>A problem has occurred</option>
                 @endforelse
             </select>
         </div>
@@ -47,13 +47,13 @@
                     {{method_field('delete')}}
                     <input type="hidden" name="id" value="{{$user->id}}" />
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-danger">Deativate User</button>
+                    <button type="submit" class="btn btn-danger">Deactivate User</button>
                 </div>
             @else
                     {{method_field('patch')}}
                     <input type="hidden" name="id" value="{{$user->id}}" />
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-danger">Reactivate User</button>
+                    <button type="submit" class="btn btn-danger">Activate User</button>
                 </div>
             @endif
             </form>

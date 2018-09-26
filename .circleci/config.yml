@@ -9,7 +9,7 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install -y wget
       - run: wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-      - run: wget -q -O - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome*.deb
+      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome*.deb
       - run: sudo apt-get update
       - run: sudo apt-get install -y sqlite3 libsqlite3-dev google-chrome
       - run: composer global require "squizlabs/php_codesniffer=3.2.3"

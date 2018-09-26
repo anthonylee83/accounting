@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: sudo apt-get install -y software-properties-common
       - run: sudo add-apt-repository ppa:chromium-daily/stable && sudo apt-get update
       - run: sudo apt-get install -y chromium-browser
       - run: sudo apt-get update

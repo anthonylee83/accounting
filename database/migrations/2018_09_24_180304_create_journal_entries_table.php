@@ -22,8 +22,9 @@ class CreateJournalEntriesTable extends Migration
             $table->foreign('account_id')->references('id')->on('chart_of_accounts');
             $table->text('description');
             $table->unsignedInteger('document_reference_id');
-            $table->decimal('debit',10,2);
-            $table->decimal('credit',10,2);
+            $table->decimal('amount',10,2);
+            $table->bit('debit/credit');
+            // 0 for debit entries, 1 for credit entries
             $table->timestamps();
 
         });

@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get install -y sqlite3 libsqlite3-dev google-chrome-stable
+      - run: sudo apt-get install -y sqlite3 libsqlite3-dev google-chrome
       - run: composer global require "squizlabs/php_codesniffer=3.2.3"
       - run: find ~/ \( -path ./vendor -o -path ./storage -o -path ./node_modules \) -prune -o -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
       - run: ~/.composer/vendor/bin/phpcs -v .

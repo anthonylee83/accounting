@@ -19,7 +19,7 @@ jobs:
       - run: vendor/bin/phpunit --testdox
       - run:
           name: Start Chrome Driver
-          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
           background: true
       - run:
           name: Run Laravel Server

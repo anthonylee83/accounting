@@ -63,7 +63,7 @@ jobs:
           name: run phpunit
           command: ./vendor/bin/phpunit --testdox --colors
 
-      - run: npm install
+      - run: npm i -g npm && npm install
       - run: npm prod
       - run: node_modules/.bin/eslint --ext .js,.vue .
       - run:

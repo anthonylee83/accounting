@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventTypeTable extends Migration
+class ChartOfAccountsDeleteColumns extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateEventTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('event_type');
-            $table->timestamps();
+        Schema::table('chart_of_accounts', function($table){
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +25,6 @@ class CreateEventTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_type');
+        //
     }
 }

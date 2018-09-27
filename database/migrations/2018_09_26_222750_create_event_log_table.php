@@ -19,7 +19,7 @@ class CreateEventLogTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('event_type_id');
             $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->text->('message');
+            $table->text('message');
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ class CreateJournalEntriesTable extends Migration
             $table->text('description');
             $table->unsignedInteger('document_reference_id');
             $table->decimal('amount',10,2);
-            $table->bit('debit/credit');
+            $table->integer('debit/credit');
             // 0 for debit entries, 1 for credit entries
             $table->timestamps();
 

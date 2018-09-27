@@ -17,8 +17,9 @@ class CreateChartOfAccountsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unignedInteger('account_type_id');
+            $table->unsignedInteger('account_type_id');
             $table->foreign('account_type_id')->references('id')->on('account_types');
+            $table->string('account_subtype');
             $table->string('account_name');
             $table->decimal('account_balance',10,2);
 

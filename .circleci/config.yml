@@ -62,9 +62,11 @@ jobs:
       - run:
           name: run phpunit
           command: ./vendor/bin/phpunit --testdox --colors
-
-      - run: npm i -g npm && npm install
-      - run: npm prod
+      - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+      - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends yarn
+      - run: yarn
+      - run: yarn prod
       - run: node_modules/.bin/eslint --ext .js,.vue .
       - run:
                name: Start Chrome Driver

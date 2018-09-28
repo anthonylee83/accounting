@@ -43,8 +43,8 @@ jobs:
           command: sudo /etc/init.d/mysql status
       - run:
           name: Creating databse...
-          command: mysql -u root -p'secret' -e "create database homestead";
-      - run: mysql -u root -p'secret' -e "GRANT ALL PRIVILEGES ON homestead.* TO 'homestead'@'%' IDENTIFIED BY 'secret'";
+          command: mysql -u root -p'secret' -e "create database accounting";
+      - run: mysql -u root -p'secret' -e "GRANT ALL PRIVILEGES ON accounting.* TO 'homestead'@'%' IDENTIFIED BY 'secret'";
       - run:
           name: Updating git repo submodules...
           command: git submodule sync; git submodule update --init

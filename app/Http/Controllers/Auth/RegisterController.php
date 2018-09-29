@@ -67,9 +67,9 @@ class RegisterController extends Controller
     protected function create() // DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE REGISTER PAGE FOR SOME REASON
     {
         $user =  User::create([
-            'name' => Request::input('name'),
-            'email' => Request::input('email'),
-            'password' => Hash::make(Request::input('password')),
+            'name' => $_REQUEST['name'],
+            'email' => $_REQUEST['email'],
+            'password' => Hash::make($_REQUEST['password'])
         ]);
         $profile = new Profile();
         $profile->access_level_id = AccessLevel::STANDARD;

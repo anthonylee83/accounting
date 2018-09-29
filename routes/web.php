@@ -25,4 +25,4 @@ Route::post('/admin/users/new', 'Admin\UserController@storeUser');
 Route::get('/admin/users/{deleted?}' , 'Admin\UserController@showUsers');
 Route::delete('/admin/user', 'Admin\UserController@disableUser');
 Route::put('/admin/user', 'Admin\UserController@updateUser');
-
+Route::post('/register', 'Auth\RegisterController@create');

@@ -30,7 +30,7 @@
                     </td>
                 </tr>
             @empty
-                <p>An error has occured</p>
+                <p>An error has occurred</p>
             @endforelse
         </table>
         <div class="col-xs-12 col-md-6 col-md-offset-3">

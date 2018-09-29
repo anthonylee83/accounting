@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Profile;
 use App\AccessLevel;
@@ -63,23 +64,24 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create() // DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE REGISTER PAGE FOR SOME REASON
     {
         $user =  User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name' => $_REQUEST['name'],
+            'email' => $_REQUEST['email'],
+            'password' => Hash::make($_REQUEST['password'])
         ]);
         $profile = new Profile();
         $profile->access_level_id = AccessLevel::STANDARD;
         $user->profile()->save($profile);
         $user->save();
-        return $user;
+        $user->delete();
+        return view('auth.login');
     }
 
     public function showRegistrationForm()
     {
-    return redirect('login');
+    return view('auth.register');
     }
 
     public function register()

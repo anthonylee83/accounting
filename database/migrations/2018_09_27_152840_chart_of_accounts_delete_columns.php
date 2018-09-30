@@ -25,6 +25,6 @@ class ChartOfAccountsDeleteColumns extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('chart_of_accounts');
     }
 }

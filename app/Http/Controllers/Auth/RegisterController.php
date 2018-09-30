@@ -64,8 +64,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(Request $request) // DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE REGISTER PAGE FOR SOME REASON
+    protected function create(Request $request)
     {
+        /* DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO
+        * AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE
+        * REGISTER PAGE FOR SOME REASON
+        */
+
         $user =  User::create([
             'name'     => $request->name,
             'email'    => $request->email,

@@ -14,17 +14,16 @@ class AdminUserSeed extends Seeder
     public function run()
     {
         $user = User::Create([
-            'email' => 'admin@adminuser.com',
-            'name' => 'Admin User',
+            'email'    => 'admin@adminuser.com',
+            'name'     => 'Admin User',
             'password' => Hash::make('Admin')
         ]);
 
         Profile::create(
             [
                 'access_level_id' => 3,
-                'user_id' => $user->id
+                'user_id'         => $user->id
             ]
         );
-        
     }
 }

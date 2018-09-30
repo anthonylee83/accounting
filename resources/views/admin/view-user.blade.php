@@ -36,6 +36,7 @@
                 @endforelse
             </select>
         </div>
+        @include('errors')
         <div class="form-group row">
             <div class="col text-center">
                 <button class="btn btn-success" type="submit">Update User</button>

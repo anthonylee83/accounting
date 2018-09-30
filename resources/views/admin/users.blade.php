@@ -2,7 +2,11 @@
 
 @section('content')
     <div>
-        <dropdown-navigation path="{{$path}}"></dropdown-navigation>
+        <dropdown-navigation 
+            path="{{$path}}" 
+            all_path="/admin/users/all"
+            base_path="/admin/users"
+            model="Users"></dropdown-navigation>
         <div class="text-right -mb-4">
             <a dusk="newUser" href="{{action('Admin\UserController@newUser')}}" class="btn btn-lg btn-info btn-circle text-right" role="button"><i class="fas fa-plus text-white"></i></a>
         </div>

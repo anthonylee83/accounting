@@ -57,6 +57,9 @@
                                             Users
                                         </a>
                                     @endif
+                                    <a class="dropdown-item" href="{{action('Accounts\ChartOfAccounts@showAccounts')}}">
+                                        Chart of Accounts
+                                    </a>
                                 </div>
                             </li>
 

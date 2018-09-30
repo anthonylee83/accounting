@@ -1,12 +1,12 @@
 <template>
     <select v-model="deleted" class="form-control">
-        <option value=false>Active Users</option>
-        <option value=true>All Users</option>
+        <option value=false>Active {{model}}</option>
+        <option value=true>All {{model}}</option>
     </select>
 </template>
 <script>
 export default {
-    props:['path'],
+    props:['path', 'model', 'all_path', 'base_path'],
     data() {
         return {
             deleted: false,
@@ -19,14 +19,14 @@ export default {
                 return;
 
             if(this.deleted == "false"){
-                window.location.href="/admin/users";
+                window.location.href=this.base_path;
             } else{
-                window.location.href="/admin/users/all"
+                window.location.href=this.all_path
             }
         }
     },
     created(){
-        if(this.path=="admin/users/all")
+        if(this.path==this.all_path)
             this.deleted=true;
     },
     mounted(){
@@ -37,7 +37,7 @@ export default {
 
 <style scoped>
     select {
-        width:15%;
+        width:auto;
 
     }
 </style>

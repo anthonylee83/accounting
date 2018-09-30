@@ -12,6 +12,7 @@
                 <th>Name</th>
                 <th>Role</th>
                 <th>Status</th>
+				<th>Last Login</th>
             </thead>
             @forelse($users as $user)
                 <tr>
@@ -28,9 +29,11 @@
                             Active
                         @endif
                     </td>
+
+					<td>{{'placeholder'}}</td>
                 </tr>
             @empty
-                <p>An error has occurred</p>
+                <p>An error has occured</p>
             @endforelse
         </table>
         <div class="col-xs-12 col-md-6 col-md-offset-3">

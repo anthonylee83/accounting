@@ -12,9 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
+
 
 Auth::routes();
 
+Route::get('/admin/user/{id}', 'Admin\UserController@viewUser');
+Route::patch('/admin/user', 'Admin\UserController@activateUser');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/users/new', 'Admin\UserController@newUser');
+Route::post('/admin/users/new', 'Admin\UserController@storeUser');
+Route::get('/admin/users/{deleted?}' , 'Admin\UserController@showUsers');
+Route::delete('/admin/user', 'Admin\UserController@disableUser');
+Route::put('/admin/user', 'Admin\UserController@updateUser');
+Route::get('/admin/users', function(){})->name('users');
+Route::get('/admin/log', 'Admin\LoginLog@index')->name('login-log');
+Route::get('/admin/eventlog', 'Admin\EventLogController@index')->name('event-log');
+

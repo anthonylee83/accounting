@@ -29,6 +29,7 @@
                             Active
                         @endif
                     </td>
+
 					<td>{{'placeholder'}}</td>
                 </tr>
             @empty

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserDeleteColumns extends Migration
+class ChartOfAccountsDeleteColumns extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UserDeleteColumns extends Migration
      */
     public function up()
     {
-        Schema::table('users', function ($table) {
+        Schema::table('chart_of_accounts', function ($table) {
             $table->softDeletes();
         });
     }
@@ -25,6 +25,6 @@ class UserDeleteColumns extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('chart_of_accounts');
     }
 }

@@ -29,4 +29,5 @@ Route::put('/admin/user', 'Admin\UserController@updateUser');
 Route::get('/admin/users', function(){})->name('users');
 Route::get('/admin/log', 'Admin\LoginLog@index')->name('login-log');
 Route::get('/admin/eventlog', 'Admin\EventLogController@index')->name('event-log');
+Route::post('/register', 'Auth\RegisterController@create');
 

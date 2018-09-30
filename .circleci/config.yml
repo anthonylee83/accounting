@@ -1,0 +1,85 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: shincoder/homestead:php7.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Updating repositories and installing updates...
+          command: sudo apt-get update
+      - run:
+          name: Setting up composer...
+          command: composer --version && composer clear-cache
+      - run:
+          name: Installing phpcs...
+          command: composer global require "squizlabs/php_codesniffer=3.2.3"
+      - run:
+          name: Executing php linting...
+          command: find ~/ \( -path ./vendor -o -path ./storage -o -path ./node_modules \) -prune -o -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
+      - run:
+          name: Executing phpcs...
+          command: ~/.composer/vendor/bin/phpcs -v .
+      - run:
+          name: composer install
+          command: cp .env.testing .env; composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - run:
+          name: Configuring mysql-server database password...
+          command: sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password secret'
+      - run: sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password secret'
+      - run:
+          name: Installing needed packages...
+          command: sudo apt-get install -y xvfb mysql-server libzip-dev
+      # - run: sudo service mysql start
+      - run:
+          name: start mysql...
+          command: sudo /etc/init.d/mysql start
+      - run:
+          name: mysql status...
+          command: sudo /etc/init.d/mysql status
+      - run:
+          name: Creating databse...
+          command: mysql -u root -p'secret' -e "create database accounting";
+      - run: mysql -u root -p'secret' -e "GRANT ALL PRIVILEGES ON accounting.* TO 'homestead'@'%' IDENTIFIED BY 'secret'";
+      - run:
+          name: Updating git repo submodules...
+          command: git submodule sync; git submodule update --init
+      - run:
+            name: installing chrome
+            command: sudo apt-get -y install chromium-browser || false
+      - run:
+         name: Install chrome dependencies
+         command: sudo apt-get -y -f install
+      - run: composer dump-autoload
+      - run: sudo service php7.1-fpm restart
+      - run:
+          name: run migrations
+          command: php artisan migrate:fresh --seed --force --env=testing
+      - run:
+          name: run phpunit
+          command: ./vendor/bin/phpunit --testdox --colors
+      - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+      - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+      - run: sudo apt-get update && sudo apt-get install --no-install-recommends yarn
+      - run: yarn
+      - run: yarn prod
+      - run: Xvfb :0 -screen 0 1280x960x24 &
+      - run:
+               name: Start Chrome Driver
+               command: ./vendor/laravel/dusk/bin/chromedriver-linux
+               background: true
+      - run:
+          name: Serve Site
+          command: php artisan serve --port=80
+          background: true
+      - run:
+               name: Run Laravel Dusk Tests
+               command: php artisan dusk
+      - store_artifacts:
+          path: ~/repo/tests/Browser/screenshots
+      - store_artifacts:
+          path: ~/repo/storage/logs

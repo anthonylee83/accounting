@@ -9707,7 +9707,6 @@ input[type="button"].btn-block {
   font-size: 1.125rem;
   line-height: inherit;
   white-space: nowrap;
-
 }
 .navbar-brand img{
 	height: auto;
@@ -10155,6 +10154,7 @@ input[type="button"].btn-block {
   color: #fff;
 }
 
+
 .sidebar-items {
 	list-style-type: none;
 	margin: 0;
@@ -10214,6 +10214,7 @@ a.visible{
 .bypass .sidebarDropDown-menu{
 	display: block;
 }
+
 .card {
   position: relative;
   display: -webkit-box;

@@ -14,34 +14,39 @@ use App\EventLog;
 
 class UserController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
+
         $this->middleware('auth');
         $this->middleware('admin');
     }
 
-    public function showUsers(Request $request, $deleted = false){
-        $user = "";
-        if($deleted === false)
-        {
+    public function showUsers(Request $request, $deleted = false)
+    {
+        $user = '';
+        if ($deleted === false) {
             $users = User::paginate(15);
-        } else
-        {
+        } else {
+
             $users = User::withTrashed()->paginate(15);
         }
         $path = $request->path();
         return view('admin.users', compact('users', 'path'));
     }
-    
-    public function viewUser($id){
-        $user = User::withTrashed()->findOrFail($id);
+
+    public function viewUser($id)
+    {
+        $user         = User::withTrashed()->findOrFail($id);
         $accessLevels = AccessLevel::all();
         return view('admin.view-user', compact('user', 'accessLevels'));
     }
 
-    public function newUser(){
+    public function newUser()
+    {
         $accessLevels = AccessLevel::all();
         return view('admin.create-user', compact('accessLevels'));
     }
+
 
     public function storeUser(NewUserRequest $request){
         
@@ -76,6 +81,7 @@ class UserController extends Controller
         return redirect()->action('Admin\UserController@showUsers');
     }
 
+
     public function updateUser(Request $request){
         $user = User::find($request->id);
         $user->name = $request->name;
@@ -101,6 +107,4 @@ class UserController extends Controller
 		]);
         return redirect()->action('Admin\UserController@showUsers');
     }
-	
-	
 }

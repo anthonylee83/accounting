@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserDeleteColumns extends Migration
+class CreateAccountTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class UserDeleteColumns extends Migration
      */
     public function up()
     {
-        Schema::table('users', function ($table) {
-            $table->softDeletes();
+        Schema::create('account_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('account type');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ class UserDeleteColumns extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('account_types');
     }
 }

@@ -16,8 +16,9 @@ class AdminUser
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->profile->access_level_id !== 3)
+        if (Auth::user()->profile->access_level_id !== 3) {
             abort(403, 'You are not authorized to view this page');
+        }
         return $next($request);
     }
 }

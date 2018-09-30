@@ -21,7 +21,7 @@ class CreateChartOfAccountsTable extends Migration
             $table->foreign('account_type_id')->references('id')->on('account_types');
             $table->string('account_subtype');
             $table->string('account_name');
-            $table->decimal('account_balance',10,2);
+            $table->decimal('account_balance', 10, 2);
 
             $table->timestamps();
         });

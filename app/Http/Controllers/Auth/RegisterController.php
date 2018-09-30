@@ -6,7 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Profile;
 use App\AccessLevel;
@@ -52,8 +52,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -64,14 +64,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create() // DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE REGISTER PAGE FOR SOME REASON
+    protected function create(Request $request)
     {
+        /* DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO
+        * AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE
+        * REGISTER PAGE FOR SOME REASON
+        */
+
         $user =  User::create([
-            'name' => $_REQUEST['name'],
-            'email' => $_REQUEST['email'],
-            'password' => Hash::make($_REQUEST['password'])
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => Hash::make($request->password)
         ]);
-        $profile = new Profile();
+        $profile                  = new Profile();
         $profile->access_level_id = AccessLevel::STANDARD;
         $user->profile()->save($profile);
         $user->save();
@@ -81,11 +86,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-    return view('auth.register');
+        return view('auth.register');
     }
 
     public function register()
     {
-
     }
 }

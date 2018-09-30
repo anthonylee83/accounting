@@ -13,7 +13,7 @@ class ChartOfAccountsDeleteColumns extends Migration
      */
     public function up()
     {
-        Schema::table('chart_of_accounts', function($table){
+        Schema::table('chart_of_accounts', function ($table) {
             $table->softDeletes();
         });
     }
@@ -25,6 +25,6 @@ class ChartOfAccountsDeleteColumns extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('chart_of_accounts');
     }
 }

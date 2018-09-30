@@ -14,24 +14,24 @@ class UserAdminFunctionTest extends DuskTestCase
     /** @test */
     public function adminCanViewUsers()
     {
-        $this->browse(function (Browser $browser){
+        $this->browse(function (Browser $browser) {
             $browser->visit('/')
                 ->type('#email', 'admin@adminuser.com')
                 ->type('#password', 'Admin')
                 ->press('Login')
                 ->assertSee('Dashboard')
-                ->clickLink('Admin User')
+                ->clickLink('Navigation')
                 ->clickLink('Users')
                 ->assertSee('admin@adminuser.com');
         });
     }
 
     /** @test */
-    public function adminCanCreateNewUser(){
+    public function adminCanCreateNewUser()
+    {
         $this->standardUser = factory(User::class)->make();
-        $user = $this->standardUser;
-        $this->browse(function (Browser $browser) use ($user){
-            
+        $user               = $this->standardUser;
+        $this->browse(function (Browser $browser) use ($user) {
             $browser->press('@newUser')
                 ->assertSee('Create User')
                 ->type('#name', $user->name)
@@ -47,13 +47,14 @@ class UserAdminFunctionTest extends DuskTestCase
     }
 
     /** @test */
-    public function standardUserCanLoginUsers(){
+    public function standardUserCanLoginUsers()
+    {
         $user = $this->standardUser;
-        $this->browse(function (Browser $browser) use($user){
-            $browser->type("#email", User::whereHas('profile', function($query){
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->type('#email', User::whereHas('profile', function ($query) {
                 $query->where('access_level_id', 1);
             })->first()->email)
-            ->type("#password", 'secret')
+            ->type('#password', 'secret')
             ->press('Login')
             ->assertSee('Dashboard');
         });
@@ -62,12 +63,10 @@ class UserAdminFunctionTest extends DuskTestCase
     /** @test */
     public function standardUserCannotViewUsers()
     {
-        $this->browse(function (Browser $browser){
+        $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/admin/users')
                 ->assertSee('You are not authorized to view this page');
-
         });
     }
-    
 }

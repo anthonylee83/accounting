@@ -81,8 +81,9 @@
                 </div>
             </div>
         </nav>
+        @if(Auth::check())
 		@include('layouts.sidebar')
-
+        @endif
         <div class="text-center">
         <main class="py-4 col-8 mx-auto">
             @yield('content')

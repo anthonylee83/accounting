@@ -58,7 +58,10 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('Forgot Password?') }}
+                                </a>
+                                <a class="btn btn-link" href="{{ action('Auth\RegisterController@showRegistrationForm') }}">
+                                    {{ __('Create a New User') }}
                                 </a>
                             </div>
                         </div>

@@ -8,6 +8,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
+                    <p class="py-4">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -15,6 +16,31 @@
                     @endif
 
                     You are logged in!
+                    </p>
+                    <div class="d-flex justify-content-around">
+                        <div class="card">
+                                <div class="card-header">
+                                    Active Users
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-24">
+                                        {{$activeUserCount}}
+                                    </p>
+                                </div>
+                        </div>
+                    
+                    
+                        <div class="card">
+                                <div class="card-header">
+                                    Disabled Users
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-24">
+                                        {{$disabledUserCount}}
+                                    </p>
+                                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

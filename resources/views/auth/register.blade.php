@@ -66,6 +66,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+
+                                <input class="btn btn-dark" type="reset" value="Reset" id="btnReset">
+
+                                <a class="btn btn-danger" href="{{ route('login') }}">{{ __('Cancel') }}</a>
                             </div>
                         </div>
                     </form>

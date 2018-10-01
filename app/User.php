@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +27,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relationt to profile table.
+     * @return App\Profile
+     */
+    public function profile()
+    {
+        return $this->hasOne("App\Profile");
+    }
+
+    public function accessLevel()
+    {
+        return $this->hasManyThrough('App\AccessLevel', 'App\Profile');
+    }
 }

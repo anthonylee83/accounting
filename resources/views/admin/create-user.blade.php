@@ -4,11 +4,6 @@
 @section('content')
     @if($errors->any() > 0)
 
-    <ul class="list-group pb-4">
-        @foreach($errors->all() as $error)
-            <li class="list-group-item list-group-item-danger">{{$error}}</li>
-        @endforeach
-    </ul>
     @endif
     <form role="form" action="{{ action('Admin\UserController@newUser') }}" method="POST">
         {{csrf_field()}}
@@ -34,6 +29,7 @@
                 @endforelse
             </select>
         </div>
+        @include('errors')
         <div class="form-group row">
             <div class="col text-center">
                 <button class="btn btn-default" type="submit">Create User</button>

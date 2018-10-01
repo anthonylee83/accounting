@@ -16,7 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('dropdown-navigation', require('./components/DropDownNavigation.vue'));
-
+Vue.component('search', require('./components/Search.vue'));
 const app = new Vue({
     el: '#app'
 });

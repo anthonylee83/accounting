@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventLogTable extends Migration
+class DropUserIdColumnFromCoa extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateEventLogTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('event_log');
-        Schema::create('event_log', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email');
-            $table->string('action');
-            $table->timestamps();
+        Schema::table('chart_of_accounts', function ($table) {
+            $table->dropForeign('chart_of_accounts_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 
@@ -29,6 +26,8 @@ class CreateEventLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_log');
+        Schema::table('chart_of_accounts', function ($table) {
+            $table->unsignedInteger('user_id');
+        });
     }
 }

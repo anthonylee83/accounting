@@ -13,11 +13,12 @@ class CreateEventLogTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('event_log');
         Schema::create('event_log', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('email');
-			$table->string('action');
-			$table->timestamps();
+            $table->string('email');
+            $table->string('action');
+            $table->timestamps();
         });
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="search-wrapper">
         <div class="input-group search">
             <input class="form-control" v-model="searchString" type="search" area-label="Search" />
             <div class="input-group-append">
@@ -61,6 +61,12 @@
     }
 </script>
 <style>
+.search-wrapper{
+    margin-bottom: 1rem;
+}
+    input[type=search]{
+        border:#777;
+    }
     .results{
         background-color:#fff;
         width:60%;  

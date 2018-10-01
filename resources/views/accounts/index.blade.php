@@ -21,6 +21,7 @@
         </div>
     <table class="table table-striped">
         <thead>
+            <th>Acct #</th>
             <th>Name</th>
             <th>Account Type</th>
             <th>Sub Type</th>
@@ -29,6 +30,7 @@
 
         <tbody>
             @forelse($accounts as $account)
+                <td>{{$account->id}}</td>
                 <td>
                     <a href="{{action('Accounts\ChartOfAccounts@showAccount', $account->id)}}">
                         {{$account->account_name}}

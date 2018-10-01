@@ -25,10 +25,11 @@ Route::post('/admin/users/new', 'Admin\UserController@storeUser');
 Route::get('/admin/users/{deleted?}', 'Admin\UserController@showUsers');
 Route::delete('/admin/user', 'Admin\UserController@disableUser');
 Route::put('/admin/user', 'Admin\UserController@updateUser');
-Route::get('/admin/users', function () {
+Route::get('/logs/users', function () {
+    abort(404);
 })->name('users');
-Route::get('/admin/log', 'Admin\LoginLog@index')->name('login-log');
-Route::get('/admin/eventlog', 'Admin\EventLogController@index')->name('event-log');
+Route::get('/logs/log', 'Admin\LoginLog@index')->name('login-log');
+Route::get('/logs/eventlog', 'Admin\EventLogController@index')->name('event-log');
 Route::post('/register', 'Auth\RegisterController@create');
 Route::get('/accounts/search/{id}', 'Accounts\ChartOfAccounts@search');
 Route::get('/accounts/{deleted?}', 'Accounts\ChartOfAccounts@showAccounts')->where(['deleted' => '[a-zA-Z]+']);

@@ -47909,7 +47909,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n.results{\n    background-color:#fff;\n    width:60%;  \n    position:relative;\n    margin:0px auto;\n}\n.result{\n    float:left;\n    position:absolute;\n    padding:10px;\n    background:#fff;\n    border:1px solid #777;\n    width:100%;\n}\n", ""]);
+exports.push([module.i, "\n.search-wrapper{\n    margin-bottom: 1rem;\n}\ninput[type=search]{\n        border:#777;\n}\n.results{\n        background-color:#fff;\n        width:60%;  \n        position:relative;\n        margin:0px auto;\n}\n.result{\n        float:left;\n        position:absolute;\n        padding:10px;\n        background:#fff;\n        border:1px solid #777;\n        width:100%;\n}\n", ""]);
 
 // exports
 
@@ -47990,7 +47990,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "search-wrapper" }, [
     _c("div", { staticClass: "input-group search" }, [
       _c("input", {
         directives: [

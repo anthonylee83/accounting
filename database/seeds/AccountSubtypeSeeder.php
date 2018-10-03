@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\AccountSubType;
+use App\AccountSubtype;
 
 class AccountSubtypeSeeder extends Seeder
 {

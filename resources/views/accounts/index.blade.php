@@ -25,6 +25,7 @@
             <th>Name</th>
             <th>Account Type</th>
             <th>Sub Type</th>
+            <th>Normal Side</th>
             <th>Balance</th>
         </thead>
 
@@ -38,6 +39,7 @@
                 </td>
                 <td>{{$account->accountType->account_type}}</td>
                 <td>{{$account->accountSubtype->sub_type}}</td>
+                <!-- <td>{{$account->accountNormalSide->normal_side}}</td> -->
                 <td>{{$account->account_balance}}</td>
                 </tr>
             @empty

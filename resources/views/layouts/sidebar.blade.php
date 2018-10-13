@@ -18,7 +18,7 @@
                         <div class="sidebarDropDown-menu">
                             <a class="sidebarDropDown-item {{ starts_with($path, 'logs/eventlog') ? 'active' : ''}}" href="{{ route('event-log') }}">{{'Event Reports'}}</a>
                             <a class="sidebarDropDown-item {{ starts_with($path, 'logs/log') ? 'active' : ''}}" href="{{ route('login-log') }}">{{'Login Statistics'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'logs/users') ? 'active' : ''}}" href="#">{{'User Reports'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'logs/users') ? 'active' : ''}}" href="{{ route('user-log') }}">{{'User Reports'}}</a>
                         </div>
                     </div>
 				@elseif( Auth::user()->profile->access_level_id == 2)

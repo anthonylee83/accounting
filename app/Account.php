@@ -14,6 +14,7 @@ class Account extends Model
         'account_name',
         'account_type_id',
         'account_subtype_id',
+        'account_normal_side',
         'account_balance'
     ];
 

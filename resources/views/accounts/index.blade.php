@@ -39,7 +39,7 @@
                 </td>
                 <td>{{$account->accountType->account_type}}</td>
                 <td>{{$account->accountSubtype->sub_type}}</td>
-                <!-- <td>{{$account->accountNormalSide->normal_side}}</td> -->
+                <td>{{$account->account_normal_side}}</td>
                 <td>{{$account->account_balance}}</td>
                 </tr>
             @empty

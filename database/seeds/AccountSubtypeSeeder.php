@@ -12,7 +12,7 @@ class AccountSubtypeSeeder extends Seeder
      */
     public function run()
     {
-        AccountSubType::create(['sub_type' => 'Longterm']);
-        AccountSubType::create(['sub_type' => 'Shorterm']);
+        AccountSubType::create(['sub_type' => 'Long term']);
+        AccountSubType::create(['sub_type' => 'Short term']);
     }
 }

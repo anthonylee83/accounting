@@ -7,7 +7,7 @@
 			<th>Total</th>
 		</thead>
 			<tr>
-				<td>{{ 'Standard Users'}}</td>
+				<td>{{ 'Accountant Users'}}</td>
 				<td>{{ $standardCount }}</td>
 			</tr>
 			<tr>

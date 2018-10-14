@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ Html::image('img/logo2.png', 'Logo')}}
+                    {{ Html::image('img/Logo2.png', 'Logo')}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -81,8 +81,9 @@
                 </div>
             </div>
         </nav>
+        @if(Auth::check())
 		@include('layouts.sidebar')
-
+        @endif
         <div class="text-center">
         <main class="py-4 col-8 mx-auto">
             @yield('content')

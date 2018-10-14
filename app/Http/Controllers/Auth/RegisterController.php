@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Profile;
 use App\AccessLevel;
+use Exception;
 
 class RegisterController extends Controller
 {
@@ -43,6 +44,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function index()
+    {
+        return view('auth.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -66,30 +72,26 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        /* DUPLICATE EMAILS WILL THROW EXCEPTION. ALSO, TRYING TO LOG INTO
+        /* DUPLICATE EMAILS WILL THROW EXCEPTION. THIS TRY;CATCH WILL HAVE TO DO FOR NOW. ALSO, TRYING TO LOG INTO
         * AN ACCOUNT IMMEDIATELY AFTER CREATING IT REDIRECTS TO THE
         * REGISTER PAGE FOR SOME REASON
         */
 
-        $user =  User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+        }
+        catch (Exception $e) {
+            return view('auth.register');
+        }
         $profile                  = new Profile();
         $profile->access_level_id = AccessLevel::STANDARD;
         $user->profile()->save($profile);
         $user->save();
         $user->delete();
         return view('auth.login');
-    }
-
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-    }
-
-    public function register()
-    {
     }
 }

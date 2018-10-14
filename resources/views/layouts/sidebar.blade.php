@@ -4,7 +4,7 @@
             <div class="sidebar-contents">
                 
                 <ul class="sidebar-items">
-				@if(Auth::user()->profile->access_level_id == 3)
+				@if( Auth::user()->profile->access_level_id == 3)
                     <li id="users">
                         <a href="{{action('Admin\UserController@showUsers')}}" class="sidebar-link {{ starts_with($path, 'admin/users') ? 'active' : ''}}">
 							{{'Users'}}

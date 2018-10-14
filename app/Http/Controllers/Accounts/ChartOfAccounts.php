@@ -46,7 +46,7 @@ class ChartOfAccounts extends Controller
 
     public function storeAccount(NewAccountRequest $request)
     {
-        $account = Account::create(array_merge($request->all(), ['account_balance' => 0]));
+        $account = Account::create(array_merge($request->all()));
         return redirect()->action('Accounts\ChartOfAccounts@showAccounts');
     }
 

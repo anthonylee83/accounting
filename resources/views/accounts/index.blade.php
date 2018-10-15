@@ -53,6 +53,9 @@
             @endforelse
         </tbody>
     </table>
+	<div clas="paginate">
+		{{$accounts->render()}}
+	</div>
 
 </div>
 

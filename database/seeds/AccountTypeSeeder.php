@@ -17,5 +17,6 @@ class AccountTypeSeeder extends Seeder
         AccountType::create(['account_type'=>'Expenses']);
         AccountType::create(['account_type'=>'Liabilities']);
         AccountType::create(['account_type'=>'Revenues']);
+        AccountType::create(['account_type'=>'Contra Assets']);
     }
 }

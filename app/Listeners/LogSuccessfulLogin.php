@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\LoginActivity;
+use App\User;
 
 
 class LogSuccessfulLogin
@@ -36,5 +37,7 @@ class LogSuccessfulLogin
 		'email'       =>  session('email'),
 		'type' => 'Logged In'
     ]);
+		$event->user->last_login = date('m-d-Y H:i');
+		$event->user->save();
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Account;
 use App\AccountType;
 use App\AccountSubtype;
+use App\EventLog;
 
 class ChartOfAccounts extends Controller
 {
@@ -46,13 +47,21 @@ class ChartOfAccounts extends Controller
 
     public function storeAccount(NewAccountRequest $request)
     {
-        $account = Account::create(array_merge($request->all(), ['account_balance' => 0]));
+        $account = Account::create(array_merge($request->all()));
+		EventLog::create([
+		'email'       =>  session('email'),
+		'action' => "Created New Account: {$account->account_name}"
+		]);
         return redirect()->action('Accounts\ChartOfAccounts@showAccounts');
     }
 
     public function deleteAccount($id)
     {
         $account = Account::FindOrFail($id);
+		EventLog::create([
+		'email'       =>  session('email'),
+		'action' => "Deleted Account: {$account->account_name}"
+		]);
         $account->delete();
         return redirect()->action('Accounts\ChartOfAccounts@showAccounts');
     }
@@ -60,10 +69,28 @@ class ChartOfAccounts extends Controller
     public function updateAccount(UpdateAccountRequest $request, $id)
     {
         $account                     = Account::FindOrFail($id);
+		$oldname = $account->account_name;
+		$oldtype = $account->account_type_id;
+		$oldsubtype = $account->account_subtype_id;
         $account->account_name       = $request->account_name;
         $account->account_type_id    = $request->account_type_id;
         $account->account_subtype_id = $request->account_subtype_id;
         $account->save();
+		if($account->account_name !== $oldname)
+			EventLog::create([
+			'email'       =>  session('email'),
+			'action' => "Updated Account Name: {$oldname} to {$account->account_name}"
+			]);
+		if($account->account_type_id !== $oldtype)
+			EventLog::create([
+			'email'       =>  session('email'),
+			'action' => "Updated {$account->account_name} Type: {$oldtype} to {$account->account_type_id}"
+			]);
+		if($account->account_subtype_id !== $oldsubtype)
+			EventLog::create([
+			'email'       =>  session('email'),
+			'action' => "Updated {$account->account_name} Subtype: {$oldsubtype} to {$account->account_subtype_id}"
+			]);
         return redirect()->action('Accounts\ChartOfAccounts@showAccounts');
     }
 
@@ -71,6 +98,10 @@ class ChartOfAccounts extends Controller
     {
         $account = Account::withTrashed()->findOrFail($id);
         $account->restore();
+		EventLog::create([
+		'email'       =>  session('email'),
+		'action' => "Reactivated Account: {$account->account_name}"
+		]);
         return redirect()->action('Accounts\ChartOfAccounts@showAccounts');
     }
 

@@ -30,6 +30,8 @@ Route::get('/logs/users', function () {
 })->name('users');
 Route::get('/logs/log', 'Admin\LoginLog@index')->name('login-log');
 Route::get('/logs/eventlog', 'Admin\EventLogController@index')->name('event-log');
+Route::get('/logs/users', 'Admin\UserLogController@index')->name('user-log');
+Route::get('/register', 'Auth\registerController@index')->name('register');
 Route::post('/register', 'Auth\RegisterController@create');
 Route::get('/accounts/search/{id}', 'Accounts\ChartOfAccounts@search');
 Route::get('/accounts/{deleted?}', 'Accounts\ChartOfAccounts@showAccounts')->where(['deleted' => '[a-zA-Z]+']);
@@ -39,3 +41,5 @@ Route::get('/accounts/{id}', 'Accounts\ChartOfAccounts@showAccount');
 Route::put('/accounts/{id}', 'Accounts\ChartOfAccounts@updateAccount');
 Route::delete('/accounts/{id}', 'Accounts\ChartOfAccounts@deleteAccount');
 Route::patch('/accounts/{id}', 'Accounts\ChartOfAccounts@reactivateAccount');
+Route::get('/journal', 'JournalController@index');
+Route::post('/journal', 'JournalController@store');

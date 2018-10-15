@@ -41,3 +41,4 @@ Route::get('/accounts/{id}', 'Accounts\ChartOfAccounts@showAccount');
 Route::put('/accounts/{id}', 'Accounts\ChartOfAccounts@updateAccount');
 Route::delete('/accounts/{id}', 'Accounts\ChartOfAccounts@deleteAccount');
 Route::patch('/accounts/{id}', 'Accounts\ChartOfAccounts@reactivateAccount');
+Route::get('/journal', 'JournalController@index');

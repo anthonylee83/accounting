@@ -49,7 +49,7 @@
                     <div class="sidebarDrop {{ starts_with($path, 'journal') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'journal') ? 'visible' : ''}}" href="#">{{'Journal'}}</a></li>
                         <div class="sidebarDropDown-menu">
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="#">{{'Journalize'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a>
                             <a class="sidebarDropDown-item {{ starts_with($path, 'journal/status') ? 'active' : ''}}" href="#">{{'Status'}}</a>
                         </div>
                     </div>

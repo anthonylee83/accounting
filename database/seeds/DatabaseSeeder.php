@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AccountTypeSeeder::class);
         $this->call(AccountSubtypeSeeder::class);
         $this->call(ChartOfAccountsSeeder::class);
+		$this->call(UserSeed::class);
     }
 }

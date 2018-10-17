@@ -1,4 +1,3 @@
-\
 <?php
 
 use Illuminate\Support\Facades\Schema;
@@ -35,5 +34,5 @@ class CreateOldEventLogTable extends Migration
     {
         Schema::dropIfExists('old_event_log');
     }
-}
 */
+}

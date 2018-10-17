@@ -34,7 +34,12 @@
                         @endif
                     </td>
 
-					<td>{{'placeholder'}}</td>
+					<td>@if($user->last_login == null)
+							{{'never'}}
+						@else
+							{{$user->last_login}}
+						@endif
+					</td>
                 </tr>
             @empty
                 <p>An error has occured</p>

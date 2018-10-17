@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\User;
+use App\Profile;
+
+class UserSeed extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+		$user2 = User::Create([
+            'email'    => 'accountant@testuser.com',
+            'name'     => 'Accountant User',
+            'password' => Hash::make('Accountant')
+        ]);
+
+        Profile::create(
+            [
+                'access_level_id' => 1,
+                'user_id'         => $user2->id
+            ]
+        );
+		$user3 = User::Create([
+            'email'    => 'manager@testuser.com',
+            'name'     => 'Manager User',
+            'password' => Hash::make('Manager')
+        ]);
+
+        Profile::create(
+            [
+                'access_level_id' => 2,
+                'user_id'         => $user3->id
+            ]
+        );
+    }
+}

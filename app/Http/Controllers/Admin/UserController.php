@@ -65,7 +65,7 @@ class UserController extends Controller
         DB::commit();
 		EventLog::create([
 		'email'       =>  session('email'),
-		'action' => "Created new user: {$user->email}"
+		'action' => "Created New User: {$user->email}"
 		]);
         
         return redirect()->action('Admin\UserController@showUsers');
@@ -75,7 +75,7 @@ class UserController extends Controller
         $user = User::find($request->id);
 		EventLog::create([
 		'email'       =>  session('email'),
-	'action' => "Disabled user: {$user->email}"
+	'action' => "Deactivated user: {$user->email}"
 		]);
         $user->delete();
         return redirect()->action('Admin\UserController@showUsers');
@@ -84,6 +84,9 @@ class UserController extends Controller
 
     public function updateUser(Request $request){
         $user = User::find($request->id);
+		$oldname = $user->name;
+		$oldemail = $user->email;
+		$oldlevel = $user->profile->access_level_id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->profile->access_level_id = $request->access_level_id;
@@ -91,10 +94,21 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         $user->save();
         $user->profile->save();
-		EventLog::create([
-		'email'       =>  session('email'),
-	'action' => "Updated user: {$user->email}"
-		]);
+		if($user->name !== $oldname)
+			EventLog::create([
+			'email'       =>  session('email'),
+			'action' => "Updated {$user->email} Name: {$oldname} to {$user->name}"
+			]);
+		if($user->email !== $oldemail)
+			EventLog::create([
+			'email'       =>  session('email'),
+			'action' => "Updated User's Email: {$oldemail} to {$user->email}"
+			]);
+		if($user->profile->access_level_id !== $oldlevel)
+			EventLog::create([
+			'email'       =>  session('email'),
+			'action' => "Updated {$user->email} Access Level: {$oldlevel} to {$user->profile->access_level_id}"
+			]);
         return redirect()->action('Admin\UserController@showUsers');
     }
 
@@ -103,7 +117,7 @@ class UserController extends Controller
         $user->restore();
 		EventLog::create([
 		'email'       =>  session('email'),
-		'action' => "Activated user: {$user->email}"
+		'action' => "Activated User: {$user->email}"
 		]);
         return redirect()->action('Admin\UserController@showUsers');
     }

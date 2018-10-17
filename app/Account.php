@@ -17,6 +17,7 @@ class Account extends Model
         'account_normal_side',
         'account_balance'
     ];
+    protected $appends = ['name'];
 
     public function accountType()
     {
@@ -31,5 +32,10 @@ class Account extends Model
     public function getAccountBalanceAttribute($value)
     {
         return '$' . $value;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->account_name;
     }
 }

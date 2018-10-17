@@ -6,13 +6,13 @@
 
 
 <div class='col-xs-12 col-md-8 mx-auto'>
-    <search 
-        display_field="account_name" 
+    <search
+        display_field="account_name"
         search_url="/accounts/search/"
         link_url="/accounts/"></search>
     <h1>Chart of Accounts</h1>
-        <dropdown-navigation 
-            path="{{$path}}" 
+        <dropdown-navigation
+            path="{{$path}}"
             all_path="/accounts/all"
             base_path="/accounts"
             model="Accounts"></dropdown-navigation>
@@ -42,8 +42,8 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan=4>
-                        There are no accounts.  
+                    <td colspan=5>
+                        There are no accounts.
                         <a href="{{action('Accounts\ChartOfAccounts@newAccount')}}">
                         Create a new account</a>
                     </td>

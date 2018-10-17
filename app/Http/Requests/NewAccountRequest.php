@@ -24,7 +24,7 @@ class NewAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'account_name'               => 'required|string',
+            'account_name'               => 'required|string|unique:chart_of_accounts',
             'account_type_id'            => 'required|integer',
             'account_subtype_id'         => 'required|integer'
         ];

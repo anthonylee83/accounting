@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Account;
 use App\AccountType;
 use App\AccountSubtype;
+use App\AccountNormalSide;
 use App\EventLog;
 
 class ChartOfAccounts extends Controller
@@ -34,15 +35,17 @@ class ChartOfAccounts extends Controller
     {
         $accountTypes    = AccountType::all();
         $accountSubtypes = AccountSubtype::all();
-        return view('accounts.new', compact('accountTypes', 'accountSubtypes'));
+        $accountNormalSide = AccountNormalSide::all();
+        return view('accounts.new', compact('accountTypes', 'accountSubtypes', 'accountNormalSide'));
     }
 
     public function showAccount($id)
     {
         $accountTypes    = AccountType::all();
         $accountSubtypes = AccountSubtype::all();
+        $accountNormalSide = AccountNormalSide::all();
         $account         = Account::withTrashed()->findOrFail($id);
-        return view('accounts.show', compact('account', 'accountTypes', 'accountSubtypes'));
+        return view('accounts.show', compact('account', 'accountTypes', 'accountSubtypes', 'accountNormalSide'));
     }
 
     public function storeAccount(NewAccountRequest $request)

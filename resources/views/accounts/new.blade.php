@@ -25,7 +25,7 @@
                 @endforeach
             </select>
         </div>
-        <!--
+        
         <div class="form-group">
             <label for="account_normal_side">Normal Side</label>
             <select name="account_normal_side" class="form-control" value="{{old('account_normal_side')}}">
@@ -38,7 +38,7 @@
         <label for="account_balance">Starting Balance</label>
             <input type="text" class="form-control" name="account_balance" required="required" value="{{old('account_balance')}}" />
         </div>
-        -->
+        
        @include('errors')
         <div class="form-group d-flex justify-content-around">
             <button type="submit" class="btn btn-success">Submit</button>

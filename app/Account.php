@@ -29,6 +29,11 @@ class Account extends Model
         return $this->belongsTo(AccountSubtype::class);
     }
 
+    public function accountNormalSide()
+    {
+        return $this->belongsTo(AccountNormalSide::class);
+    }
+
     public function getAccountBalanceAttribute($value)
     {
         return '$' . $value;

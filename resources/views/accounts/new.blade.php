@@ -28,7 +28,7 @@
         
         <div class="form-group">
             <label for="account_normal_side">Normal Side</label>
-            <select name="account_normal_side" class="form-control" value="{{old('account_normal_side')}}">
+            <select name="account_normal_side_id" class="form-control" value="{{old('account_normal_side_id')}}">
                 @foreach($accountNormalSide as $side)
                     <option value={{$side->id}} >{{$side->normal_side}}</option>
                 @endforeach

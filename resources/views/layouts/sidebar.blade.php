@@ -25,7 +25,7 @@
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'journal') ? 'visible' : ''}}" href="#">{{'Journal'}}</a></li>
                         <div class="sidebarDropDown-menu">
                             <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/status') ? 'active' : ''}}" href="#">{{'Status'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/status') ? 'active' : ''}}" href="/journal/approval">{{'Status'}}</a>
                         </div>
                     </div>
                     <li id="account"><a class="sidebar-link {{ starts_with($path, 'account') ? 'active' : ''}}" href="#">{{'Accounts'}}</a></li>
@@ -39,19 +39,11 @@
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="#">{{'Retained Earnings'}}</a>
                         </div>
                     </div>
-					<div class="sidebarDrop {{ starts_with($path, 'request') ? 'bypass' : ''}}">
-                        <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'request') ? 'visible' : ''}}" href="#">{{'Request'}}</a></li>
-                        <div class="sidebarDropDown-menu">
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'request/new') ? 'active' : ''}}" href="#">{{'New Account'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'request/edit') ? 'active' : ''}}" href="#">{{'Edit Account'}}</a>
-                        </div>
-                    </div>
 				@elseif( Auth::user()->profile->access_level_id == 1)
                     <div class="sidebarDrop {{ starts_with($path, 'journal') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'journal') ? 'visible' : ''}}" href="#">{{'Journal'}}</a></li>
                         <div class="sidebarDropDown-menu">
                             <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/status') ? 'active' : ''}}" href="#">{{'Status'}}</a>
                         </div>
                     </div>
 					<li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="#">{{'Trial Balance'}}</a></li>

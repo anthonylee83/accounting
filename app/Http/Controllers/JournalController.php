@@ -10,6 +10,13 @@ use Auth;
 
 class JournalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('accountant')->except(['approve', 'decline']);
+        $this->middleware('manager')->only(['approve', 'decline']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -105,5 +112,20 @@ class JournalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function approve($id)
+    {
+        $entry           = JournalEntry::findOrFail($id);
+        $entry->approved = true;
+        $entry->save();
+        return redirect()->action('ApprovalController@index');
+    }
+
+    public function decline($id)
+    {
+        $entry = JournalEntry::findOrFail($id);
+        $entry->delete();
+        return redirect()->action('ApprovalController@index');
     }
 }

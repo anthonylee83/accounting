@@ -38,12 +38,12 @@
                 <td>
                     <div>
                         <ul class="navbar-nav ml-auto">
-                            <li>
-                                <a class="btn btn-primary">Approve</a>
-                            </li>
-                            <li>
-                                <a class="btn btn-danger">Reject</a>
-                            </li>
+                        <a 
+                            href="{{action('JournalController@approve', $je->id)}}"
+                            class="btn btn-primary">Approve</a>
+                        <a
+                            href="{{action('JournalController@decline', $je->id)}}"
+                            class="btn btn-danger">Remove</a>
                         </ul>
                     </div>
                 </td>

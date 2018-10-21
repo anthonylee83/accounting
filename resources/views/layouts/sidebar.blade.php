@@ -12,7 +12,6 @@
 					</li>
                     <li id="chart"><a class="sidebar-link {{ starts_with($path, 'accounts') ? 'active' : ''}}" href="{{action('Accounts\ChartOfAccounts@showAccounts')}}">{{'Chart
                             of Accounts'}}</a></li>
-                    <li id="database"><a class="sidebar-link {{ starts_with($path, 'database') ? 'active' : ''}}" href="#">{{'Database'}}</a></li>
                     <div class="sidebarDrop {{ starts_with($path, 'logs') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'logs') ? 'visible' : ''}}" href="#">{{'Logs'}}</a></li>
                         <div class="sidebarDropDown-menu">
@@ -22,11 +21,13 @@
                         </div>
                     </div>
 				@elseif( Auth::user()->profile->access_level_id == 2)
-                    <li id="status">
-                        <a href="#" class="sidebar-link {{ starts_with($path, 'journal/status') ? 'active' : ''}}">
-							{{'Journal Status'}}
-						</a>
-					</li>
+                    <div class="sidebarDrop {{ starts_with($path, 'journal') ? 'bypass' : ''}}">
+                        <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'journal') ? 'visible' : ''}}" href="#">{{'Journal'}}</a></li>
+                        <div class="sidebarDropDown-menu">
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/status') ? 'active' : ''}}" href="#">{{'Status'}}</a>
+                        </div>
+                    </div>
                     <li id="account"><a class="sidebar-link {{ starts_with($path, 'account') ? 'active' : ''}}" href="#">{{'Accounts'}}</a></li>
                     <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="#">{{'Ledger'}}</a></li>
 					<li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="#">{{'Trial Balance'}}</a></li>

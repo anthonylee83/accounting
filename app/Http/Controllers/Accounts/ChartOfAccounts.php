@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Account;
 use App\AccountType;
 use App\AccountSubtype;
+use App\AccountNormalSide;
 use App\EventLog;
 
 class ChartOfAccounts extends Controller
@@ -34,15 +35,17 @@ class ChartOfAccounts extends Controller
     {
         $accountTypes    = AccountType::all();
         $accountSubtypes = AccountSubtype::all();
-        return view('accounts.new', compact('accountTypes', 'accountSubtypes'));
+        $accountNormalSide = AccountNormalSide::all();
+        return view('accounts.new', compact('accountTypes', 'accountSubtypes', 'accountNormalSide'));
     }
 
     public function showAccount($id)
     {
         $accountTypes    = AccountType::all();
         $accountSubtypes = AccountSubtype::all();
+        $accountNormalSide = AccountNormalSide::all();
         $account         = Account::withTrashed()->findOrFail($id);
-        return view('accounts.show', compact('account', 'accountTypes', 'accountSubtypes'));
+        return view('accounts.show', compact('account', 'accountTypes', 'accountSubtypes', 'accountNormalSide'));
     }
 
     public function storeAccount(NewAccountRequest $request)
@@ -72,9 +75,11 @@ class ChartOfAccounts extends Controller
 		$oldname = $account->account_name;
 		$oldtype = $account->account_type_id;
 		$oldsubtype = $account->account_subtype_id;
+        $oldnormalside = $account->account_normal_side_id;
         $account->account_name       = $request->account_name;
         $account->account_type_id    = $request->account_type_id;
         $account->account_subtype_id = $request->account_subtype_id;
+        $account->account_normal_side_id = $request->account_normal_side_id;
         $account->save();
 		if($account->account_name !== $oldname)
 			EventLog::create([
@@ -91,6 +96,11 @@ class ChartOfAccounts extends Controller
 			'email'       =>  session('email'),
 			'action' => "Updated {$account->account_name} Subtype: {$oldsubtype} to {$account->account_subtype_id}"
 			]);
+        if($account->account_normal_side_id !== $oldnormalside)
+            EventLog::create([
+            'email'       =>  session('email'),
+            'action' => "Updated {$account->account_name} Normal Side: {$oldnormalside} to {$account->account_normal_side_id}"
+            ]);
         return redirect()->action('Accounts\ChartOfAccounts@showAccounts');
     }
 

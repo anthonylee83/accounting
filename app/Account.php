@@ -14,7 +14,7 @@ class Account extends Model
         'account_name',
         'account_type_id',
         'account_subtype_id',
-        'account_normal_side',
+        'account_normal_side_id',
         'account_balance'
     ];
     protected $appends = ['name'];
@@ -27,6 +27,11 @@ class Account extends Model
     public function accountSubtype()
     {
         return $this->belongsTo(AccountSubtype::class);
+    }
+
+    public function accountNormalSide()
+    {
+        return $this->belongsTo(AccountNormalSide::class);
     }
 
     public function getAccountBalanceAttribute($value)

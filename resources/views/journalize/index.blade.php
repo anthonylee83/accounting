@@ -16,7 +16,8 @@
             <th>Reference</th>
             <th>Description</th>
             <th>Accounts</th>
-            <th>Amounts</th>
+            <th>Debit</th>
+            <th>Credit</th>
             <th>Approved</th>
             <th>Created At</th>
             @if( Auth::user()->profile->access_level_id == 2)
@@ -27,6 +28,7 @@
     @forelse($entries as $je)
         <tr>
             <td>{{$je->reference}}</td>
+            <td>{{$je->description}}</td>
             <td></td>
             <td></td>
             <td></td>

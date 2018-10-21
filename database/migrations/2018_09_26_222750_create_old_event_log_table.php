@@ -1,4 +1,4 @@
-\<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,7 +11,7 @@ class CreateOldEventLogTable extends Migration
      *
      * @return void
      */
-    public function up()
+   /* public function up()
     {
         Schema::create('old_event_log', function (Blueprint $table) {
             $table->increments('id');
@@ -22,15 +22,17 @@ class CreateOldEventLogTable extends Migration
             $table->text('message');
             $table->timestamps();
         });
+
     }
 
     /**
      * Reverse the migrations.
      *
      * @return void
-     */
+     *//*
     public function down()
     {
         Schema::dropIfExists('old_event_log');
     }
+*/
 }

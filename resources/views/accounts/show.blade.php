@@ -19,11 +19,20 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="account_subtype_id">Account Type</label>
+            <label for="account_subtype_id">Account Subtype</label>
             <select name="account_subtype_id" class="form-control" value="{{old('account_subtype_id')}}">
                 @foreach($accountSubtypes as $type)
-                    <option value={{$type->id}} @if($type->id == $account->account_subtype_id)
+                    <option value={{ $type->id}} @if($type->id == $account->account_subtype_id)
                         selected @endif>{{$type->sub_type}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="account_normal_side_id">Account Normal Side</label>
+            <select name="account_normal_side_id" class="form-control" value="{{old('account_normal_side_id')}}">
+                @foreach($accountNormalSide as $side)
+                    <option value={{ $side->id}} @if($side->id == $account->account_normal_side_id)
+                        selected @endif>{{$side->normal_side}}</option>
                 @endforeach
             </select>
         </div>

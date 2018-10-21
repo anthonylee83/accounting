@@ -8,13 +8,18 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+import BootstrapVue from 'bootstrap-vue';
+import Dropdown from 'vue-simple-search-dropdown';
+Vue.use(BootstrapVue);
+Vue.component('dropdown', Dropdown);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('journal-row', require('./components/JournalRow.vue'));
+Vue.component('journalizer', require('./components/Journalizer.vue'));
 Vue.component('dropdown-navigation', require('./components/DropDownNavigation.vue'));
 Vue.component('search', require('./components/Search.vue'));
 const app = new Vue({

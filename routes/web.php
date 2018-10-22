@@ -31,7 +31,7 @@ Route::get('/logs/users', function () {
 Route::get('/logs/log', 'Admin\LoginLog@index')->name('login-log');
 Route::get('/logs/eventlog', 'Admin\EventLogController@index')->name('event-log');
 Route::get('/logs/users', 'Admin\UserLogController@index')->name('user-log');
-Route::get('/register', 'Auth\registerController@index')->name('register');
+Route::get('/register', 'Auth\RegisterController@index')->name('register');
 Route::post('/register', 'Auth\RegisterController@create');
 Route::get('/accounts/search/{id}', 'Accounts\ChartOfAccounts@search');
 Route::get('/accounts/new', 'Accounts\ChartOfAccounts@newAccount');

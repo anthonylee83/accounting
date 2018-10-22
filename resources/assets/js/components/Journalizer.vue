@@ -11,10 +11,10 @@
                         <Label>Description</Label>
                     </div>
                     <div class="col-2">
-                        <label>Credit</label>
+                        <label>Debit</label>
                     </div>
                     <div class="col-2">
-                        <label>Debit</label>
+                        <label>Credit</label>
                     </div>
                 </div>
                 <journal-row v-for="(t, index) in transactions" 
@@ -28,10 +28,10 @@
                       
                     </div>
                     <div class="col-2">
-                        <input type="text" disabled v-model="credit_total" class="form-control" />
+                        <input type="text" disabled v-model="debit_total" class="form-control" />
                     </div>
                     <div class="col-2">
-                        <input type="text" disabled v-model="debit_total" class="form-control" />
+                        <input type="text" disabled v-model="credit_total" class="form-control" />
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -69,26 +69,17 @@ import Transaction from '../transaction';
         },
         methods: {
             _validate(){
-                if(this.debit_total !== this.credit_total){
+            if(this.debit_total !== this.credit_total){
                     alert("Your balance does not match. Plese check your entries");
                     return;
                 }
-                let dupes = _.filter(this.transactions, (value, index, iteratee) => { return _.find(iteratee, value, index + 1) });
-                if(dupes.length > 0){
-                    alert("You cannot use the same account more than once. Plese check your entries");
-                    return;
-                }
-                if(this.debit_total <= 0 || this.credit_total <= 0){
-                    alert("Invalid balance amount. Plese check your entries");
-                    return;
-                }
+
                 let count = _.filter(this.transactions, transaction => {
                     if((transaction.debit > 0 || transaction.credit > 0) && transaction.account_id === null) {
                         return true
                     }
                     return false;
                 });
-
 
                 if(count.length > 0){
                     alert('Please select an account!');

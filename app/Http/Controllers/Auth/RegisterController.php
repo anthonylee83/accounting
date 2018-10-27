@@ -92,6 +92,6 @@ class RegisterController extends Controller
         $user->profile()->save($profile);
         $user->save();
         $user->delete();
-        return view('auth.login');
+        return redirect('/login');
     }
 }

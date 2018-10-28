@@ -118,6 +118,24 @@ class JournalController extends Controller
     {
         $entry           = JournalEntry::findOrFail($id);
         $transactions = Transaction::where('journal_entry_id', $id)->get();
+
+        // Amount validation
+        foreach($transactions as $transaction)
+        {
+            $accountID = $transaction->account_id;
+            $account = Account::find($accountID);
+            $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+            $amount = $transaction->amount;
+
+            if (($transaction->debit > 0 && $account->account_normal_side_id == 2) || ($transaction->debit == 0 && $account->account_normal_side_id == 1))
+            {
+                if ($accountBalance < $amount)
+                {
+                    return redirect()->action('ApprovalController@index');
+                }
+            }
+        }
+
         foreach($transactions as $transaction)
         {
             $accountID = $transaction->account_id;
@@ -129,25 +147,12 @@ class JournalController extends Controller
                 if($account->account_normal_side_id == 1)
                     $accountBalance = $accountBalance + $amount;
                 elseif($account->account_normal_side_id == 2)
-                {
-                    if ($accountBalance >= $amount) {
-                        $accountBalance = $accountBalance - $amount;
-                    }
-                    else
-                        return redirect()->action('ApprovalController@index');
-                }
+                    $accountBalance = $accountBalance - $amount;
             }
             elseif($transaction->debit == 0)
             {
                 if($account->account_normal_side_id == 1)
-                {
-                    if ($accountBalance >= $amount)
-                    {
-                        $accountBalance = $accountBalance - $amount;
-                    }
-                    else
-                        return redirect()->action('ApprovalController@index');
-                }
+                    $accountBalance = $accountBalance - $amount;
                 elseif($account->account_normal_side_id == 2)
                     $accountBalance = $accountBalance + $amount;
             }

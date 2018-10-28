@@ -13,13 +13,12 @@
 
     <table class="table table-striped table-hover">
         <thead>
+            <th>Date</th>
             <th>Reference</th>
-            <th>Description</th>
             <th>Accounts</th>
             <th>Debit</th>
             <th>Credit</th>
             <th>Approved</th>
-            <th>Created At</th>
             @if( Auth::user()->profile->access_level_id == 2)
                 <th>Controls</th>
             @endif
@@ -27,13 +26,22 @@
         <tbody>
     @forelse($entries as $je)
         <tr>
+            <td>{{$je->created_at->format('m/d/y')}}</td>
             <td>{{$je->reference}}</td>
-            <td>{{$je->description}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            
+            <td colspan=3>
+             <table class="table">
+                @foreach($je->transactions()->get() as $transaction)
+                    <tr>
+                        <td class="{{ $transaction->debit ? 'debit-account' : 'credit-account'}}">{{ $transaction->account->name }}</td>
+                        <td class="debit">{{ $transaction->debit ? $transaction->formattedAmount : '' }}</td>
+                        <td class="credit">{{ !$transaction->debit ? $transaction->formattedAmount : '' }}</td>
+                    </tr>
+
+                @endforeach
+                </table>
+            </td>
             <td> {{ $je->approved ? 'Approved' : 'Pending'}}</td>
-            <td>{{$je->created_at}}</td>
             @if( Auth::user()->profile->access_level_id == 2)
                 <td>
                     <div>

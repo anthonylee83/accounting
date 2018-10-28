@@ -26,7 +26,7 @@ class JournalController extends Controller
     public function index()
     {
         $entries  = JournalEntry::orderBy('created_at', 'DESC')
-                    ->with('transactions')
+                    ->with('transactions', 'transactions.account')
                     ->paginate(30);
 
         $accounts = Account::all();

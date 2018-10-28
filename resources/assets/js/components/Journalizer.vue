@@ -58,12 +58,12 @@ import Transaction from '../transaction';
         computed:{
             credit_total () {
                return _.sumBy(this.transactions, (transaction) => {
-                   return transaction.credit === null ? 0 : parseInt(transaction.credit);
+                   return Number(transaction.credit) >= 0 ? Number(transaction.credit) : 0;
                });
             },
             debit_total () {
                 return _.sumBy(this.transactions,  (transaction) => {
-                   return transaction.debit === null ? 0 : parseInt(transaction.debit);
+                   return Number(transaction.debit) >= 0? Number(transaction.debit) : 0;
                });
             }
         },
@@ -75,7 +75,7 @@ import Transaction from '../transaction';
                 }
 
                 let count = _.filter(this.transactions, transaction => {
-                    if((transaction.debit > 0 || transaction.credit > 0) && transaction.account_id === null) {
+                    if((transaction.debit > 0 || transaction.credit > 0) && (transaction.account_id === undefined || transaction.account_id == null)) {
                         return true
                     }
                     return false;

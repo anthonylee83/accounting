@@ -15,6 +15,7 @@ class CreateAccountNormalSidesTable extends Migration
     {
         Schema::create('account_normal_sides', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('journal_binary');
             $table->string('normal_side');
             $table->timestamps();
         });

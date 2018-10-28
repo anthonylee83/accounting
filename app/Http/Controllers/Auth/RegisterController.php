@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Profile;
 use App\AccessLevel;
 use Exception;
+use App\EventLog;
 
 class RegisterController extends Controller
 {
@@ -93,6 +94,10 @@ class RegisterController extends Controller
         $profile->access_level_id = AccessLevel::STANDARD;
         $user->profile()->save($profile);
         $user->save();
+		EventLog::create([
+			'email'       =>  "Guest",
+			'action' => "New User Registered - Name: {$request->name} and Email: {$request->email}"
+			]);
         $user->delete();
         return redirect('/login');
     }

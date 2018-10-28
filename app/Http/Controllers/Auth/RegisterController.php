@@ -77,16 +77,18 @@ class RegisterController extends Controller
         * REGISTER PAGE FOR SOME REASON
         */
 
-        try {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-        }
-        catch (Exception $e) {
-            return view('auth.register');
-        }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
         $profile                  = new Profile();
         $profile->access_level_id = AccessLevel::STANDARD;
         $user->profile()->save($profile);

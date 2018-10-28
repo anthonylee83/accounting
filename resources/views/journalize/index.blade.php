@@ -29,23 +29,19 @@
             <td>{{$je->created_at->format('m/d/y')}}</td>
             <td>{{$je->reference}}</td>
             
-            <td col=4>
-             <table>
-                @foreach($je->transactions() as $transaction)
+            <td colspan=3>
+             <table class="table">
+                @foreach($je->transactions()->get() as $transaction)
                     <tr>
-                        <td>{{ $transaction->account->name }}</td>
-                        <td>{{ $transaction->debit ?? $transaction->amount}}</td>
-                        <td>{{ !$transaction->debit ?? $transaction->amount}}</td>
+                        <td class="{{ $transaction->debit ? 'debit-account' : 'credit-account'}}">{{ $transaction->account->name }}</td>
+                        <td class="debit">{{ $transaction->debit ? $transaction->formattedAmount : '' }}</td>
+                        <td class="credit">{{ !$transaction->debit ? $transaction->formattedAmount : '' }}</td>
                     </tr>
 
                 @endforeach
                 </table>
             </td>
-            
-            <td>{{ $je->debit ?? $je->amount }}</td>
-            <td>{{ !$je->debit ?? $je->amount }}</td>
             <td> {{ $je->approved ? 'Approved' : 'Pending'}}</td>
-            <td>{{$je->created_at}}</td>
             @if( Auth::user()->profile->access_level_id == 2)
                 <td>
                     <div>

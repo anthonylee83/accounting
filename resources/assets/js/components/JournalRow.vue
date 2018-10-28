@@ -7,10 +7,10 @@
             <input type="text" name="description" class="description form-control" v-model="transaction.description">
         </div>
         <div class="col-2">
-            <input type="number" name="debit" min="0" class="debit form-control" :disabled="debit" v-model=transaction.debit>
+            <input type="number" name="debit" min="0" step="0.01" class="debit form-control" :disabled="debit" v-model=transaction.debit>
         </div>
          <div class="col-2">
-            <input type="number" name="credit" min="0" class="credit form-control" :disabled="credit" v-model=transaction.credit>
+            <input type="number" name="credit" min="0" step="0.01" class="credit form-control" :disabled="credit" v-model=transaction.credit>
         </div>
         <a v-if="last" @click="$emit('new-row')" class="btn btn-lg btn-info btn-circle text-right" role="button"><i class="fas fa-plus text-white"></i></a>
     </div>

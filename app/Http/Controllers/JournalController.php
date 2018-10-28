@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\JournalEntry;
 use App\Account;
 use App\Transaction;
+use App\AccountNormalSide;
 use Auth;
 
 class JournalController extends Controller
@@ -25,7 +26,7 @@ class JournalController extends Controller
     public function index()
     {
         $entries  = JournalEntry::orderBy('created_at', 'DESC')
-                    ->with('transactions')
+                    ->with('transactions', 'transactions.account')
                     ->paginate(30);
 
         $accounts = Account::all();
@@ -117,6 +118,46 @@ class JournalController extends Controller
     public function approve($id)
     {
         $entry           = JournalEntry::findOrFail($id);
+        $transactions = Transaction::where('journal_entry_id', $id)->get();
+
+        // Amount validation
+        foreach($transactions as $transaction)
+        {
+            $accountID = $transaction->account_id;
+            $account = Account::find($accountID);
+            $normal = AccountNormalSide::find($account->account_normal_side_id);
+            $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+            $amount = $transaction->amount;
+
+            if ($transaction->debit != $normal->journal_binary)
+            {
+                if ($accountBalance < $amount)
+                {
+                    return redirect()->action('ApprovalController@index');
+                }
+            }
+        }
+
+        foreach($transactions as $transaction)
+        {
+            $accountID = $transaction->account_id;
+            $account = Account::find($accountID);
+            $normal = AccountNormalSide::find($account->account_normal_side_id);
+            $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+            $amount = $transaction->amount;
+
+            if ($transaction->debit == $normal->journal_binary)
+            {
+                    $accountBalance = $accountBalance + $amount;
+            }
+            elseif ($transaction->debit != $normal->journal_binary)
+            {
+                    $accountBalance = $accountBalance - $amount;
+            }
+            $account->account_balance = $accountBalance;
+            $account->save();
+        }
+
         $entry->approved = true;
         $entry->save();
         $transactions = Transaction::where('journal_entry_id', $id)->get();

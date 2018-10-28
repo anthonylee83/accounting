@@ -15615,3 +15615,12 @@ a.text-dark:focus {
   margin-right: -1rem;
 }
 
+.debit-account {
+  text-align:left;
+
+}
+
+.credit-account {
+  text-align:left;
+  text-indent: 10%;
+}

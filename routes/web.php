@@ -46,3 +46,7 @@ Route::post('/journal', 'JournalController@store');
 Route::get('/journal/approve/{id}', 'JournalController@approve');
 Route::get('/journal/decline/{id}', 'JournalController@decline');
 Route::get('/journal/approval', 'ApprovalController@index');
+Route::get('/ledger', 'LedgerController@showAccounts');
+Route::get('/ledger/{id}', 'LedgerController@showTransactions');
+
+

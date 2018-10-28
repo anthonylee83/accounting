@@ -28,8 +28,7 @@
                             <a class="sidebarDropDown-item {{ starts_with($path, 'journal/status') ? 'active' : ''}}" href="/journal/approval">{{'Status'}}</a>
                         </div>
                     </div>
-                    <li id="account"><a class="sidebar-link {{ starts_with($path, 'account') ? 'active' : ''}}" href="#">{{'Accounts'}}</a></li>
-                    <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="#">{{'Ledger'}}</a></li>
+                        <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="{{action('LedgerController@showAccounts')}}">{{'Ledger'}}</a></li>
 					<li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="#">{{'Trial Balance'}}</a></li>
                     <div class="sidebarDrop {{ starts_with($path, 'statements') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'statements') ? 'visible' : ''}}" href="#">{{'Financial Statements'}}</a></li>

@@ -160,6 +160,32 @@ class JournalController extends Controller
 
         $entry->approved = true;
         $entry->save();
+        $transactions = Transaction::where('journal_entry_id', $id)->get();
+        foreach($transactions as $transaction)
+        {
+            $accountID = $transaction->account_id;
+            $account = Account::find($accountID);
+            $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+            $amount = $transaction->amount;
+            if($transaction->debit > 0)
+            {
+                if($account->account_normal_side_id == 1)
+                    $accountBalance = $accountBalance + $amount;
+                elseif($account->account_normal_side_id == 2)
+                    $accountBalance = $accountBalance - $amount;
+            }
+            elseif($transaction->debit == 0)
+            {
+                if($account->account_normal_side_id == 1)
+                    $accountBalance = $accountBalance - $amount;
+                elseif($account->account_normal_side_id == 2)
+                    $accountBalance = $accountBalance + $amount;
+            }
+            $account->account_balance = $accountBalance;
+            $account->save();
+        }
+
+
         return redirect()->action('ApprovalController@index');
     }
 

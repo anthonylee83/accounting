@@ -29,7 +29,7 @@
                         </div>
                     </div>
                         <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="{{action('LedgerController@showAccounts')}}">{{'Accounts'}}</a></li>
-					<li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="#">{{'Trial Balance'}}</a></li>
+                        <li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="{{action('TrialBalanceController@index')}}">{{'Trial Balance'}}</a></li>
                     <div class="sidebarDrop {{ starts_with($path, 'statements') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'statements') ? 'visible' : ''}}" href="#">{{'Financial Statements'}}</a></li>
                         <div class="sidebarDropDown-menu">

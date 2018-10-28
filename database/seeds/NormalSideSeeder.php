@@ -13,7 +13,7 @@ class NormalSideSeeder extends Seeder
      */
     public function run()
     {
-        AccountNormalSide::create(['normal_side'=>'Debit']);
-        AccountNormalSide::create(['normal_side'=>'Credit']);
+        AccountNormalSide::create(['journal_binary'=>true, 'normal_side'=>'Debit']);
+        AccountNormalSide::create(['journal_binary'=>false, 'normal_side'=>'Credit']);
     }
 }

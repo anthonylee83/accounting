@@ -117,8 +117,6 @@ class JournalController extends Controller
     public function approve($id)
     {
         $entry           = JournalEntry::findOrFail($id);
-        $entry->approved = true;
-        $entry->save();
         $transactions = Transaction::where('journal_entry_id', $id)->get();
         foreach($transactions as $transaction)
         {
@@ -131,12 +129,25 @@ class JournalController extends Controller
                 if($account->account_normal_side_id == 1)
                     $accountBalance = $accountBalance + $amount;
                 elseif($account->account_normal_side_id == 2)
-                    $accountBalance = $accountBalance - $amount;
+                {
+                    if ($accountBalance >= $amount) {
+                        $accountBalance = $accountBalance - $amount;
+                    }
+                    else
+                        return redirect()->action('ApprovalController@index');
+                }
             }
             elseif($transaction->debit == 0)
             {
                 if($account->account_normal_side_id == 1)
-                    $accountBalance = $accountBalance - $amount;
+                {
+                    if ($accountBalance >= $amount)
+                    {
+                        $accountBalance = $accountBalance - $amount;
+                    }
+                    else
+                        return redirect()->action('ApprovalController@index');
+                }
                 elseif($account->account_normal_side_id == 2)
                     $accountBalance = $accountBalance + $amount;
             }
@@ -144,7 +155,8 @@ class JournalController extends Controller
             $account->save();
         }
 
-
+        $entry->approved = true;
+        $entry->save();
         return redirect()->action('ApprovalController@index');
     }
 

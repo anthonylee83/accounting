@@ -8,6 +8,7 @@ use App\Account;
 use App\Transaction;
 use App\AccountNormalSide;
 use Auth;
+use App\EventLog;
 
 class JournalController extends Controller
 {
@@ -66,6 +67,10 @@ class JournalController extends Controller
 
             $journal->transactions()->save($t);
         }
+		EventLog::create([
+		'email'       =>  session('email'),
+		'action' => "Journalized a new transaction"
+		]);
 
         return response()->json($journal);
     }
@@ -184,6 +189,10 @@ class JournalController extends Controller
             $account->account_balance = $accountBalance;
             $account->save();
         }
+		EventLog::create([
+		'email'       =>  session('email'),
+		'action' => "Approved journal entry: {$id}"
+		]);
 
 
         return redirect()->action('ApprovalController@index');
@@ -192,6 +201,10 @@ class JournalController extends Controller
     public function decline($id)
     {
         $entry = JournalEntry::findOrFail($id);
+		EventLog::create([
+		'email'       =>  session('email'),
+		'action' => "Declined journal entry: {$id}"
+		]);
         $entry->delete();
         return redirect()->action('ApprovalController@index');
     }

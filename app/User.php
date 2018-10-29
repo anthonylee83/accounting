@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough('App\AccessLevel', 'App\Profile');
     }
+
+    public function journalApprovals()
+    {
+        return $this->hasMany('App\JournalEntry');
+    }
 }

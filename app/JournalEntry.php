@@ -12,4 +12,9 @@ class JournalEntry extends Model
     {
         return $this->hasMany('App\Transaction');
     }
+
+    public function approvalUser()
+    {
+        return $this->belongsTo('App\User', 'approval_user_id');
+    }
 }

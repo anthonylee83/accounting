@@ -10162,7 +10162,7 @@ input[type="button"].btn-block {
 	width: 15%;
 	background-color: #5e9aed;
 	color: #000000;
-	position: fixed;
+	position: absolute;
 	height: 100%;
 	overflow: auto;
 	text-align: right;

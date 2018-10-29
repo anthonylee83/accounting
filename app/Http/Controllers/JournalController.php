@@ -166,7 +166,7 @@ class JournalController extends Controller
         $entry->approved = true;
         $entry->save();
         $transactions = Transaction::where('journal_entry_id', $id)->get();
-        foreach($transactions as $transaction)
+        /*foreach($transactions as $transaction)
         {
             $accountID = $transaction->account_id;
             $account = Account::find($accountID);
@@ -188,11 +188,13 @@ class JournalController extends Controller
             }
             $account->account_balance = $accountBalance;
             $account->save();
-        }
+
+        } */
 		EventLog::create([
 		'email'       =>  session('email'),
 		'action' => "Approved journal entry: {$id}"
 		]);
+
 
 
         return redirect()->action('ApprovalController@index');

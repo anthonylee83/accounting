@@ -11,7 +11,6 @@ class EventLogController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('admin');
     }
 	public function index(){
 		$logEvent = DB::table('event_log')->paginate(9);

@@ -86,7 +86,8 @@ class UserController extends Controller
         $user = User::find($request->id);
 		$oldname = $user->name;
 		$oldemail = $user->email;
-		$oldlevel = $user->profile->access_level_id;
+		$oldlevel = $user->profile->AccessLevel->level;
+		$oldlevelID = $user->profile->access_level_id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->profile->access_level_id = $request->access_level_id;
@@ -104,10 +105,10 @@ class UserController extends Controller
 			'email'       =>  session('email'),
 			'action' => "Updated User's Email: {$oldemail} to {$user->email}"
 			]);
-		if($user->profile->access_level_id !== $oldlevel)
+		if($request->access_level_id != $oldlevelID)
 			EventLog::create([
 			'email'       =>  session('email'),
-			'action' => "Updated {$user->email} Access Level: {$oldlevel} to {$user->profile->access_level_id}"
+			'action' => "Updated {$user->email} Access Level: {$oldlevelID} to {$request->access_level_id}"
 			]);
         return redirect()->action('Admin\UserController@showUsers');
     }

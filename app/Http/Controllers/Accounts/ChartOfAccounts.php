@@ -81,22 +81,22 @@ class ChartOfAccounts extends Controller
         $account->account_subtype_id = $request->account_subtype_id;
         $account->account_normal_side_id = $request->account_normal_side_id;
         $account->save();
-		if($account->account_name !== $oldname)
+		if($account->account_name != $oldname)
 			EventLog::create([
 			'email'       =>  session('email'),
 			'action' => "Updated Account Name: {$oldname} to {$account->account_name}"
 			]);
-		if($account->account_type_id !== $oldtype)
+		if($account->account_type_id != $oldtype)
 			EventLog::create([
 			'email'       =>  session('email'),
 			'action' => "Updated {$account->account_name} Type: {$oldtype} to {$account->account_type_id}"
 			]);
-		if($account->account_subtype_id !== $oldsubtype)
+		if($account->account_subtype_id != $oldsubtype)
 			EventLog::create([
 			'email'       =>  session('email'),
 			'action' => "Updated {$account->account_name} Subtype: {$oldsubtype} to {$account->account_subtype_id}"
 			]);
-        if($account->account_normal_side_id !== $oldnormalside)
+        if($account->account_normal_side_id != $oldnormalside)
             EventLog::create([
             'email'       =>  session('email'),
             'action' => "Updated {$account->account_name} Normal Side: {$oldnormalside} to {$account->account_normal_side_id}"

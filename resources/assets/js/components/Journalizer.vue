@@ -7,7 +7,7 @@
                     <div class="col-3">
                         <label>Account</label>
                     </div>
-                    <div class="col-5">
+                    <div class="col-4">
                         <Label>Description</Label>
                     </div>
                     <div class="col-2">
@@ -16,13 +16,18 @@
                     <div class="col-2">
                         <label>Credit</label>
                     </div>
+                    <div>
+                        <label>Remove</label>
+                    </div>
                 </div>
                 <journal-row v-for="(t, index) in transactions" 
                             v-bind:key="t.id" 
-                            :transaction="t" 
+                            :transaction="t"
+                            :first="index == 0" 
                             :last="index +1 == transactions.length"
                             @new-row="_addRow"
-                            :accounts="accounts"></journal-row>
+                            :accounts="accounts"
+                            @delete-row="_deleteRow"></journal-row>
                 <div class="row">
                     <div class="col-8">
                       
@@ -69,18 +74,31 @@ import Transaction from '../transaction';
         },
         methods: {
             _validate(){
-            if(this.debit_total !== this.credit_total){
+                if(this.debit_total !== this.credit_total){
                     alert("Your balance does not match. Plese check your entries");
                     return;
                 }
 
+                if(this.debit_total == 0 || this.credit_total == 0){
+                    alert("You cannot have a 0 balance amount!");
+                    return;
+                }
+                let accounts = {};
                 let count = _.filter(this.transactions, transaction => {
-                    if((transaction.debit > 0 || transaction.credit > 0) && (transaction.account_id === undefined || transaction.account_id == null)) {
+                    accounts[transaction.account_id] == undefined ? accounts[transaction.account_id] =1 : accounts[transaction.account_id]++;
+                    if(transaction.account_id >0 ? false : true) {
                         return true
                     }
                     return false;
                 });
-
+                if(_.filter(accounts, account => {
+                    return account > 1;
+                }).length > 0){
+                    
+                  alert("You cannot use the same account twice!");  
+                  return;
+                }
+                
                 if(count.length > 0){
                     alert('Please select an account!');
                     return;
@@ -92,6 +110,12 @@ import Transaction from '../transaction';
             },
             _addRow() {
                 this.transactions.push(new Transaction());
+            },
+            _deleteRow(event){
+                _.remove(this.transactions, transaction => {
+                    return transaction.key == event.key;
+                });
+                this.$forceUpdate();
             }
         }
     }

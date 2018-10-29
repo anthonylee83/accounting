@@ -64752,17 +64752,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['transaction', 'last', 'accounts'],
+    props: ['transaction', 'first', 'last', 'accounts'],
+    data: function data() {
+        return {
+            isDebit: false
+        };
+    },
+
     computed: {
         credit: function credit() {
-            return this.transaction.debit > 0 ? true : false;
+            return this.isDebit || this.transaction.debit > 0 ? true : false;
         },
         debit: function debit() {
             return this.transaction.credit > 0 ? true : false;
         }
     },
+    mounted: function mounted() {
+        this.transaction.key = this.$vnode.key;
+        if (this.first) this.isDebit = true;
+    },
+
     methods: {
         _selected: function _selected(event) {
             this.transaction.account_id = event.id;
@@ -64795,7 +64811,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "col-5" }, [
+    _c("div", { staticClass: "col-4" }, [
       _c("input", {
         directives: [
           {
@@ -64877,6 +64893,22 @@ var render = function() {
           }
         }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-1 d-flex justify-content-betweeen" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "aria-label": "Close" },
+          on: {
+            click: function($event) {
+              _vm.$emit("delete-row", _vm.transaction)
+            }
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ]),
     _vm._v(" "),
     _vm.last
@@ -64992,7 +65024,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65004,6 +65036,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transaction__ = __webpack_require__(228);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -65081,12 +65118,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return;
             }
 
+            if (this.debit_total == 0 || this.credit_total == 0) {
+                alert("You cannot have a 0 balance amount!");
+                return;
+            }
+            var accounts = {};
             var count = _.filter(this.transactions, function (transaction) {
-                if ((transaction.debit > 0 || transaction.credit > 0) && (transaction.account_id === undefined || transaction.account_id == null)) {
+                accounts[transaction.account_id] == undefined ? accounts[transaction.account_id] = 1 : accounts[transaction.account_id]++;
+                if (transaction.account_id > 0 ? false : true) {
                     return true;
                 }
                 return false;
             });
+            if (_.filter(accounts, function (account) {
+                return account > 1;
+            }).length > 0) {
+
+                alert("You cannot use the same account twice!");
+                return;
+            }
 
             if (count.length > 0) {
                 alert('Please select an account!');
@@ -65098,6 +65148,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         _addRow: function _addRow() {
             this.transactions.push(new __WEBPACK_IMPORTED_MODULE_0__transaction__["a" /* default */]());
+        },
+        _deleteRow: function _deleteRow(event) {
+            _.remove(this.transactions, function (transaction) {
+                return transaction.key == event.key;
+            });
+            this.$forceUpdate();
         }
     }
 });
@@ -65153,14 +65209,16 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col-5" },
+              { staticClass: "col-4" },
               [_c("Label", [_vm._v("Description")])],
               1
             ),
             _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3)
           ]),
           _vm._v(" "),
           _vm._l(_vm.transactions, function(t, index) {
@@ -65168,10 +65226,11 @@ var render = function() {
               key: t.id,
               attrs: {
                 transaction: t,
+                first: index == 0,
                 last: index + 1 == _vm.transactions.length,
                 accounts: _vm.accounts
               },
-              on: { "new-row": _vm._addRow }
+              on: { "new-row": _vm._addRow, "delete-row": _vm._deleteRow }
             })
           }),
           _vm._v(" "),
@@ -65260,6 +65319,12 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-2" }, [
       _c("label", [_vm._v("Credit")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("label", [_vm._v("Remove")])])
   }
 ]
 render._withStripped = true

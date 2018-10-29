@@ -51,3 +51,4 @@ Route::get('/ledger/{id}', 'LedgerController@showTransactions');
 Route::get('/trial', 'TrialBalanceController@index');
 
 
+

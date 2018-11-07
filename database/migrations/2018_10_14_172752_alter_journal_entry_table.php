@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AlterJournalEntryTable extends Migration
 {
@@ -22,8 +23,8 @@ class AlterJournalEntryTable extends Migration
             $table->dropColumn('description');
             $table->dropColumn('account_id');
             $table->dropColumn('date');
-            $table->bigInteger('reference');
-            $table->boolean('approved');
+            $table->bigInteger('reference')->unique();
+            $table->string('approved')->default('Pending');
             $table->unsignedInteger('approval_user_id');
             $table->unsignedInteger('created_user_id');
         });

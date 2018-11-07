@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\JournalEntry;
+use App\Account;
 
 class ApprovalController extends Controller
 {
@@ -15,7 +16,11 @@ class ApprovalController extends Controller
 
     public function index()
     {
-        $entries = JournalEntry::where('approved', 0)->orderBy('created_at', 'ASC')->get();
+		$entries  = JournalEntry::orderBy('created_at', 'DESC')
+                    ->with('transactions', 'transactions.account')
+                    ->paginate(30);
+
+        $accounts = Account::all();
         return view('manager.approval', compact('entries'));
     }
 }

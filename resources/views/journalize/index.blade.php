@@ -36,14 +36,15 @@
                 @endforeach
                 </table>
             </td>
-            <td> {{ $je->approved ? 'Approved' : 'Pending'}}</td>
+            <td> {{ $je->approved}}</td>
 
-            @if( $je->approved == true)
-                <td>{{$je->user['name']}}</td>
+            @if( $je->approved == "Approved")
+                <td>{{session('email')}}</td>
             @else
                 <td>N/A</td>
             @endif
             @if( Auth::user()->profile->access_level_id == 2)
+				@if( $je->approved == "Pending")
                 <td>
                     <div>
                         <ul class="navbar-nav ml-auto">
@@ -52,10 +53,11 @@
                             class="btn btn-primary">Approve</a>
                         <a
                             href="{{action('JournalController@decline', $je->id)}}"
-                            class="btn btn-danger">Remove</a>
+                            class="btn btn-danger">Decline</a>
                         </ul>
                     </div>
                 </td>
+				@endif
             @endif
         </tr>
     @empty

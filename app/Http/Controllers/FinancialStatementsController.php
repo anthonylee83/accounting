@@ -17,8 +17,13 @@ class FinancialStatementsController extends Controller
         $expenseID = $accountTypeExpense->id;
         $revenues = Account::where('account_type_id', $revenueID)->get();
         $expenses = Account::where('account_type_id', $expenseID)->get();
+        $revenueTotal = $this->balanceTotal($revenues);
+        $expenseTotal = $this->balanceTotal($expenses);
+        $netIncome = $revenueTotal - $expenseTotal;
         $path = $request->path();
-        return view('financial.income', compact('revenues', 'expenses', 'path'));
+
+        return view('financial.income', compact('revenues', 'expenses', 'revenueTotal', 'expenseTotal',
+            'netIncome','path'));
     }
 
     public function balanceTotal($accounts)
@@ -57,7 +62,7 @@ class FinancialStatementsController extends Controller
         $path = $request->path();
         return view('financial.balance', compact('currentAssets', 'nonCurrentAssets', 'equities',
             'currentLiabilities', 'nonCurrentLiabilities', 'currentAssetsTotal', 'nonCurrentAssetsTotal', 'equityTotal',
-            'currentLiabilitiesTotal', 'nonCurrentLiabilitiesTotal', 'assetsTotal', 'equityLiabilitiesTotal'));
+            'currentLiabilitiesTotal', 'nonCurrentLiabilitiesTotal', 'assetsTotal', 'equityLiabilitiesTotal', 'path'));
 
     }
 

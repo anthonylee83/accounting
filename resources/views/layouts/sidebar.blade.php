@@ -34,7 +34,7 @@
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'statements') ? 'visible' : ''}}" href="#">{{'Financial Statements'}}</a></li>
                         <div class="sidebarDropDown-menu">
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/income') ? 'active' : ''}}" href="{{action('FinancialStatementsController@incomeStatement')}}">{{'Income Statement'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/balance') ? 'active' : ''}}" href="#">{{'Balance'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/balance') ? 'active' : ''}}" href="{{action('FinancialStatementsController@balanceSheet')}}">{{'Balance Sheet'}}</a>
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="#">{{'Retained Earnings'}}</a>
                         </div>
                     </div>

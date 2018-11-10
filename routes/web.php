@@ -49,6 +49,7 @@ Route::get('/journal/approval', 'ApprovalController@index');
 Route::get('/ledger', 'LedgerController@showAccounts');
 Route::get('/ledger/{id}', 'LedgerController@showTransactions');
 Route::get('/trial', 'TrialBalanceController@index');
+Route::get('/statements/income', 'FinancialStatementsController@incomeStatement');
 
 
 

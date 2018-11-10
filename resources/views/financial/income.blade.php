@@ -22,8 +22,8 @@
             <tr>
                 @forelse($revenues as $revenue)
                     <td></td>
-                    <td>{{$revenue->account_name}}</td>
-                    <td>{{$revenue->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$revenue->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$revenue->account_balance}}</td>
                     <td></td>
             </tr>
                 @empty
@@ -35,9 +35,9 @@
                 @endforelse
             <tr>
                 <td></td>
-                <td><b>Total Revenue</b></td>
+                <td ALIGN="LEFT"><b>Total Revenue</b></td>
                 <td></td>
-                <td><b>$<?php echo $revenueTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $revenueTotal; ?>.00</b></td>
             </tr>
             <tr>
                 <td><b>Expenses</b></td><td></td><td></td><td></td>
@@ -45,8 +45,8 @@
             <tr>
                 @forelse($expenses as $expense)
                     <td></td>
-                    <td>{{$expense->account_name}}</td>
-                    <td>{{$expense->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$expense->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$expense->account_balance}}</td>
                     <td></td>
             </tr>
                 @empty
@@ -58,18 +58,18 @@
                 @endforelse
                 <tr>
                     <td></td>
-                    <td><b>Total Expenses</b></td>
+                    <td ALIGN="LEFT"><b>Total Expenses</b></td>
                     <td></td>
-                    <td><b>$<?php echo $expenseTotal; ?></b></td>
+                    <td ALIGN="RIGHT"><b>$<?php echo $expenseTotal; ?>.00</b></td>
                 </tr>
             <tr>
                 <td><b>Net Income</b></td><td></td><td></td><td></td>
             </tr>
             <tr>
                 <td></td>
-                <td><b>Net Income</b></td>
+                <td ALIGN="LEFT"><b>Net Income</b></td>
                 <td></td>
-                <td><b>$<?php echo $netIncome; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $netIncome; ?>.00</b></td>
             </tr>
 
 

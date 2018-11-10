@@ -22,16 +22,16 @@
                 $creditTotal = 0.00;
             @endphp
             @forelse($accounts as $account)
-                    <td>{{$account->account_name}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
                 @if($account->account_normal_side_id == 1)
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td> </td>
                     @php
                         $debitTotal += preg_replace("/[^0-9.]/", "", "$account->account_balance");
                     @endphp
                 @elseif($account->account_normal_side_id == 2)
                     <td> </td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     @php
                         $creditTotal += preg_replace("/[^0-9.]/", "", "$account->account_balance");
                     @endphp
@@ -46,8 +46,8 @@
             @endforelse
             <tr>
                 <td><b>Total Balances</b></td>
-                <td><b>$<?php echo $debitTotal; ?></b></td>
-                <td><b>$<?php echo $creditTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $debitTotal; ?>.00</b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $creditTotal; ?>.00</b></td>
             </tr>
             </tbody>
         </table>

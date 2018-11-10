@@ -21,15 +21,15 @@
             </tr>
             <tr>
                 <td></td>
-                <td><b>Current Assets</b></td>
+                <td ALIGN="LEFT"><b>Current Assets</b></td>
                 <td></td>
-                <td><b>$<?php echo $currentAssetsTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $currentAssetsTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($currentAssets as $account)
                     <td></td>
-                    <td>{{$account->account_name}}</td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td></td>
             </tr>
                 @empty
@@ -41,15 +41,15 @@
                 @endforelse
             <tr>
                 <td></td>
-                <td><b>Non-Current Assets</b></td>
+                <td ALIGN="LEFT"><b>Non-Current Assets</b></td>
                 <td></td>
-                <td><b>$<?php echo $nonCurrentAssetsTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentAssetsTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($nonCurrentAssets as $account)
                     <td></td>
-                    <td>{{$account->account_name}}</td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td></td>
             </tr>
                 @empty
@@ -61,24 +61,24 @@
                 @endforelse
             <tr>
                 <td></td>
-                <td><b>Total Assets</b></td>
+                <td ALIGN="LEFT"><b>Total Assets</b></td>
                 <td></td>
-                <td><b>$<?php echo $assetsTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $assetsTotal; ?>.00</b></td>
             </tr>
             <tr>
                 <td><b><u>Equity and Liabilities</u></b></td><td></td><td></td><td></td>
             </tr>
             <tr>
                 <td></td>
-                <td><b>Owner's Equity</b></td>
+                <td ALIGN="LEFT"><b>Owner's Equity</b></td>
                 <td></td>
-                <td><b>$<?php echo $equityTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $equityTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($equities as $account)
                     <td></td>
-                    <td>{{$account->account_name}}</td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td></td>
             </tr>
             @empty
@@ -90,15 +90,15 @@
             @endforelse
             <tr>
                 <td></td>
-                <td><b>Current Liabilities</b></td>
+                <td ALIGN="LEFT"><b>Current Liabilities</b></td>
                 <td></td>
-                <td><b>$<?php echo $currentLiabilitiesTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $currentLiabilitiesTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($currentLiabilities as $account)
                     <td></td>
-                    <td>{{$account->account_name}}</td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td></td>
             </tr>
             @empty
@@ -110,15 +110,15 @@
             @endforelse
             <tr>
                 <td></td>
-                <td><b>Non-Current Liabilities</b></td>
+                <td ALIGN="LEFT"><b>Non-Current Liabilities</b></td>
                 <td></td>
-                <td><b>$<?php echo $nonCurrentLiabilitiesTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentLiabilitiesTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($nonCurrentLiabilities as $account)
                     <td></td>
-                    <td>{{$account->account_name}}</td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td></td>
             </tr>
             @empty
@@ -130,9 +130,9 @@
             @endforelse
             <tr>
                 <td></td>
-                <td><b>Total Equity and Liabilities</b></td>
+                <td ALIGN="LEFT"><b>Total Equity and Liabilities</b></td>
                 <td></td>
-                <td><b>$<?php echo $equityLiabilitiesTotal; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $equityLiabilitiesTotal; ?>.00</b></td>
             </tr>
         </table>
     </div>

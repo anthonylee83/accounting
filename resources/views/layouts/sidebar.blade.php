@@ -45,13 +45,14 @@
                             <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a>
                         </div>
                     </div>
-					<li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="#">{{'Trial Balance'}}</a></li>
+                        <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="{{action('LedgerController@showAccounts')}}">{{'Ledgers'}}</a></li>
+                        <li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="{{action('TrialBalanceController@index')}}">{{'Trial Balance'}}</a></li>
                     <div class="sidebarDrop {{ starts_with($path, 'statements') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'statements') ? 'visible' : ''}}" href="#">{{'Financial Statements'}}</a></li>
                         <div class="sidebarDropDown-menu">
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/income') ? 'active' : ''}}" href="#">{{'Income'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/balance') ? 'active' : ''}}" href="#">{{'Balance'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="#">{{'Retained Earnings'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/income') ? 'active' : ''}}" href="{{action('FinancialStatementsController@incomeStatement')}}">{{'Income Statement'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/balance') ? 'active' : ''}}" href="{{action('FinancialStatementsController@balanceSheet')}}">{{'Balance Sheet'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="{{action('FinancialStatementsController@retainedEarnings')}}">{{'Retained Earnings'}}</a>
                         </div>
                     </div>
 					<li id="ratio"><a class="sidebar-link {{ starts_with($path, 'ratio') ? 'active' : ''}}" href="#">{{'Ratio Analysis'}}</a></li>

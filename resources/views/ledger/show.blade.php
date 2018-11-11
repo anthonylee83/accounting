@@ -24,7 +24,7 @@
                 <td>{{$transaction->created_at}}</td>
                 <td>{{$transaction->description}}</td>
                 @if($transaction->debit > 0)
-                    <td>{{$transaction->amount}}</td>
+                    <td ALIGN="RIGHT">{{$transaction->amount}}.00</td>
                     <td> </td>
                     @if($accountNormalSide == 1)
                         @php
@@ -37,7 +37,7 @@
                     @endif
                 @elseif($transaction->debit == 0)
                     <td> </td>
-                    <td>{{$transaction->amount}}</td>
+                    <td ALIGN="RIGHT">{{$transaction->amount}}.00</td>
                     @if($accountNormalSide == 1)
                         @php
                             $balance -= $transaction->amount;
@@ -48,7 +48,7 @@
                         @endphp
                     @endif
                 @endif
-                <td> <?php echo $balance; ?></td>
+                <td ALIGN="RIGHT"> $<?php echo $balance; ?>.00</td>
                 </tr>
             @empty
                 <tr>

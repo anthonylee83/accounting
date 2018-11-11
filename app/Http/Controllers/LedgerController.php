@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\JournalEntry;
 use App\Account;
 use App\Transaction;
@@ -53,9 +54,14 @@ class LedgerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function showTransactions($id)
     {
-        $transactions = Transaction::where('account_id', $id)->get();
+        $transactions = DB::table('transactions')
+            ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
+            ->where('transactions.account_id', $id)
+            ->where('journal_entries.approved', '1')->get();
+
         $account = Account::find($id);
         $accountName = $account->account_name;
         $accountNormalSide = $account->account_normal_side_id;

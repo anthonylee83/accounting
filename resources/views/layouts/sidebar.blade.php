@@ -39,12 +39,7 @@
                         </div>
                     </div>
 				@elseif( Auth::user()->profile->access_level_id == 1)
-                    <div class="sidebarDrop {{ starts_with($path, 'journal') ? 'bypass' : ''}}">
-                        <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'journal') ? 'visible' : ''}}" href="#">{{'Journal'}}</a></li>
-                        <div class="sidebarDropDown-menu">
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a>
-                        </div>
-                    </div>
+                        <li id="journal"><a class="sidebar-link {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a></li>
                         <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="{{action('LedgerController@showAccounts')}}">{{'Ledgers'}}</a></li>
                         <li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="{{action('TrialBalanceController@index')}}">{{'Trial Balance'}}</a></li>
                     <div class="sidebarDrop {{ starts_with($path, 'statements') ? 'bypass' : ''}}">

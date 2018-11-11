@@ -15624,3 +15624,15 @@ a.text-dark:focus {
   text-align:left;
   text-indent: 10%;
 }
+#totalDr {
+	text-decoration: underline double;
+	text-underline-position: under;
+}
+#totalCr {
+	text-decoration: underline double;
+	text-underline-position: under;
+}
+#SingLn {
+	text-decoration: underline;
+	text-underline-position: under;
+}

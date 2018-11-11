@@ -46,8 +46,8 @@
             @endforelse
             <tr>
                 <td><b>Total Balances</b></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $debitTotal; ?>.00</b></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $creditTotal; ?>.00</b></td>
+                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo $debitTotal; ?>.00</b></td>
+                <td id="totalCr" ALIGN="RIGHT"><b>$<?php echo $creditTotal; ?>.00</b></td>
             </tr>
             </tbody>
         </table>

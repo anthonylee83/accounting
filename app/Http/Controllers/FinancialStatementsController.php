@@ -65,5 +65,28 @@ class FinancialStatementsController extends Controller
             'currentLiabilitiesTotal', 'nonCurrentLiabilitiesTotal', 'assetsTotal', 'equityLiabilitiesTotal', 'path'));
 
     }
+    public function retainedEarnings(Request $request)
+    {
+        $retainedEarnings = Account::where('account_name', 'Retained Earnings')->first();
+        $dividendsDeclared = Account::where('account_name', 'Dividends Declared')->first();
+        $retainedEarningsValue = preg_replace("/[^0-9.]/", "", "$retainedEarnings->account_balance");
+        $dividendsDeclaredValue = preg_replace("/[^0-9.]/", "", "$dividendsDeclared->account_balance");
+
+        $accountTypeRevenue = AccountType::where('account_type', 'Revenues')->first();
+        $revenueID = $accountTypeRevenue->id;
+        $accountTypeExpense = AccountType::where('account_type', 'Expenses')->first();
+        $expenseID = $accountTypeExpense->id;
+        $revenues = Account::where('account_type_id', $revenueID)->get();
+        $expenses = Account::where('account_type_id', $expenseID)->get();
+        $revenueTotal = $this->balanceTotal($revenues);
+        $expenseTotal = $this->balanceTotal($expenses);
+        $netIncome = $revenueTotal - $expenseTotal;
+
+        $newRetainedEarningsValue = $retainedEarningsValue + $netIncome - $dividendsDeclaredValue;
+        $path = $request->path();
+        return view('financial.retained-earnings', compact('retainedEarningsValue', 'dividendsDeclaredValue',
+            'netIncome', 'newRetainedEarningsValue', 'path'));
+
+    }
 
 }

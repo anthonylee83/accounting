@@ -35,7 +35,7 @@
                         <div class="sidebarDropDown-menu">
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/income') ? 'active' : ''}}" href="{{action('FinancialStatementsController@incomeStatement')}}">{{'Income Statement'}}</a>
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/balance') ? 'active' : ''}}" href="{{action('FinancialStatementsController@balanceSheet')}}">{{'Balance Sheet'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="#">{{'Retained Earnings'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="{{action('FinancialStatementsController@retainedEarnings')}}">{{'Retained Earnings'}}</a>
                         </div>
                     </div>
 				@elseif( Auth::user()->profile->access_level_id == 1)

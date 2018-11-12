@@ -117,7 +117,7 @@ class ChartOfAccountsSeeder extends Seeder
         Account::create(
         [
             'account_name'        => 'Retained Earnings',
-            'account_type_id'     => $LiabilitiesID,
+            'account_type_id'     => $EquityID,
             'account_subtype_id'  => $ShorttermID,
             'account_normal_side_id' => $CreditID,
             'account_balance'     => '0'

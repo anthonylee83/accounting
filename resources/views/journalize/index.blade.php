@@ -3,7 +3,9 @@
 @section('content')
     <h1>Journal Entries</h1>
 
-    <journalizer :accounts="{{json_encode($accounts)}}"></journalizer>
+    <journalizer :accounts="{{json_encode($accounts)}}">
+        @csrf
+    </journalizer>
 
     <table class="table table-striped table-hover">
         <thead>

@@ -1,16 +1,13 @@
 <template> 
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <dropdown :options="accounts" @selected="_selected"  placeholder="Please select an account" />
         </div>
-        <div class="col-4">
-            <input type="text" name="description" class="description form-control" v-model="transaction.description">
+        <div class="col-3">
+            <input type="number" name="debit" min="0" step="0.01" class="debit form-control" @change="$emit('amount-changed')" :disabled="debit" v-model=transaction.debit>
         </div>
-        <div class="col-2">
-            <input type="number" name="debit" min="0" step="0.01" class="debit form-control" :disabled="debit" v-model=transaction.debit>
-        </div>
-         <div class="col-2">
-            <input type="number" name="credit" min="0" step="0.01" class="credit form-control" :disabled="credit" v-model=transaction.credit>
+         <div class="col-3">
+            <input type="number" name="credit" min="0" step="0.01" class="credit form-control" @change="$emit('amount-changed')" :disabled="credit" v-model=transaction.credit>
         </div>
         <div class="col-1 d-flex justify-content-betweeen">
             <button type="button" class="close" @click="$emit('delete-row', transaction)" aria-label="Close">

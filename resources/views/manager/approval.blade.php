@@ -23,7 +23,7 @@
                             class="btn btn-primary">Approve</a>
                         <a
                             href="{{action('JournalController@decline', $entry->id)}}"
-                            class="btn btn-danger">Remove</a>
+                            class="btn btn-danger">Reject</a>
                 </tr>
             @empty
                 <tr><td cols=2>No Pending Entries</td></tr>

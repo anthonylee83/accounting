@@ -58,8 +58,8 @@
                         <input type="file" multiple name="attachments[]" class="description form-control">
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="" class="btn btn-danger">Reset</a>
-                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

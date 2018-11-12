@@ -14,7 +14,7 @@ class JournalEntrySeeder extends Seeder
     {
         //Journal Entry 1
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -23,7 +23,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 2
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -32,7 +32,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 3
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -41,7 +41,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 4
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -50,7 +50,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 5
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -59,7 +59,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 6
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -68,7 +68,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 7
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -77,7 +77,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 8
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -86,7 +86,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 9
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -95,7 +95,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 10
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -104,7 +104,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 11
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -113,7 +113,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 12
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -122,7 +122,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 13
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -131,7 +131,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 14
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -140,7 +140,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 15
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -149,7 +149,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 16
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -158,7 +158,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 17
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -167,7 +167,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 18
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -176,7 +176,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 19
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -185,7 +185,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 20
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 4,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -194,7 +194,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 21
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -203,7 +203,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 22
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -212,7 +212,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 23
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -221,7 +221,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 24
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -230,7 +230,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 25
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -239,7 +239,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 26
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),
@@ -248,7 +248,7 @@ class JournalEntrySeeder extends Seeder
         ]);
         //Journal Entry 27
         JournalEntry::create([
-            'approved' => false,
+            'approved' => "Pending",
             'created_user_id' => 5,
             'document_reference_id' => 0,
             'reference' => rand(10000, 999999),

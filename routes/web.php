@@ -52,6 +52,7 @@ Route::get('/trial', 'TrialBalanceController@index');
 Route::get('/statements/income', 'FinancialStatementsController@incomeStatement');
 Route::get('/statements/balance', 'FinancialStatementsController@balanceSheet');
 Route::get('/statements/retained', 'FinancialStatementsController@retainedEarnings');
+Route::get('/attachment/{id}', 'AttachmentController@download');
 
 
 

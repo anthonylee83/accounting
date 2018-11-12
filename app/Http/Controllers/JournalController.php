@@ -55,7 +55,9 @@ class JournalController extends Controller
         foreach ($request->file('attachments') as $attachment) {
             $file = $attachment->store('attachments');
             Attachment::create(['journal_entry_id'  => $journal->id,
-                                'file'              => $file]);
+                                'file'              => $file,
+                                'filename'          => $attachment->getClientOriginalName()
+                                ]);
         };
 
         $transactions = [];

@@ -52,7 +52,7 @@
                             class="btn btn-primary">Approve</a>
                         <a
                             href="{{action('JournalController@decline', $je->id)}}"
-                            class="btn btn-danger">Remove</a>
+                            class="btn btn-danger">Reject</a>
                         </ul>
                     </div>
                 </td>

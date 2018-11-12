@@ -25,8 +25,12 @@
                             :last="index +1 == transactions.length"
                             @new-row="_addRow"
                             :accounts="accounts"
-                            @delete-row="_deleteRow"></journal-row>
+                            @delete-row="_deleteRow"
+                            @amount-changed="changed"
+                            ></journal-row>
+                         
                 <input type="hidden" name="transactions" :value="JSON.stringify(transactions)" />
+
                 <div class="row">
                     <div class="col-4">
                       
@@ -86,7 +90,7 @@ import Transaction from '../transaction';
                 return _.sumBy(this.transactions,  (transaction) => {
                    return Number(transaction.debit) >= 0? Number(transaction.debit) : 0;
                });
-            }
+            },
         },
         methods: {
             _validate(evt){
@@ -137,6 +141,13 @@ import Transaction from '../transaction';
                     return transaction.key == event.key;
                 });
                 this.$forceUpdate();
+            },
+            orderTransactions (){
+                return _.orderBy(this.transactions, [item => { return !parseFloat(item.debit) > 0 },
+                    item => { return !parseFloat(item.credit) > 0}]);
+            },
+            changed () {
+                this.transactions = this.orderTransactions();
             }
         }
     }

@@ -46,6 +46,7 @@ Route::post('/journal', 'JournalController@store');
 Route::get('/journal/approve/{id}', 'JournalController@approve');
 Route::get('/journal/decline/{id}', 'JournalController@decline');
 Route::get('/journal/approval', 'ApprovalController@index');
+Route::get('/journal/status', 'StatusController@index');
 Route::get('/ledger', 'LedgerController@showAccounts');
 Route::get('/ledger/{id}', 'LedgerController@showTransactions');
 Route::get('/trial', 'TrialBalanceController@index');
@@ -53,6 +54,7 @@ Route::get('/statements/income', 'FinancialStatementsController@incomeStatement'
 Route::get('/statements/balance', 'FinancialStatementsController@balanceSheet');
 Route::get('/statements/retained', 'FinancialStatementsController@retainedEarnings');
 Route::get('/attachment/{id}', 'AttachmentController@download');
+Route::get('/dashboard', 'RatioController@index');
 
 
 

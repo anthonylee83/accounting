@@ -46,14 +46,15 @@
                 @endforelse
                 </ul>
             </td>
-            <td> {{ $je->approved ? 'Approved' : 'Pending'}}</td>
+            <td> {{ $je->approved}}</td>
 
-            @if( $je->approved == true)
+            @if( $je->approved != "Pending")
                 <td>{{$je->user['name']}}</td>
             @else
                 <td>N/A</td>
             @endif
             @if( Auth::user()->profile->access_level_id == 2)
+				@if( $je->approved == "Pending")
                 <td>
                     <div>
                         <ul class="navbar-nav ml-auto">
@@ -66,6 +67,7 @@
                         </ul>
                     </div>
                 </td>
+				@endif
             @endif
         </tr>
     @empty

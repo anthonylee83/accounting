@@ -15,7 +15,9 @@ class ApprovalController extends Controller
 
     public function index()
     {
-        $entries = JournalEntry::where('approved', 0)->orderBy('created_at', 'ASC')->get();
+        $entries  = JournalEntry::orderBy('created_at', 'DESC')
+                    ->with('transactions', 'transactions.account')
+                    ->paginate(4);
         return view('manager.approval', compact('entries'));
     }
 }

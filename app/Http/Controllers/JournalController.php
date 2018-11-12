@@ -44,7 +44,6 @@ class JournalController extends Controller
     public function store(Request $request)
     {
         $journal      = JournalEntry::create([
-            'approved'             => false,
             'created_user_id'      => Auth::user()->id,
             'document_reference_id'=> 0,
             'reference'            => rand(10000, 999999),
@@ -77,7 +76,7 @@ class JournalController extends Controller
         }
         EventLog::create([
         'email'       => session('email'),
-        'action'      => 'Journalized a new transaction'
+        'action'      => "Journalized a new transaction: {$journal->reference}" 
         ]);
 
         return redirect()->action('JournalController@index');
@@ -142,7 +141,7 @@ class JournalController extends Controller
             $amount         = $transaction->amount;
 
             if ($transaction->debit != $normal->journal_binary) {
-                if ($accountBalance < $amount) {
+                if ($accountBalance > $amount) {
                     return redirect()->action('ApprovalController@index');
                 }
             }
@@ -164,7 +163,7 @@ class JournalController extends Controller
             $account->save();
         }
 
-        $entry->approved = true;
+        $entry->approved = "Approved";
         $entry->save();
         $transactions = Transaction::where('journal_entry_id', $id)->get();
         /*foreach($transactions as $transaction)
@@ -193,7 +192,7 @@ class JournalController extends Controller
         } */
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Approved journal entry: {$id}"
+        'action'      => "Approved journal entry: {$journal->reference}"
         ]);
 
         return redirect()->action('ApprovalController@index');
@@ -204,9 +203,10 @@ class JournalController extends Controller
         $entry = JournalEntry::findOrFail($id);
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Declined journal entry: {$id}"
+        'action'      => "Declined journal entry: {$journal->reference}"
         ]);
-        $entry->delete();
+		$entry->approved = "Declined";
+        $entry->save();
         return redirect()->action('ApprovalController@index');
     }
 }

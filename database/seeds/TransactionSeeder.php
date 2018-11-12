@@ -16,7 +16,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '1',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '10000'
         ]);
@@ -24,7 +23,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '1',
             'account_id'                => '2',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1500'
         ]);
@@ -32,7 +30,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '1',
             'account_id'                => '4',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1250'
         ]);
@@ -40,7 +37,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '1',
             'account_id'                => '5',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '7500'
         ]);
@@ -48,7 +44,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '1',
             'account_id'                => '13',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '20250'
         ]);
@@ -57,7 +52,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '2',
             'account_id'                => '3',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '4500'
         ]);
@@ -65,7 +59,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '2',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '4500'
         ]);
@@ -74,7 +67,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '3',
             'account_id'                => '6',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1800'
         ]);
@@ -82,7 +74,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '3',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1800'
         ]);
@@ -91,7 +82,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '4',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '3000'
         ]);
@@ -99,7 +89,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '4',
             'account_id'                => '10',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '3000'
         ]);
@@ -108,7 +97,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '5',
             'account_id'                => '5',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1800'
         ]);
@@ -116,7 +104,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '5',
             'account_id'                => '8',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1800'
         ]);
@@ -125,7 +112,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '6',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '800'
         ]);
@@ -133,7 +119,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '6',
             'account_id'                => '2',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '800'
         ]);
@@ -142,7 +127,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '7',
             'account_id'                => '22',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '120'
         ]);
@@ -150,7 +134,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '7',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '120'
         ]);
@@ -159,7 +142,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '8',
             'account_id'                => '8',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '800'
         ]);
@@ -167,7 +149,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '8',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '800'
         ]);
@@ -176,7 +157,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '9',
             'account_id'                => '2',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '2250'
         ]);
@@ -184,7 +164,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '9',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '2250'
         ]);
@@ -193,7 +172,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '10',
             'account_id'                => '19',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '400'
         ]);
@@ -201,7 +179,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '10',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '400'
         ]);
@@ -210,7 +187,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '11',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '3175'
         ]);
@@ -218,7 +194,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '10',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '3175'
         ]);
@@ -227,7 +202,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '12',
             'account_id'                => '4',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '750'
         ]);
@@ -235,7 +209,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '12',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '750'
         ]);
@@ -244,7 +217,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '13',
             'account_id'                => '2',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1100'
         ]);
@@ -252,7 +224,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '13',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1100'
         ]);
@@ -261,7 +232,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '14',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1850'
         ]);
@@ -269,7 +239,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '14',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1850'
         ]);
@@ -278,7 +247,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '15',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1600'
         ]);
@@ -286,7 +254,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '15',
             'account_id'                => '2',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1600'
         ]);
@@ -295,7 +262,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '16',
             'account_id'                => '19',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '400'
         ]);
@@ -303,7 +269,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '16',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '400'
         ]);
@@ -312,7 +277,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '17',
             'account_id'                => '20',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '130'
         ]);
@@ -320,7 +284,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '17',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '130'
         ]);
@@ -329,7 +292,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '18',
             'account_id'                => '21',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '200'
         ]);
@@ -337,7 +299,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '18',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '200'
         ]);
@@ -346,7 +307,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '19',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '2050'
         ]);
@@ -354,7 +314,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '19',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '2050'
         ]);
@@ -363,7 +322,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '20',
             'account_id'                => '2',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1000'
         ]);
@@ -371,7 +329,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '20',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1000'
         ]);
@@ -380,7 +337,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '21',
             'account_id'                => '19',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '4500'
         ]);
@@ -388,7 +344,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '21',
             'account_id'                => '1',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '4500'
         ]);
@@ -397,7 +352,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '22',
             'account_id'                => '23',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '150'
         ]);
@@ -405,7 +359,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '22',
             'account_id'                => '6',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '150'
         ]);
@@ -414,7 +367,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '23',
             'account_id'                => '18',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '980'
         ]);
@@ -422,7 +374,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '23',
             'account_id'                => '4',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '980'
         ]);
@@ -431,7 +382,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '24',
             'account_id'                => '16',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '500'
         ]);
@@ -439,7 +389,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '24',
             'account_id'                => '7',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '500'
         ]);
@@ -448,7 +397,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '25',
             'account_id'                => '19',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '20'
         ]);
@@ -456,7 +404,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '25',
             'account_id'                => '9',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '20'
         ]);
@@ -465,7 +412,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '26',
             'account_id'                => '17',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '1500'
         ]);
@@ -473,7 +419,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '26',
             'account_id'                => '3',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '1500'
         ]);
@@ -482,7 +427,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '27',
             'account_id'                => '10',
-            'description'               => '',
             'debit'                     => '1',
             'amount'                    => '2000'
         ]);
@@ -490,7 +434,6 @@ class TransactionSeeder extends Seeder
         Transaction::create([
             'journal_entry_id'          => '27',
             'account_id'                => '14',
-            'description'               => '',
             'debit'                     => '0',
             'amount'                    => '2000'
         ]);

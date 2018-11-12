@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td id="SingLn" ALIGN="LEFT"><b>Owner's Equity</b></td>
+                <td id="SingLn" ALIGN="LEFT"><b>Equity</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $equityTotal; ?>.00</b></td>
             </tr>

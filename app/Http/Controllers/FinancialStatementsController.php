@@ -52,7 +52,7 @@ class FinancialStatementsController extends Controller
         $longID = $accountSubTypeLong->id;
         $currentAssets = Account::where('account_type_id', $assetID)->where('account_subtype_id', $shortID)->get();
         $nonCurrentAssets = Account::where('account_type_id', $assetID)->where('account_subtype_id', $longID)->get();
-        $equities = Account::where('account_type_id', $equityID);
+        $equities = Account::where('account_type_id', $equityID)->get();
         $currentLiabilities = Account::where('account_type_id', $liabilityID)->where('account_subtype_id', $shortID)->get();
         $nonCurrentLiabilities = Account::where('account_type_id', $liabilityID)->where('account_subtype_id', $longID)->get();
         $currentAssetsTotal = $this->balanceTotal($currentAssets);

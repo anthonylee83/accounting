@@ -7,16 +7,16 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>Gross Profit Margin</td>
+			<td>Operating Profit Margin: {{$OpProMargin}}%</td>
 		</tr>
 		<tr>
-			<td>Operating Profit Margin</td>
+			<td>Net Profit Margin: {{$NetProMargin}}%</td>
 		</tr>
 		<tr>
-			<td>Net Profit Margin</td>
+			<td>Return on Assets: {{$ROTA}}%</td>
 		</tr>
 		<tr>
-			<td>Return on Stockholder's Equity</td>
+			<td>Return on Stockholder's Equity: {{$ROSE}}%</td>
 		</tr>
     </tbody>
 </table>
@@ -26,13 +26,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>Current Ratio</td>
-		</tr>
-		<tr>
-			<td>Quick Ratio</td>
-		</tr>
-		<tr>
-			<td>Inventory to Net Working Capital</td>
+			<td>Current Ratio: {{$Current}}</td>
 		</tr>
     </tbody>
 </table>
@@ -42,10 +36,10 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>Total Assets Turnover</td>
+			<td>Total Assets Turnover: {{$TAT}}</td>
 		</tr>
 		<tr>
-			<td>Average Collection Period</td>
+			<td>Average Collection Period: {{$ACP}} days</td>
 		</tr>
     </tbody>
 </table>

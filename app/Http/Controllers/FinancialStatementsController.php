@@ -21,6 +21,9 @@ class FinancialStatementsController extends Controller
         $expenseTotal = $this->balanceTotal($expenses);
         $netIncome = $revenueTotal - $expenseTotal;
         $path = $request->path();
+		session(['revenueTotal' => $revenueTotal]);
+		session(['expenseTotal' => $expenseTotal]);
+		session(['netIncome' => $netIncome]);
 
         return view('financial.income', compact('revenues', 'expenses', 'revenueTotal', 'expenseTotal',
             'netIncome','path'));
@@ -60,6 +63,12 @@ class FinancialStatementsController extends Controller
         $nonCurrentLiabilitiesTotal = $this->balanceTotal($nonCurrentLiabilities);
         $equityLiabilitiesTotal = $currentLiabilitiesTotal + $nonCurrentLiabilitiesTotal + $equityTotal;
         $path = $request->path();
+		$accountsRecTotal = $this->balanceTotal(Account::where('account_name', 'Accounts Receivable')->get());
+		session(['assetTotal' => $assetsTotal]);
+		session(['equityTotal' => $equityTotal]);
+		session(['currentAssetsTotal' => $currentAssetsTotal]);
+		session(['currentLiabilitiesTotal' => $currentLiabilitiesTotal]);
+		session(['accountsRecTotal' => $accountsRecTotal]);
         return view('financial.balance', compact('currentAssets', 'nonCurrentAssets', 'equities',
             'currentLiabilities', 'nonCurrentLiabilities', 'currentAssetsTotal', 'nonCurrentAssetsTotal', 'equityTotal',
             'currentLiabilitiesTotal', 'nonCurrentLiabilitiesTotal', 'assetsTotal', 'equityLiabilitiesTotal', 'path'));

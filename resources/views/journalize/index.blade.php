@@ -37,6 +37,14 @@
 
                 @endforeach
                 </table>
+                <ul style="list-style:none;">
+                @forelse($je->attachments()->get() as $attachment)
+                    <li class="text-left"><i class="fas fa-paperclip"></i>
+                        <a href="{{action('AttachmentController@download', $attachment->id)}}">{{$attachment->filename}}</a>    
+                    </li>
+                @empty
+                @endforelse
+                </ul>
             </td>
             <td> {{ $je->approved ? 'Approved' : 'Pending'}}</td>
 
@@ -65,4 +73,7 @@
     @endforelse
     </tbody>
     </table>
+    <div class="d-flex text-center justify-content-center mx-auto">
+        {{$entries->links()}}
+    </div>
 @endsection

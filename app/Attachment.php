@@ -7,7 +7,7 @@ use App\JournalEntry;
 
 class Attachment extends Model
 {
-    protected $fillable = ['journal_entry_id', 'file'];
+    protected $fillable = ['journal_entry_id', 'file', 'filename'];
 
     public function journalEntry()
     {

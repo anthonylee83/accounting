@@ -37,7 +37,7 @@
                 <td></td>
                 <td ALIGN="LEFT"><b>Total Revenue</b></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $revenueTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $revenueTotal; ?>.00</b></td>
             </tr>
             <tr>
                 <td><b>Expenses</b></td><td></td><td></td><td></td>
@@ -60,7 +60,7 @@
                     <td></td>
                     <td ALIGN="LEFT"><b>Total Expenses</b></td>
                     <td></td>
-                    <td ALIGN="RIGHT"><b>$<?php echo $expenseTotal; ?>.00</b></td>
+                    <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $expenseTotal; ?>.00</b></td>
                 </tr>
             <tr>
                 <td><b>Net Income</b></td><td></td><td></td><td></td>
@@ -69,7 +69,7 @@
                 <td></td>
                 <td ALIGN="LEFT"><b>Net Income</b></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $netIncome; ?>.00</b></td>
+                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo $netIncome; ?>.00</b></td>
             </tr>
 
 

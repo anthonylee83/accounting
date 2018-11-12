@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td ALIGN="LEFT"><b>Current Assets</b></td>
+                <td id="SingLn" ALIGN="LEFT"><b>Current Assets</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $currentAssetsTotal; ?>.00</b></td>
             </tr>
@@ -41,7 +41,7 @@
                 @endforelse
             <tr>
                 <td></td>
-                <td ALIGN="LEFT"><b>Non-Current Assets</b></td>
+                <td id="SingLn" ALIGN="LEFT"><b>Non-Current Assets</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentAssetsTotal; ?>.00</b></td>
             </tr>
@@ -63,14 +63,14 @@
                 <td></td>
                 <td ALIGN="LEFT"><b>Total Assets</b></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $assetsTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $assetsTotal; ?>.00</b></td>
             </tr>
             <tr>
                 <td><b><u>Equity and Liabilities</u></b></td><td></td><td></td><td></td>
             </tr>
             <tr>
                 <td></td>
-                <td ALIGN="LEFT"><b>Owner's Equity</b></td>
+                <td id="SingLn" ALIGN="LEFT"><b>Owner's Equity</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $equityTotal; ?>.00</b></td>
             </tr>
@@ -90,7 +90,7 @@
             @endforelse
             <tr>
                 <td></td>
-                <td ALIGN="LEFT"><b>Current Liabilities</b></td>
+                <td id="SingLn" ALIGN="LEFT"><b>Current Liabilities</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $currentLiabilitiesTotal; ?>.00</b></td>
             </tr>
@@ -110,7 +110,7 @@
             @endforelse
             <tr>
                 <td></td>
-                <td ALIGN="LEFT"><b>Non-Current Liabilities</b></td>
+                <td id="SingLn" ALIGN="LEFT"><b>Non-Current Liabilities</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentLiabilitiesTotal; ?>.00</b></td>
             </tr>
@@ -132,7 +132,7 @@
                 <td></td>
                 <td ALIGN="LEFT"><b>Total Equity and Liabilities</b></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $equityLiabilitiesTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $equityLiabilitiesTotal; ?>.00</b></td>
             </tr>
         </table>
     </div>

@@ -24,11 +24,11 @@
             </tr>
             <tr>
                 <td ALIGN="LEFT">Dividends Declared</td>
-                <td ALIGN="RIGHT"><b>$<?php echo $dividendsDeclaredValue; ?></b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $dividendsDeclaredValue; ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT">Ending Retained Earnings</td>
-                <td ALIGN="RIGHT"><b>$<?php echo $newRetainedEarningsValue; ?>.00</b></td>
+                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo $newRetainedEarningsValue; ?>.00</b></td>
             </tr>
         </table>
     </div>

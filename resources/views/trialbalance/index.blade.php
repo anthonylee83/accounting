@@ -6,8 +6,9 @@
 
 
     <div class='col-xs-12 col-md-8 mx-auto'>
+        <h1>Trivial Accounting</h1>
         <h1>Trial Balance</h1>
-        <h2><?php echo date("m/d/y")?></h2>
+        <h2>as of <?php echo date("m/d/y")?></h2>
         <table class="table table-striped">
             <thread>
                 <th>Account</th>
@@ -17,20 +18,20 @@
 
             <tr>
             @php
-                $debitTotal = 0;
-                $creditTotal = 0;
+                $debitTotal = 0.00;
+                $creditTotal = 0.00;
             @endphp
             @forelse($accounts as $account)
-                <td>{{$account->account_name}}</td>
+                    <td ALIGN="LEFT">{{$account->account_name}}</td>
                 @if($account->account_normal_side_id == 1)
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     <td> </td>
                     @php
                         $debitTotal += preg_replace("/[^0-9.]/", "", "$account->account_balance");
                     @endphp
                 @elseif($account->account_normal_side_id == 2)
                     <td> </td>
-                    <td>{{$account->account_balance}}</td>
+                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
                     @php
                         $creditTotal += preg_replace("/[^0-9.]/", "", "$account->account_balance");
                     @endphp
@@ -44,9 +45,9 @@
                 </tr>
             @endforelse
             <tr>
-                <td>Totals</td>
-                <td><?php echo $debitTotal; ?></td>
-                <td><?php echo $creditTotal; ?></td>
+                <td><b>Total Balances</b></td>
+                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo $debitTotal; ?>.00</b></td>
+                <td id="totalCr" ALIGN="RIGHT"><b>$<?php echo $creditTotal; ?>.00</b></td>
             </tr>
             </tbody>
         </table>

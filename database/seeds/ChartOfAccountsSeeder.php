@@ -222,5 +222,14 @@ class ChartOfAccountsSeeder extends Seeder
             'account_balance'     => '0'
         ]
         );
+        Account::create(
+            [
+                'account_name'        => 'Insurance Expense',
+                'account_type_id'     => $ExpensesID,
+                'account_subtype_id'  => $ShorttermID,
+                'account_normal_side_id' => $DebitID,
+                'account_balance'     => '0'
+            ]
+        );
     }
 }

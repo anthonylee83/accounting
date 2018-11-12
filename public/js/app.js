@@ -65333,7 +65333,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-4" }, [
         _c("input", {
           staticClass: "description form-control",
-          attrs: { type: "file", multiple: "", name: "attachments" }
+          attrs: { type: "file", multiple: "", name: "attachments[]" }
         })
       ])
     ])

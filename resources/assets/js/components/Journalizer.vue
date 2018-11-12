@@ -51,7 +51,7 @@
                         <label>Attachments</label>
                     </div>
                     <div class="col-4">
-                        <input type="file" multiple name="attachments" class="description form-control">
+                        <input type="file" multiple name="attachments[]" class="description form-control">
                     </div>
                 </div>
                 <a href="" class="btn btn-danger">Reset</a>

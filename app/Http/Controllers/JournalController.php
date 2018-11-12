@@ -52,16 +52,11 @@ class JournalController extends Controller
             'description'          => $request->description ?? ''
         ]);
 
-        if ($request->hasFile('attachments')) {
-            foreach ($request->file('attachments') as $attachment) {
-                return response()->json($attachment);
-                $file = $attachment->store('attachments');
-                Attachment::create(['journal_entry_id'  => $journal->id,
-                                    'file'              => $file]);
-            };
-        } else {
-            abort(500, 'No Files');
-        }
+        foreach ($request->file('attachments') as $attachment) {
+            $file = $attachment->store('attachments');
+            Attachment::create(['journal_entry_id'  => $journal->id,
+                                'file'              => $file]);
+        };
 
         $transactions = [];
         foreach (json_decode($request->transactions, true) as $transaction) {

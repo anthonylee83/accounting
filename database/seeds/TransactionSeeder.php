@@ -192,7 +192,7 @@ class TransactionSeeder extends Seeder
         ]);
 
         Transaction::create([
-            'journal_entry_id'          => '10',
+            'journal_entry_id'          => '11',
             'account_id'                => '14',
             'debit'                     => '0',
             'amount'                    => '3175'

@@ -17,7 +17,7 @@ class ApprovalController extends Controller
     {
         $entries  = JournalEntry::orderBy('created_at', 'DESC')
                     ->with('transactions', 'transactions.account')
-                    ->paginate(4);
+                    ->paginate(30);
         return view('manager.approval', compact('entries'));
     }
 }

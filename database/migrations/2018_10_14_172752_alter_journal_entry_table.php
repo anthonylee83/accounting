@@ -24,6 +24,7 @@ class AlterJournalEntryTable extends Migration
             $table->dropColumn('date');
             $table->bigInteger('reference')->unique();
             $table->string('approved')->default('Pending');
+			$table->string('approver')->default('N/A');
             $table->unsignedInteger('approval_user_id');
             $table->unsignedInteger('created_user_id');
         });

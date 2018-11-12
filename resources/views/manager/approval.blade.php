@@ -55,11 +55,7 @@ function Filter() {
                 </table>
             </td>
 			<td> {{ $je->approved}}</td>
-            @if( $je->approved != "Pending")
-                <td>{{session('email')}}</td>
-            @else
-                <td>N/A</td>
-            @endif
+            <td>{{$je->approver}}</td>
             @if( Auth::user()->profile->access_level_id == 2)
 				@if( $je->approved == "Pending")
                 <td>

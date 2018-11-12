@@ -164,6 +164,7 @@ class JournalController extends Controller
         }
 
         $entry->approved = "Approved";
+		$entry->approver = session('email');
         $entry->save();
         $transactions = Transaction::where('journal_entry_id', $id)->get();
         /*foreach($transactions as $transaction)
@@ -192,7 +193,7 @@ class JournalController extends Controller
         } */
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Approved journal entry: {$journal->reference}"
+        'action'      => "Approved journal entry: {$entry->reference}"
         ]);
 
         return redirect()->action('ApprovalController@index');
@@ -203,9 +204,10 @@ class JournalController extends Controller
         $entry = JournalEntry::findOrFail($id);
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Declined journal entry: {$journal->reference}"
+        'action'      => "Declined journal entry: {$entry->reference}"
         ]);
 		$entry->approved = "Declined";
+		$entry->approver = session('email');
         $entry->save();
         return redirect()->action('ApprovalController@index');
     }

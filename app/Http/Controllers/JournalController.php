@@ -52,13 +52,16 @@ class JournalController extends Controller
             'description'          => $request->description ?? ''
         ]);
 
-        foreach ($request->file('attachments') as $attachment) {
-            $file = $attachment->store('attachments');
-            Attachment::create(['journal_entry_id'  => $journal->id,
-                                'file'              => $file,
-                                'filename'          => $attachment->getClientOriginalName()
-                                ]);
-        };
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $attachment) {
+                $file = $attachment->store('attachments');
+                Attachment::create(['journal_entry_id'  => $journal->id,
+                                'file'                  => $file,
+                                'filename'              => $attachment->getClientOriginalName()
+                                    ]);
+            }
+        }
+        
 
         $transactions = [];
         foreach (json_decode($request->transactions, true) as $transaction) {
@@ -143,7 +146,7 @@ class JournalController extends Controller
 
             if ($transaction->debit != $normal->journal_binary) {
                 if ($accountBalance < $amount) {
-                    return redirect()->action('ApprovalController@index');
+                    return redirect()->action('JournalController@index');
                 }
             }
         }
@@ -196,7 +199,7 @@ class JournalController extends Controller
         'action'      => "Approved journal entry: {$id}"
         ]);
 
-        return redirect()->action('ApprovalController@index');
+        return redirect()->action('JournalController@index');
     }
 
     public function decline($id)
@@ -207,6 +210,6 @@ class JournalController extends Controller
         'action'      => "Declined journal entry: {$id}"
         ]);
         $entry->delete();
-        return redirect()->action('ApprovalController@index');
+        return redirect()->action('JournalController@index');
     }
 }

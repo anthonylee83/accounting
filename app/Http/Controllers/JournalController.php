@@ -10,6 +10,7 @@ use App\AccountNormalSide;
 use Auth;
 use App\EventLog;
 use App\Attachment;
+use App\Status;
 
 class JournalController extends Controller
 {
@@ -29,6 +30,8 @@ class JournalController extends Controller
     {
         $entries  = JournalEntry::orderBy('created_at', 'DESC')
                     ->with('transactions', 'transactions.account')
+                    ->where('status_id', 1)
+                    ->orWhere('status_id', 'IS NULL')
                     ->paginate(30);
 
         $accounts = Account::all();
@@ -44,21 +47,23 @@ class JournalController extends Controller
     public function store(Request $request)
     {
         $journal      = JournalEntry::create([
-            'approved'             => false,
-            'created_user_id'      => Auth::user()->id,
-            'document_reference_id'=> 0,
-            'reference'            => rand(10000, 999999),
-            'approval_user_id'     => 0,
-            'description'          => $request->description ?? ''
+            'status_id'             => Status::where('state', 'Pending')->first()->id,
+            'created_user_id'       => Auth::user()->id,
+            'document_reference_id' => 0,
+            'reference'             => rand(10000, 999999),
+            'approval_user_id'      => 0,
+            'description'           => $request->description ?? ''
         ]);
 
-        foreach ($request->file('attachments') as $attachment) {
-            $file = $attachment->store('attachments');
-            Attachment::create(['journal_entry_id'  => $journal->id,
-                                'file'              => $file,
-                                'filename'          => $attachment->getClientOriginalName()
-                                ]);
-        };
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $attachment) {
+                $file = $attachment->store('attachments');
+                Attachment::create(['journal_entry_id'  => $journal->id,
+                                'file'                  => $file,
+                                'filename'              => $attachment->getClientOriginalName()
+                                    ]);
+            }
+        }
 
         $transactions = [];
         foreach (json_decode($request->transactions, true) as $transaction) {
@@ -143,7 +148,7 @@ class JournalController extends Controller
 
             if ($transaction->debit != $normal->journal_binary) {
                 if ($accountBalance < $amount) {
-                    return redirect()->action('ApprovalController@index');
+                    return redirect()->action('JournalController@index');
                 }
             }
         }
@@ -164,49 +169,34 @@ class JournalController extends Controller
             $account->save();
         }
 
-        $entry->approved = true;
+        $entry->status_id = Status::where('state', 'Approved')->first()->id;
         $entry->save();
         $transactions = Transaction::where('journal_entry_id', $id)->get();
-        /*foreach($transactions as $transaction)
-        {
-            $accountID = $transaction->account_id;
-            $account = Account::find($accountID);
-            $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
-            $amount = $transaction->amount;
-            if($transaction->debit > 0)
-            {
-                if($account->account_normal_side_id == 1)
-                    $accountBalance = $accountBalance + $amount;
-                elseif($account->account_normal_side_id == 2)
-                    $accountBalance = $accountBalance - $amount;
-            }
-            elseif($transaction->debit == 0)
-            {
-                if($account->account_normal_side_id == 1)
-                    $accountBalance = $accountBalance - $amount;
-                elseif($account->account_normal_side_id == 2)
-                    $accountBalance = $accountBalance + $amount;
-            }
-            $account->account_balance = $accountBalance;
-            $account->save();
 
-        } */
         EventLog::create([
         'email'       => session('email'),
         'action'      => "Approved journal entry: {$id}"
         ]);
 
-        return redirect()->action('ApprovalController@index');
+        return redirect()->action('JournalController@index');
     }
 
-    public function decline($id)
+    public function decline(Request $request)
     {
-        $entry = JournalEntry::findOrFail($id);
+        $entry = JournalEntry::findOrFail($request->id);
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Declined journal entry: {$id}"
+        'action'      => "Declined journal entry: {intval($request->id)}"
         ]);
-        $entry->delete();
-        return redirect()->action('ApprovalController@index');
+        $entry->status_id = Status::where('state', 'Rejected')->first()->id;
+        $entry->comments  = $request->comments;
+        $entry->save();
+        return redirect()->action('JournalController@index');
+    }
+
+    public function reject($id)
+    {
+        $entry = JournalEntry::findOrFail($id);
+        return view('journalize.reject', compact('entry'));
     }
 }

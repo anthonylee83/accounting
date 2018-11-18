@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Journal Entries</h1>
-
-    <journalizer :accounts="{{json_encode($accounts)}}">
-        @csrf
-    </journalizer>
-
+    <h1>Reject Entry?</h1>
     <table class="table table-striped table-hover">
         <thead>
             <th>Date</th>
@@ -21,14 +16,13 @@
             @endif
         </thead>
         <tbody>
-    @forelse($entries as $je)
         <tr>
-            <td>{{$je->created_at->format('m/d/y')}}</td>
-            <td>{{$je->reference}}</td>
+            <td>{{$entry->created_at->format('m/d/y')}}</td>
+            <td>{{$entry->reference}}</td>
             
             <td colspan=3>
              <table class="table">
-                @foreach($je->transactions()->get() as $transaction)
+                @foreach($entry->transactions()->get() as $transaction)
                     <tr>
                         <td class="{{ $transaction->debit ? 'debit-account' : 'credit-account'}}">{{ $transaction->account->name }}</td>
                         <td class="debit text-right">{{ $transaction->debit ? $transaction->formattedAmount : '' }}</td>
@@ -38,7 +32,7 @@
                 @endforeach
                 </table>
                 <ul style="list-style:none;">
-                @forelse($je->attachments()->get() as $attachment)
+                @forelse($entry->attachments()->get() as $attachment)
                     <li class="text-left"><i class="fas fa-paperclip"></i>
                         <a href="{{action('AttachmentController@download', $attachment->id)}}">{{$attachment->filename}}</a>    
                     </li>
@@ -46,10 +40,10 @@
                 @endforelse
                 </ul>
             </td>
-            <td> {{ $je->status !== null ? $je->status->state : 'Pending' }}</td>
+            <td> {{ $entry->approved ? 'Approved' : 'Pending'}}</td>
 
-            @if( $je->approved == true)
-                <td>{{$je->user['name']}}</td>
+            @if( $entry->approved == true)
+                <td>{{$entry->user['name']}}</td>
             @else
                 <td>N/A</td>
             @endif
@@ -58,22 +52,29 @@
                     <div>
                         <ul class="navbar-nav ml-auto">
                         <a
-                            href="{{action('JournalController@approve', $je->id)}}"
+                            href="{{action('JournalController@approve', $entry->id)}}"
                             class="btn btn-primary">Approve</a>
                         <a
-                            href="{{action('JournalController@reject', $je->id)}}"
+                            href="{{action('JournalController@reject', $entry->id)}}"
                             class="btn btn-danger">Reject</a>
                         </ul>
                     </div>
                 </td>
             @endif
         </tr>
-    @empty
-        <tr><td cols=4>No journal entries</td></tr>
-    @endforelse
     </tbody>
     </table>
     <div class="d-flex text-center justify-content-center mx-auto">
-        {{$entries->links()}}
+        <form action="{{ action('JournalController@decline')}}" method="post" class="rejection">
+            {{csrf_field()}}
+            <input type="hidden" name="id" value="{{$entry->id}}" />
+            
+            <label>Rejection Reason</label>
+            <textarea class="form-control" name="comments"></textarea>
+            <div class="form-group d-flex justify-content-around">
+                <button type="submit" class="btn btn-primary">Reject</button>
+                <a href="{{action('JournalController@index')}}" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
     </div>
 @endsection

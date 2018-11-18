@@ -15636,3 +15636,17 @@ a.text-dark:focus {
 	text-decoration: underline;
 	text-underline-position: under;
 }
+
+.rejection {
+  width:70%;
+}
+.rejection textarea {
+  background-color:white;
+  border:1px solid #ccc;
+  margin-bottom:1rem;
+}
+
+.rejection textarea:focus {
+  background-color:white;
+  border:1px solid #ccc;
+}

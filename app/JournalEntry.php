@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Attachment;
+use App\Status;
 
 class JournalEntry extends Model
 {
@@ -22,5 +23,10 @@ class JournalEntry extends Model
     public function attachments()
     {
         return $this->hasMany(Attachment::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

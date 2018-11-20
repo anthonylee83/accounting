@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StandardUserSeed::class);
         $this->call(TransactionSeeder::class);
         $this->call(JournalEntrySeeder::class);
+		$this->call(RatioTableSeeder::class);
 
     }
 }

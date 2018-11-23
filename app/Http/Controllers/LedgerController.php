@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\JournalEntry;
 use App\Account;
 use App\Transaction;
+use App\Status;
 use Auth;
 
 class LedgerController extends Controller
@@ -57,10 +58,11 @@ class LedgerController extends Controller
 
     public function showTransactions($id)
     {
+        $approvedID = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
             ->where('transactions.account_id', $id)
-            ->where('journal_entries.approved', '1')->get();
+            ->where('journal_entries.status_id', $approvedID)->get();
 
         $account = Account::find($id);
         $accountName = $account->account_name;

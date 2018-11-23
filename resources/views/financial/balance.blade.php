@@ -10,27 +10,34 @@
         <h1>Balance Sheet</h1>
         <h2>as of <?php echo date("m/d/y")?></h2>
         <table class="table table-striped">
-            <thread>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>Totals</th>
-            </thread>
             <tr>
-                <td><b><u>Assets</u></b></td><td></td><td></td><td></td>
+                <td ALIGN="LEFT"><b><u>Assets</u></b></td><td></td><td></td><td></td>
             </tr>
             <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Current Assets</b>
+                    </span>
+                </td>
                 <td></td>
-                <td id="SingLn" ALIGN="LEFT"><b>Current Assets</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $currentAssetsTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($currentAssets as $account)
-                    <td></td>
-                    <td ALIGN="LEFT">{{$account->account_name}}</td>
-                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                    <td></td>
+                    @php
+                    $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+                    @endphp
+                    @if($accountBalance > 0)
+                        <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            {{$account->account_name}}
+                            </span>
+                        </td>
+                        <td></td>
+                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
+                        <td></td>
+                    @endif
             </tr>
                 @empty
                     <tr>
@@ -40,66 +47,77 @@
                     </tr>
                 @endforelse
             <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Long Term Assets</b>
+                    </span>
+                </td>
                 <td></td>
-                <td id="SingLn" ALIGN="LEFT"><b>Non-Current Assets</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentAssetsTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($nonCurrentAssets as $account)
-                    <td></td>
-                    <td ALIGN="LEFT">{{$account->account_name}}</td>
-                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                    <td></td>
+                    @php
+                        $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+                    @endphp
+                    @if($accountBalance > 0)
+                        <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            {{$account->account_name}}
+                            </span>
+                        </td>
+                        <td></td>
+                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
+                        <td></td>
+                    @endif
             </tr>
                 @empty
                     <tr>
                         <td colspan=4>
-                            There are no Non-Current Asset Accounts.
+                            There are no Long Term Asset Accounts.
                         </td>
                     </tr>
                 @endforelse
             <tr>
+                <td ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Assets</b>
+                    </span>
+                </td>
                 <td></td>
-                <td ALIGN="LEFT"><b>Total Assets</b></td>
                 <td></td>
                 <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $assetsTotal; ?>.00</b></td>
             </tr>
+
             <tr>
-                <td><b><u>Equity and Liabilities</u></b></td><td></td><td></td><td></td>
+                <td ALIGN="LEFT"><b><u>Liabilities and Equity</u></b></td><td></td><td></td><td></td>
             </tr>
             <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Current Liabilities</b>
+                    </span>
+                </td>
                 <td></td>
-                <td id="SingLn" ALIGN="LEFT"><b>Owner's Equity</b></td>
-                <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $equityTotal; ?>.00</b></td>
-            </tr>
-            <tr>
-                @forelse($equities as $account)
-                    <td></td>
-                    <td ALIGN="LEFT">{{$account->account_name}}</td>
-                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                    <td></td>
-            </tr>
-            @empty
-                <tr>
-                    <td colspan=4>
-                        There are no Equity Accounts.
-                    </td>
-                </tr>
-            @endforelse
-            <tr>
-                <td></td>
-                <td id="SingLn" ALIGN="LEFT"><b>Current Liabilities</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $currentLiabilitiesTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($currentLiabilities as $account)
-                    <td></td>
-                    <td ALIGN="LEFT">{{$account->account_name}}</td>
-                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                    <td></td>
+                    @php
+                        $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+                    @endphp
+                    @if($accountBalance > 0)
+                        <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            {{$account->account_name}}
+                            </span>
+                        </td>
+                        <td></td>
+                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
+                        <td></td>
+                    @endif
             </tr>
             @empty
                 <tr>
@@ -109,28 +127,78 @@
                 </tr>
             @endforelse
             <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Long Term Liabilities</b>
+                    </span>
+                </td>
                 <td></td>
-                <td id="SingLn" ALIGN="LEFT"><b>Non-Current Liabilities</b></td>
                 <td></td>
                 <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentLiabilitiesTotal; ?>.00</b></td>
             </tr>
             <tr>
                 @forelse($nonCurrentLiabilities as $account)
-                    <td></td>
-                    <td ALIGN="LEFT">{{$account->account_name}}</td>
-                    <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                    <td></td>
+                    @php
+                        $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+                    @endphp
+                    @if($accountBalance > 0)
+                        <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            {{$account->account_name}}
+                            </span>
+                        </td>
+                        <td></td>
+                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
+                        <td></td>
+                    @endif
             </tr>
             @empty
                 <tr>
                     <td colspan=4>
-                        There are no Non-Current Liability Accounts.
+                        There are no Long Term Liability Accounts.
                     </td>
                 </tr>
             @endforelse
             <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Equity</b>
+                    </span>
+                </td>
                 <td></td>
-                <td ALIGN="LEFT"><b>Total Equity and Liabilities</b></td>
+                <td></td>
+                <td ALIGN="RIGHT"><b>$<?php echo $equityTotal; ?>.00</b></td>
+            </tr>
+            <tr>
+                @forelse($equities as $account)
+                    @php
+                        $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+                    @endphp
+                    @if($accountBalance > 0)
+                        <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            {{$account->account_name}}
+                            </span>
+                        </td>
+                        <td></td>
+                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
+                        <td></td>
+                    @endif
+            </tr>
+            @empty
+                <tr>
+                    <td colspan=4>
+                        There are no Equity Accounts.
+                    </td>
+                </tr>
+            @endforelse
+            <tr>
+                <td ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Equity and Liabilities</b>
+                    </span>
+                </td>
+                <td></td>
                 <td></td>
                 <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $equityLiabilitiesTotal; ?>.00</b></td>
             </tr>

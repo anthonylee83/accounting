@@ -47,12 +47,13 @@ class JournalController extends Controller
     public function store(Request $request)
     {
         $journal      = JournalEntry::create([
-            'status_id'             => Status::where('state', 'Pending')->first()->id,
+            'status_id'             => Status::where('state', 'Pending')->value('id'),
             'created_user_id'       => Auth::user()->id,
             'document_reference_id' => 0,
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
-            'description'           => $request->description ?? ''
+            'description'           => $request->description ?? '',
+            'comments'              => ' '
         ]);
 
         if ($request->hasFile('attachments')) {

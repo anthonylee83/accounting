@@ -16,5 +16,6 @@ class Transaction extends Model
     public function getformattedAmountAttribute()
     {
         return '$' . money_format('%i', $this->amount);
+        // return '$' . number_format($this->amount, 2);
     }
 }

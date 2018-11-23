@@ -32,7 +32,7 @@
         <tbody>
             @forelse($accounts as $account)
                 <td>{{$account->id}}</td>
-                <td>
+                <td align="left">
                     <a href="{{action('Accounts\ChartOfAccounts@showAccount', $account->id)}}">
                         {{$account->account_name}}
                     </a>
@@ -40,7 +40,7 @@
                 <td>{{$account->accountType->account_type}}</td>
                 <td>{{$account->accountSubtype->sub_type}}</td>
                 <td>{{$account->accountNormalSide->normal_side}}</td>
-                <td>{{$account->account_balance}}</td>
+                <td align="right">{{$account->account_balance}}</td>
                 </tr>
             @empty
                 <tr>

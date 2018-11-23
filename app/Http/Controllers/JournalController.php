@@ -82,7 +82,7 @@ class JournalController extends Controller
         }
         EventLog::create([
         'email'       => session('email'),
-        'action'      => 'Journalized a new transaction'
+        'action'      => 'Journalized a new transaction {$journal->reference}'
         ]);
 
         return redirect()->action('JournalController@index');
@@ -175,7 +175,7 @@ class JournalController extends Controller
 
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Approved journal entry: {$id}"
+        'action'      => "Approved journal entry: {$entry->reference}"
         ]);
 
         return redirect()->action('JournalController@index');
@@ -186,7 +186,7 @@ class JournalController extends Controller
         $entry = JournalEntry::findOrFail($request->id);
         EventLog::create([
         'email'       => session('email'),
-        'action'      => "Declined journal entry: {intval($request->id)}"
+        'action'      => "Declined journal entry: {$entry->reference}"
         ]);
         $entry->status_id = Status::where('state', 'Rejected')->first()->id;
         $entry->comments  = $request->comments;

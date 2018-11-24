@@ -25361,3 +25361,7 @@ a.text-dark:focus {
   margin-right: -1rem;
 }
 
+input:invalid {
+  background: #f76e6e;
+}
+

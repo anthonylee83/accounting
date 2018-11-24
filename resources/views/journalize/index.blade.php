@@ -6,7 +6,14 @@
     <journalizer :accounts="{{json_encode($accounts)}}">
         @csrf
     </journalizer>
-
+    <div class="d-flex align-items-end flex-column">
+    <journal-entry-navigation 
+        base_path="/journal" 
+        pending_path="/journal"
+        approved_Path="/journal/2" 
+        path="/{{$path}}" 
+        ></journal-entry-navigation>
+</div>
     <table class="table table-striped table-hover">
         <thead>
             <th>Date</th>

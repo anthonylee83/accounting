@@ -15650,3 +15650,9 @@ a.text-dark:focus {
   background-color:white;
   border:1px solid #ccc;
 }
+#increase {
+	color:green;
+}
+#decrease {
+	color:red;
+}

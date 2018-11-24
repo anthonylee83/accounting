@@ -41,7 +41,7 @@ Route::get('/accounts/{id}', 'Accounts\ChartOfAccounts@showAccount');
 Route::put('/accounts/{id}', 'Accounts\ChartOfAccounts@updateAccount');
 Route::delete('/accounts/{id}', 'Accounts\ChartOfAccounts@deleteAccount');
 Route::patch('/accounts/{id}', 'Accounts\ChartOfAccounts@reactivateAccount');
-Route::get('/journal', 'JournalController@index');
+Route::get('/journal/{status?}', 'JournalController@index');
 Route::post('/journal', 'JournalController@store');
 Route::get('/journal/approve/{id}', 'JournalController@approve');
 Route::get('/journal/reject/{id}', 'JournalController@reject');
@@ -54,3 +54,4 @@ Route::get('/statements/income', 'FinancialStatementsController@incomeStatement'
 Route::get('/statements/balance', 'FinancialStatementsController@balanceSheet');
 Route::get('/statements/retained', 'FinancialStatementsController@retainedEarnings');
 Route::get('/attachment/{id}', 'AttachmentController@download');
+Route::get('/dashboard', 'RatioController@index');

@@ -5,7 +5,7 @@
     @if($errors->any() > 0)
 
     @endif
-    <form role="form" action="{{ action('Admin\UserController@newUser') }}" method="POST">
+    <form role="form" action="{{ action('Admin\UserController@newUser') }}" method="POST" class="needs-validation" novalidate>
         {{csrf_field()}}
         <div class="form-group">
         <label for="name" class="sr-only">Full Name</label>

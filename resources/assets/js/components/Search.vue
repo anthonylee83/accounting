@@ -11,6 +11,9 @@
                 <a :href="_url(result.id)">{{result[display_field]}}</a>
             </div>
         </div>
+        <div class="errors">
+            {{error_msg}}
+        </div>
     </div>
 </template>
 
@@ -33,7 +36,8 @@
         data:function(){
             return {
                 searchString:"",
-                results:[]
+                results:[],
+                error_msg
             }
         },
         methods:{
@@ -53,7 +57,7 @@
                     this.results = response.data;
                 })
                 .catch(error=>{
-                    alert('An error has occurred');
+                    this.error_msg = ('An error has occurred');
                     this.results =[];
                 })
             }

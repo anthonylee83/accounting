@@ -32,7 +32,7 @@ class JournalController extends Controller
                     ->with('transactions', 'transactions.account')
                     ->where('status_id', $status)
                     ->orWhere('status_id', 'IS NULL')
-                    ->paginate(30);
+                    ->paginate(10);
         $path     = $request->path();
         $accounts = Account::all();
         return view('journalize.index', compact('entries', 'accounts', 'path'));

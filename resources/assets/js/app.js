@@ -21,6 +21,7 @@ Vue.component('dropdown', Dropdown);
 Vue.component('journal-row', require('./components/JournalRow.vue'));
 Vue.component('journalizer', require('./components/Journalizer.vue'));
 Vue.component('dropdown-navigation', require('./components/DropDownNavigation.vue'));
+Vue.component('journal-entry-navigation', require('./components/DropDownJournalEntries.vue'));
 Vue.component('search', require('./components/Search.vue'));
 const app = new Vue({
     el: '#app'

@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-xs-12 col-md-8 col-md-offset-2">
     <h1>New Account</h1>
-    <form method="post" action="{{action('Accounts\ChartOfAccounts@storeAccount')}}">
+    <form method="post" action="{{action('Accounts\ChartOfAccounts@storeAccount')}}" class="needs-validation" novalidate>
         {{csrf_field()}}
         <div class="form-group">
         <label for="account_name">Name</label>

@@ -3,10 +3,17 @@
 @section('content')
     <h1>Journal Entries</h1>
 
-    <journalizer :accounts="{{json_encode($accounts)}}">
+    <journalizer :accounts="{{json_encode($accounts)}}" :journal_entry_types="{{json_encode($journalEntryTypes)}}">
         @csrf
     </journalizer>
-
+    <div class="d-flex align-items-end flex-column">
+    <journal-entry-navigation 
+        base_path="/journal" 
+        pending_path="/journal"
+        approved_Path="/journal/2" 
+        path="/{{$path}}" 
+        ></journal-entry-navigation>
+</div>
     <table class="table table-striped table-hover">
         <thead>
             <th>Date</th>

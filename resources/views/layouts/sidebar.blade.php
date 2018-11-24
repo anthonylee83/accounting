@@ -38,7 +38,9 @@
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="{{action('FinancialStatementsController@retainedEarnings')}}">{{'Retained Earnings'}}</a>
                         </div>
                     </div>
+					<li id="dashboard"><a class="sidebar-link {{ starts_with($path, 'dashboard') ? 'active' : ''}}" href="{{action('RatioController@index')}}">{{'Dashboard'}}</a></li>
 				@elseif( Auth::user()->profile->access_level_id == 1)
+						<li id="dashboard"><a class="sidebar-link {{ starts_with($path, 'dashboard') ? 'active' : ''}}" href="{{action('RatioController@index')}}">{{'Dashboard'}}</a></li>
                         <li id="journal"><a class="sidebar-link {{ starts_with($path, 'journal/journalize') ? 'active' : ''}}" href="{{action('JournalController@index')}}">{{'Journalize'}}</a></li>
                         <li id="ledger"><a class="sidebar-link {{ starts_with($path, 'ledger') ? 'active' : ''}}" href="{{action('LedgerController@showAccounts')}}">{{'Ledgers'}}</a></li>
                         <li id="trial"><a class="sidebar-link {{ starts_with($path, 'trial') ? 'active' : ''}}" href="{{action('TrialBalanceController@index')}}">{{'Trial Balance'}}</a></li>
@@ -50,9 +52,7 @@
                             <a class="sidebarDropDown-item {{ starts_with($path, 'statements/retained') ? 'active' : ''}}" href="{{action('FinancialStatementsController@retainedEarnings')}}">{{'Retained Earnings'}}</a>
                         </div>
                     </div>
-					<li id="ratio"><a class="sidebar-link {{ starts_with($path, 'ratio') ? 'active' : ''}}" href="#">{{'Ratio Analysis'}}</a></li>
-					<li id ="event"><a class="sidebar-link {{ starts_with($path, 'logs/eventlog') ? 'active' : ''}}" href="{{ route('event-log') }}">{{'Event Reports'}}</a></li>
-					<li id="dashboard"><a class="sidebar-link {{ starts_with($path, 'dashboard') ? 'active' : ''}}" href="#">{{'Dashboard'}}</a></li>
+					<li id ="event"><a class="sidebar-link {{ starts_with($path, 'logs/eventlog') ? 'active' : ''}}" href="{{ route('event-log') }}">{{'Event Reports'}}</a></li>			
 					<div class="sidebarDrop {{ starts_with($path, 'request') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'request') ? 'visible' : ''}}" href="#">{{'Request'}}</a></li>
                         <div class="sidebarDropDown-menu">

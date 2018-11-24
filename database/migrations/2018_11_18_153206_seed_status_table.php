@@ -14,7 +14,7 @@ class SeedStatusTable extends Migration
      */
     public function up()
     {
-        Status::create(['state' => 'New']);
+        Status::create(['state' => 'Pending']);
         Status::create(['state' => 'Approved']);
         Status::create(['state' => 'Rejected']);
     }

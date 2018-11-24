@@ -26,16 +26,16 @@ class JournalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $status = 1)
     {
         $entries  = JournalEntry::orderBy('created_at', 'DESC')
                     ->with('transactions', 'transactions.account')
-                    ->where('status_id', 1)
+                    ->where('status_id', $status)
                     ->orWhere('status_id', 'IS NULL')
                     ->paginate(30);
-
+        $path     = $request->path();
         $accounts = Account::all();
-        return view('journalize.index', compact('entries', 'accounts'));
+        return view('journalize.index', compact('entries', 'accounts', 'path'));
     }
 
     /**

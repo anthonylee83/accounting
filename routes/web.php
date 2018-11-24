@@ -54,6 +54,4 @@ Route::get('/statements/income', 'FinancialStatementsController@incomeStatement'
 Route::get('/statements/balance', 'FinancialStatementsController@balanceSheet');
 Route::get('/statements/retained', 'FinancialStatementsController@retainedEarnings');
 Route::get('/attachment/{id}', 'AttachmentController@download');
-Route::get('/loaderio-14ceb546714c450b01d7bdec2488ce96', function () {
-    return 'loaderio-14ceb546714c450b01d7bdec2488ce96';
-});
+Route::get('/dashboard', 'RatioController@index');

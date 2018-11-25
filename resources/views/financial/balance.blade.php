@@ -103,6 +103,22 @@
                         </td>
                     </tr>
                 @endforelse
+                @forelse($contraAssets as $account)
+                    @php
+                        $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
+                    @endphp
+                    @if($accountBalance > 0)
+                        <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            {{$account->account_name}}
+                            </span>
+                        </td>
+                        <td></td>
+                        <td ALIGN="RIGHT">(<?php echo number_format($accountBalance,2,'.',','); ?>)</td>
+                        <td></td>
+                    @endif
+                @empty
+                @endforelse
             <tr>
                 <td ALIGN="LEFT" style = "border-top: 1px solid; border-bottom: 1px solid">
                     <span style = "float: left; position: relative; left: 20px">
@@ -163,6 +179,7 @@
                 </tr>
             @endforelse
             <tr>
+            @if($nonCurrentLiabilitiesTotal > 0)
                 <td id="SingLn" ALIGN="LEFT">
                     <span style = "float: left; position: relative; left: 20px">
                         <b>Long Term Liabilities</b>
@@ -207,6 +224,7 @@
                     </td>
                 </tr>
             @endforelse
+            @endif
             <tr>
                 <td id="SingLn" ALIGN="LEFT">
                     <span style = "float: left; position: relative; left: 20px">
@@ -252,6 +270,16 @@
                     </td>
                 </tr>
             @endforelse
+            <tr>
+            <td ALIGN="LEFT">
+                            <span style = "float: left; position: relative; left: 40px">
+                            Retained Earnings
+                            </span>
+            </td>
+            <td></td>
+            <td ALIGN="RIGHT"><?php echo number_format($retainedEarningsValue,2,'.',','); ?></td>
+            <td></td>
+            </tr>
             <tr>
                 <td ALIGN="LEFT" style = "border-top: 1px solid; border-bottom: 1px solid">
                     <span style = "float: left; position: relative; left: 20px ">

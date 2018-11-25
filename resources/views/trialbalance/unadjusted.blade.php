@@ -3,12 +3,17 @@
 
 
 @section('content')
-
+<div class="float-right picker-wrap">
+            As of
+        <input class="date-picker-unadjusted" type="date" name="date" value="{{$date->format('Y-m-d')}}">
+        <a id="date-setter-unadjusted" href="/trial/unadjusted">Update</a>
+    </div>
 
     <div class='col-xs-12 col-md-8 mx-auto'>
+       
         <h1>Trivial Accounting</h1>
         <h1>Unadjusted Trial Balance</h1>
-        <h2>as of <?php echo date("m/d/y")?></h2>
+        <h2>as of {{ $date->format('m/d/y')}}</h2>
         <table class="table table-striped">
             <thread>
                 <th>Account</th>
@@ -62,10 +67,10 @@
                     <td ALIGN="LEFT">{{$account->account_name}}</td>
                     @if($account->account_normal_side_id == 1)
                         @if($debitDollarSign == 0)
-                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance, 2, '.', ','); ?></td>
                             <td> </td>
                         @elseif($debitDollarSign > 0)
-                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance, 2, '.', ','); ?></td>
                             <td> </td>
                         @endif
                         @php
@@ -76,10 +81,10 @@
                     @elseif($account->account_normal_side_id == 2)
                         @if($creditDollarSign == 0)
                             <td> </td>
-                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance, 2, '.', ','); ?></td>
                         @elseif($creditDollarSign > 0)
                             <td> </td>
-                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance, 2, '.', ','); ?></td>
                         @endif
                         @php
                             $creditTotal += $accountBalance;
@@ -98,8 +103,8 @@
             @endforelse
             <tr>
                 <td><b>Total Balances</b></td>
-                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo number_format($debitTotal,2,'.',','); ?></b></td>
-                <td id="totalCr" ALIGN="RIGHT"><b>$<?php echo number_format($creditTotal,2,'.',','); ?></b></td>
+                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo number_format($debitTotal, 2, '.', ','); ?></b></td>
+                <td id="totalCr" ALIGN="RIGHT"><b>$<?php echo number_format($creditTotal, 2, '.', ','); ?></b></td>
             </tr>
             </tbody>
         </table>

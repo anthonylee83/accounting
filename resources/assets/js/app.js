@@ -26,3 +26,12 @@ Vue.component('search', require('./components/Search.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+$(function () {
+    $('.picker-wrap').on('change', '.date-picker-adjusted', function(){
+            $('#date-setter-adjusted').attr('href', '/trial/adjusted/' + $('.date-picker-adjusted').val());
+        });
+        $('.picker-wrap').on('change', '.date-picker-unadjusted', function(){
+            $('#date-setter-unadjusted').attr('href', '/trial/unadjusted/' + $('.date-picker-unadjusted').val());
+        });
+   });

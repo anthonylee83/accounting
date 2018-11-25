@@ -23,9 +23,14 @@
             @forelse($transactions as $transaction)
                 <td>{{$transaction->created_at}}</td>
                 <td>{{$transaction->description}}</td>
+
+                @php
+                    $transactionAmount = $transaction->amount
+                @endphp
+
                 @if($transaction->debit > 0)
-                    <td ALIGN="RIGHT">{{$transaction->amount}}.00</td>
-                    <td> </td>
+                        <td ALIGN="RIGHT">$<?php echo number_format($transactionAmount,2,'.',','); ?></td>
+                        <td> </td>
                     @if($accountNormalSide == 1)
                         @php
                             $balance += $transaction->amount;
@@ -36,8 +41,8 @@
                         @endphp
                     @endif
                 @elseif($transaction->debit == 0)
-                    <td> </td>
-                    <td ALIGN="RIGHT">{{$transaction->amount}}.00</td>
+                        <td> </td>
+                        <td ALIGN="RIGHT">$<?php echo number_format($transactionAmount,2,'.',','); ?></td>
                     @if($accountNormalSide == 1)
                         @php
                             $balance -= $transaction->amount;
@@ -48,7 +53,9 @@
                         @endphp
                     @endif
                 @endif
-                <td ALIGN="RIGHT"> $<?php echo $balance; ?>.00</td>
+                <td ALIGN="RIGHT">$<?php echo number_format($balance,2,'.',','); ?></td>
+
+
                 </tr>
             @empty
                 <tr>

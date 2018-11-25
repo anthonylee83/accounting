@@ -11,6 +11,7 @@ use Auth;
 use App\EventLog;
 use App\Attachment;
 use App\Status;
+use App\JournalEntryType;
 
 class JournalController extends Controller
 {
@@ -33,9 +34,10 @@ class JournalController extends Controller
                     ->where('status_id', $status)
                     ->orWhere('status_id', 'IS NULL')
                     ->paginate(10);
-        $path     = $request->path();
-        $accounts = Account::all();
-        return view('journalize.index', compact('entries', 'accounts', 'path'));
+        $path              = $request->path();
+        $accounts          = Account::all();
+        $journalEntryTypes = JournalEntryType::all();
+        return view('journalize.index', compact('entries', 'accounts', 'path', 'journalEntryTypes'));
     }
 
     /**
@@ -53,6 +55,7 @@ class JournalController extends Controller
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => $request->description ?? '',
+            'journal_entry_type_id' => $request->journal_entry_type_id,
             'comments'              => ' '
         ]);
 

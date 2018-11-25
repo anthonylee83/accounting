@@ -13,6 +13,8 @@ class JournalEntrySeeder extends Seeder
     public function run()
     {
         $approvalStatusID = DB::table('status')->where('state', 'Pending')->value('id');
+        $unadjustedID = DB::table('journal_entry_types')->where('type', 'Regular')->value('id');
+        $adjustedID = DB::table('journal_entry_types')->where('type', 'Adjusting')->value('id');
         //Journal Entry 1
         JournalEntry::create([
             'status_id'             => $approvalStatusID,
@@ -21,6 +23,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 2
@@ -31,6 +34,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 3
@@ -41,6 +45,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 4
@@ -51,6 +56,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 5
@@ -61,6 +67,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 6
@@ -71,6 +78,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 7
@@ -81,6 +89,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 8
@@ -91,6 +100,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 9
@@ -101,6 +111,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 10
@@ -111,6 +122,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 11
@@ -121,6 +133,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 12
@@ -131,6 +144,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 13
@@ -141,6 +155,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 14
@@ -151,6 +166,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 15
@@ -161,6 +177,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 16
@@ -171,6 +188,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 17
@@ -181,6 +199,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 18
@@ -191,6 +210,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 19
@@ -201,6 +221,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 20
@@ -211,6 +232,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 21
@@ -221,6 +243,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $unadjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 22
@@ -231,6 +254,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $adjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 23
@@ -241,6 +265,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $adjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 24
@@ -251,6 +276,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $adjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 25
@@ -261,6 +287,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $adjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 26
@@ -271,6 +298,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $adjustedID,
             'comments'              => ' '
         ]);
         //Journal Entry 27
@@ -281,6 +309,7 @@ class JournalEntrySeeder extends Seeder
             'reference'             => rand(10000, 999999),
             'approval_user_id'      => 0,
             'description'           => ' ',
+            'journal_entry_type_id' => $adjustedID,
             'comments'              => ' '
         ]);
     }

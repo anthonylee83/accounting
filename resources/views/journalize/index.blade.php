@@ -3,7 +3,7 @@
 @section('content')
     <h1>Journal Entries</h1>
 
-    <journalizer :accounts="{{json_encode($accounts)}}">
+    <journalizer :accounts="{{json_encode($accounts)}}" :journal_entry_types="{{json_encode($journalEntryTypes)}}">
         @csrf
     </journalizer>
     <div class="d-flex align-items-end flex-column">

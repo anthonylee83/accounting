@@ -58,6 +58,19 @@
                         <input type="file" multiple name="attachments[]" class="description form-control">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label>Jounral Entry Type</label>
+                    </div>
+                    <div class="col-4">
+                    <select class="form-control" name="journal_entry_type_id">
+                        <option v-for="entry_type in journal_entry_types" 
+                                    v-bind:key="entry_type.id"
+                                    :value="entry_type.id">{{entry_type.type}}</option>
+                            
+                    </select>
+                    </div>
+                </div>
                 <div class="errors">
                     {{error_msg}}
                 </div>
@@ -72,7 +85,7 @@
 <script>
 import Transaction from '../transaction';
     export default {
-        props: ['accounts'],
+        props: ['accounts', 'journal_entry_types'],
         data () {
             return {
                 transactions: [],

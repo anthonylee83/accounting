@@ -21,9 +21,12 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $currentAssetsTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($currentAssetsTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
+                @php
+                    $counter = 0;
+                @endphp
                 @forelse($currentAssets as $account)
                     @php
                     $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
@@ -34,9 +37,18 @@
                             {{$account->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                            @php
+                            $counter += 1;
+                            @endphp
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
                 @empty
@@ -54,9 +66,12 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentAssetsTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($nonCurrentAssetsTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
+                @php
+                $counter = 0;
+                @endphp
                 @forelse($nonCurrentAssets as $account)
                     @php
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
@@ -67,9 +82,18 @@
                             {{$account->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                            @php
+                                $counter += 1;
+                            @endphp
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
                 @empty
@@ -80,14 +104,14 @@
                     </tr>
                 @endforelse
             <tr>
-                <td ALIGN="LEFT">
+                <td ALIGN="LEFT" style = "border-top: 1px solid; border-bottom: 1px solid">
                     <span style = "float: left; position: relative; left: 20px">
                         <b>Total Assets</b>
                     </span>
                 </td>
-                <td></td>
-                <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $assetsTotal; ?>.00</b></td>
+                <td style = "border-top: 1px solid; border-bottom: 1px solid"></td>
+                <td style = "border-top: 1px solid; border-bottom: 1px solid"></td>
+                <td id="totalDr" ALIGN="RIGHT" style = "border-top: 1px solid; border-bottom: 1px solid"><b>$<?php echo number_format($assetsTotal,2,'.',','); ?></b></td>
             </tr>
 
             <tr>
@@ -101,9 +125,12 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $currentLiabilitiesTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($currentLiabilitiesTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
+                @php
+                    $counter = 0;
+                @endphp
                 @forelse($currentLiabilities as $account)
                     @php
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
@@ -114,9 +141,18 @@
                             {{$account->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                            @php
+                                $counter += 1;
+                            @endphp
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
             @empty
@@ -134,9 +170,12 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $nonCurrentLiabilitiesTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($nonCurrentLiabilitiesTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
+                @php
+                    $counter = 0;
+                @endphp
                 @forelse($nonCurrentLiabilities as $account)
                     @php
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
@@ -147,9 +186,18 @@
                             {{$account->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                            @php
+                                $counter += 1;
+                            @endphp
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
             @empty
@@ -167,9 +215,12 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td ALIGN="RIGHT"><b>$<?php echo $equityTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($equityTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
+                @php
+                    $counter = 0;
+                @endphp
                 @forelse($equities as $account)
                     @php
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
@@ -180,9 +231,18 @@
                             {{$account->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$account->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                            @php
+                                $counter += 1;
+                            @endphp
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
             @empty
@@ -193,14 +253,14 @@
                 </tr>
             @endforelse
             <tr>
-                <td ALIGN="LEFT">
-                    <span style = "float: left; position: relative; left: 20px">
+                <td ALIGN="LEFT" style = "border-top: 1px solid; border-bottom: 1px solid">
+                    <span style = "float: left; position: relative; left: 20px ">
                         <b>Total Equity and Liabilities</b>
                     </span>
                 </td>
-                <td></td>
-                <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $equityLiabilitiesTotal; ?>.00</b></td>
+                <td style = "border-top: 1px solid; border-bottom: 1px solid"></td>
+                <td style = "border-top: 1px solid; border-bottom: 1px solid"></td>
+                <td id="totalDr" ALIGN="RIGHT" style = "border-top: 1px solid; border-bottom: 1px solid"><b>$<?php echo number_format($equityLiabilitiesTotal,2,'.',','); ?></b></td>
             </tr>
         </table>
     </div>

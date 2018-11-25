@@ -12,20 +12,20 @@
         <table class="table table-striped">
             <tr>
                 <td ALIGN="LEFT">Beginning Retained Earnings</td>
-                <td ALIGN="RIGHT"><b>$<?php echo $retainedEarningsValue; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo number_format($retainedEarningsValue,2,'.',','); ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT">Net Income (Loss)</td>
-                <td ALIGN="RIGHT"><b>$<?php echo $netIncome; ?>.00</b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo number_format($netIncome,2,'.',','); ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT">Dividends Declared</td>
-                <td ALIGN="RIGHT"><b>$<?php echo $dividendsDeclaredValue; ?></b></td>
+                <td ALIGN="RIGHT"><b>$<?php echo number_format($dividendsDeclaredValue,2,'.',','); ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT" style = "border-top: 1px solid">Ending Retained Earnings</td>
                 <td id="totalDr" ALIGN="RIGHT" style = "border-top: 1px solid">
-                    <b>$<?php echo $newRetainedEarningsValue; ?>.00</b></td>
+                    <b>$<?php echo number_format($newRetainedEarningsValue,2,'.',','); ?></b></td>
             </tr>
         </table>
     </div>

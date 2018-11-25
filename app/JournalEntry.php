@@ -8,7 +8,14 @@ use App\Status;
 
 class JournalEntry extends Model
 {
-    protected $fillable = ['status_id', 'created_user_id', 'document_reference_id', 'reference', 'approval_user_id', 'description', 'comments'];
+    protected $fillable = ['status_id',
+                            'created_user_id',
+                            'document_reference_id',
+                            'reference',
+                            'approval_user_id',
+                            'description',
+                            'journal_entry_type_id',
+                            'comments'];
 
     public function transactions()
     {

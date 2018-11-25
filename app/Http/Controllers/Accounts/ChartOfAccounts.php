@@ -50,6 +50,11 @@ class ChartOfAccounts extends Controller
 
     public function storeAccount(NewAccountRequest $request)
     {
+        $this->validate(request(), [
+            'account_name' => 'required|string|unique:chart_of_accounts|max:255',
+            'account_balance' => 'required|numeric|gte:0|max:9999999999999999',
+        ]);
+
         $account = Account::create(array_merge($request->all()));
 		EventLog::create([
 		'email'       =>  session('email'),

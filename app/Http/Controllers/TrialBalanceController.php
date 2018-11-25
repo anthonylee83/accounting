@@ -8,6 +8,7 @@ use App\Account;
 use App\journalEntry;
 use App\JournalEntryType;
 use App\Transaction;
+use App\Status;
 
 class TrialBalanceController extends Controller
 {
@@ -19,9 +20,11 @@ class TrialBalanceController extends Controller
     public function unadjusted(Request $request)
     {
         $unadjustedID = JournalEntryType::where('type', 'Regular')->value('id');
+        $approvedID = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
-            ->where('journal_entries.journal_entry_type_id', $unadjustedID)->get();
+            ->where('journal_entries.journal_entry_type_id', $unadjustedID)
+            ->where('journal_entries.status_id', $approvedID)->get();
         $accounts = Account::orderBy('account_type_id', 'asc')->get();
 
         $path = $request->path();
@@ -30,9 +33,11 @@ class TrialBalanceController extends Controller
     public function adjusted(Request $request)
     {
         $unadjustedID = JournalEntryType::where('type', 'Closing')->value('id');
+        $approvedID = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
-            ->where('journal_entries.journal_entry_type_id','!=', $unadjustedID)->get();
+            ->where('journal_entries.journal_entry_type_id','!=', $unadjustedID)
+            ->where('journal_entries.status_id', $approvedID)->get();
         $accounts = Account::orderBy('account_type_id', 'asc')->get();
 
         $path = $request->path();

@@ -14,6 +14,9 @@
                 <td ALIGN="LEFT"><b>Revenue</b></td><td></td><td></td><td></td>
             </tr>
             <tr>
+                @php
+                    $counter = 0;
+                @endphp
                 @forelse($revenues as $revenue)
                     @php
                     $accountBalance = preg_replace("/[^0-9.]/", "", "$revenue->account_balance");
@@ -24,9 +27,15 @@
                             {{$revenue->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$revenue->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
                 @empty
@@ -40,12 +49,15 @@
                 <td ALIGN="LEFT"><b>Total Revenue</b></td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $revenueTotal; ?>.00</b></td>
+                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($revenueTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT"><b>Expenses</b></td><td></td><td></td><td></td>
             </tr>
             <tr>
+                @php
+                    $counter = 0;
+                @endphp
                 @forelse($expenses as $expense)
                     @php
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$expense->account_balance");
@@ -56,9 +68,15 @@
                             {{$expense->account_name}}
                             </span>
                         </td>
-                        <td></td>
-                        <td ALIGN="RIGHT">{{$expense->account_balance}}</td>
-                        <td></td>
+                        @if($counter == 0)
+                            <td></td>
+                            <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @elseif($counter > 0)
+                            <td></td>
+                            <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
+                            <td></td>
+                        @endif
                     @endif
             </tr>
                 @empty
@@ -72,13 +90,13 @@
                     <td ALIGN="LEFT"><b>Total Expenses</b></td>
                     <td></td>
                     <td></td>
-                    <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo $expenseTotal; ?>.00</b></td>
+                    <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($expenseTotal,2,'.',','); ?></b></td>
                 </tr>
             <tr>
-                <td ALIGN="LEFT"><b>Net Income (Loss)</b></td>
-                <td></td>
-                <td></td>
-                <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo $netIncome; ?>.00</b></td>
+                <td ALIGN="LEFT" style="border-top: 1px solid"><b>Net Income (Loss)</b></td>
+                <td style="border-top: 1px solid"></td>
+                <td style="border-top: 1px solid"></td>
+                <td id="totalDr" ALIGN="RIGHT" style="border-top: 1px solid"><b>$<?php echo number_format($netIncome,2,'.',','); ?></b></td>
             </tr>
 
 

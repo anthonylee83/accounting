@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Account;
+use App\journalEntry;
+use App\JournalEntryType;
+use App\Transaction;
 
 class TrialBalanceController extends Controller
 {
@@ -12,16 +16,36 @@ class TrialBalanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $deleted = false)
+    public function unadjusted(Request $request)
     {
-        if ($deleted == false) {
-            $accounts = Account::orderBy('account_type_id', 'asc')->get();
-        } else {
-            $accounts = Account::withTrashed()->paginate(15);
-        }
+        $unadjustedID = JournalEntryType::where('type', 'Regular')->value('id');
+        $transactions = DB::table('transactions')
+            ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
+            ->where('journal_entries.journal_entry_type_id', $unadjustedID)->get();
+        $accounts = Account::orderBy('account_type_id', 'asc')->get();
+
         $path = $request->path();
-        return view('trialbalance.index', compact('accounts', 'path'));
+        return view('trialbalance.unadjusted', compact('accounts','transactions', 'path'));
     }
+    public function adjusted(Request $request)
+    {
+        $unadjustedID = JournalEntryType::where('type', 'Closing')->value('id');
+        $transactions = DB::table('transactions')
+            ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
+            ->where('journal_entries.journal_entry_type_id','!=', $unadjustedID)->get();
+        $accounts = Account::orderBy('account_type_id', 'asc')->get();
+
+        $path = $request->path();
+        return view('trialbalance.adjusted', compact('accounts','transactions', 'path'));
+    }
+    public function closing(Request $request)
+    {
+        $accounts = Account::orderBy('account_type_id', 'asc')->get();
+
+        $path = $request->path();
+        return view('trialbalance.closing', compact('accounts', 'path'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

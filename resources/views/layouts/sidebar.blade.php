@@ -33,9 +33,9 @@
                     <div class="sidebarDrop {{ starts_with($path, 'trial') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'trial') ? 'visible' : ''}}" href="#">{{'Trial Balance'}}</a></li>
                         <div class="sidebarDropDown-menu">
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/unadjusted') ? 'active' : ''}}" href="{{action('TrialBalanceController@index')}}">{{'Unadjusted'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/adjusted') ? 'active' : ''}}" href="#">{{'Adjusted'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/closing') ? 'active' : ''}}" href="#">{{'Post-Closing'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/unadjusted') ? 'active' : ''}}" href="{{action('TrialBalanceController@unadjusted')}}">{{'Unadjusted'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/adjusted') ? 'active' : ''}}" href="{{action('TrialBalanceController@adjusted')}}">{{'Adjusted'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/closing') ? 'active' : ''}}" href="{{action('TrialBalanceController@closing')}}">{{'Post-Closing'}}</a>
                         </div>
                     </div>
                     <div class="sidebarDrop {{ starts_with($path, 'statements') ? 'bypass' : ''}}">
@@ -54,9 +54,9 @@
                     <div class="sidebarDrop {{ starts_with($path, 'trial') ? 'bypass' : ''}}">
                         <li><a class="sidebarDropDown sidebar-link {{ starts_with($path, 'trial') ? 'visible' : ''}}" href="#">{{'Trial Balance'}}</a></li>
                         <div class="sidebarDropDown-menu">
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/unadjusted') ? 'active' : ''}}" href="{{action('TrialBalanceController@index')}}">{{'Unadjusted'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/adjusted') ? 'active' : ''}}" href="#">{{'Adjusted'}}</a>
-                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/closing') ? 'active' : ''}}" href="#">{{'Post-Closing'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/unadjusted') ? 'active' : ''}}" href="{{action('TrialBalanceController@unadjusted')}}">{{'Unadjusted'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/adjusted') ? 'active' : ''}}" href="{{action('TrialBalanceController@adjusted')}}">{{'Adjusted'}}</a>
+                            <a class="sidebarDropDown-item {{ starts_with($path, 'trial/closing') ? 'active' : ''}}" href="{{action('TrialBalanceController@closing')}}">{{'Post-Closing'}}</a>
                         </div>
                     </div>
                     <div class="sidebarDrop {{ starts_with($path, 'statements') ? 'bypass' : ''}}">

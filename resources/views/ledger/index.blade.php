@@ -37,7 +37,8 @@
                 <td>{{$account->accountType->account_type}}</td>
                 <td>{{$account->accountSubtype->sub_type}}</td>
                 <td>{{$account->accountNormalSide->normal_side}}</td>
-                <td align="right">{{$account->account_balance}}</td>
+                @php($accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance"))
+                <td align="right">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
                 </tr>
             @empty
                 <tr>

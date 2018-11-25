@@ -20,8 +20,8 @@ class CreateJournalEntryTypesTable extends Migration
             $table->timestamps();
         });
 
-        JournalEntryType::create(['type' => 'Unadjusted']);
-        JournalEntryType::create(['type' => 'Adjusted']);
+        JournalEntryType::create(['type' => 'Regular']);
+        JournalEntryType::create(['type' => 'Adjusting']);
         JournalEntryType::create(['type' => 'Closing']);
 
         Schema::table('journal_entries', function ($table) {

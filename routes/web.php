@@ -55,3 +55,4 @@ Route::get('/statements/balance', 'FinancialStatementsController@balanceSheet');
 Route::get('/statements/retained', 'FinancialStatementsController@retainedEarnings');
 Route::get('/attachment/{id}', 'AttachmentController@download');
 Route::get('/dashboard', 'RatioController@index');
+Route::post('/admin/user/suspend', 'Admin\UserController@suspendUser');

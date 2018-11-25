@@ -62,6 +62,30 @@
                 <a class="btn btn-primary" href="{{ action('Admin\UserController@showUsers') }}">Cancel</a>
             </div>
         </div>
+        <br />
+        <h3>Suspend User</h3>
+        <form class="" action="{{ action('Admin\UserController@suspendUser') }}" method="post">
+            {{csrf_field()}}
+            <input type="hidden" name="id" value="{{$user->id}}" />
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="start_date">From Date </label>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="date" name="start_date" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="end_date">To Date </label>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="date" name="end_date" />
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Suspend</button>
+        </form>
+            
     
 
 @endsection

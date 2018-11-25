@@ -22,7 +22,7 @@ class CreateChartOfAccountsTable extends Migration
             $table->string('account_subtype');
             $table->string('account_name');
             $table->string('account_normal_side');
-            $table->decimal('account_balance', 10, 2);
+            $table->decimal('account_balance', 18, 2);
 
             $table->timestamps();
         });

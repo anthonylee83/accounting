@@ -58,6 +58,22 @@
                         <input type="file" multiple name="attachments[]" class="description form-control">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label>Jounral Entry Type</label>
+                    </div>
+                    <div class="col-4">
+                    <select class="form-control" name="journal_entry_type_id">
+                        <option v-for="entry_type in journal_entry_types" 
+                                    v-bind:key="entry_type.id"
+                                    :value="entry_type.id">{{entry_type.type}}</option>
+                            
+                    </select>
+                    </div>
+                </div>
+                <div class="errors">
+                    {{error_msg}}
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="" class="btn btn-danger">Reset</a>
             </form>
@@ -69,10 +85,11 @@
 <script>
 import Transaction from '../transaction';
     export default {
-        props: ['accounts'],
+        props: ['accounts', 'journal_entry_types'],
         data () {
             return {
-                transactions: []
+                transactions: [],
+                error_msg: ''
             }
         },
         mounted (){
@@ -95,12 +112,12 @@ import Transaction from '../transaction';
         methods: {
             _validate(evt){
                 if(this.debit_total !== this.credit_total){
-                    alert("Your balance does not match. Plese check your entries");
+                    this.error_msg= "Your balance does not match. Plese check your entries";
                     evt.preventDefault(); return false;
                 }
 
                 if(this.debit_total == 0 || this.credit_total == 0){
-                    alert("You cannot have a 0 balance amount!");
+                      this.error_msg= ("You cannot have a 0 balance amount!");
                     evt.preventDefault(); return false;
                 }
 
@@ -113,14 +130,14 @@ import Transaction from '../transaction';
                     }
                 });
                 if(count.length > 0){
-                    alert('Please select an account!');
+                      this.error_msg= ('Please select an account!');
                     evt.preventDefault(); return false;
                 }
                 if(_.filter(accounts, account => {
                     return account > 1;
                 }).length > 0){
                     
-                  alert("You cannot use the same account twice!");  
+                    this.error_msg= ("You cannot use the same account twice!");  
                   evt.preventDefault(); return false;
                 }
                 
@@ -154,5 +171,9 @@ import Transaction from '../transaction';
 </script>
 
 <style>
+.errors{
+    color: red;
+    padding:10px;
 
+}
 </style>

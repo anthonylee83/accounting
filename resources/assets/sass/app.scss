@@ -28,3 +28,7 @@
   margin-bottom: -1rem;
   margin-right: -1rem;
 }
+
+input:invalid {
+  background: hsla(0, 90%, 70%, 1);
+}

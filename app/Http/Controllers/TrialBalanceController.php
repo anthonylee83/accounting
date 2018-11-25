@@ -9,6 +9,7 @@ use App\journalEntry;
 use App\JournalEntryType;
 use App\Transaction;
 use App\Status;
+use Carbon\Carbon;
 
 class TrialBalanceController extends Controller
 {
@@ -17,32 +18,46 @@ class TrialBalanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function unadjusted(Request $request)
+    public function unadjusted(Request $request, $date = null)
     {
+        if ($date == null) {
+            $date = Carbon::now();
+        } else {
+            $date = Carbon::parse($date);
+        }
         $unadjustedID = JournalEntryType::where('type', 'Regular')->value('id');
-        $approvedID = Status::where('state', 'Approved')->value('id');
+        $approvedID   = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
             ->where('journal_entries.journal_entry_type_id', $unadjustedID)
-            ->where('journal_entries.status_id', $approvedID)->get();
+            ->where('journal_entries.status_id', $approvedID)
+            ->where('journal_entries.created_at', '<', $date)->get();
         $accounts = Account::orderBy('account_type_id', 'asc')->get();
 
         $path = $request->path();
-        return view('trialbalance.unadjusted', compact('accounts','transactions', 'path'));
+        return view('trialbalance.unadjusted', compact('accounts', 'transactions', 'path', 'date'));
     }
-    public function adjusted(Request $request)
+
+    public function adjusted(Request $request, $date = null)
     {
+        if ($date == null) {
+            $date = Carbon::now();
+        } else {
+            $date = Carbon::parse($date);
+        }
         $unadjustedID = JournalEntryType::where('type', 'Closing')->value('id');
-        $approvedID = Status::where('state', 'Approved')->value('id');
+        $approvedID   = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
-            ->where('journal_entries.journal_entry_type_id','!=', $unadjustedID)
-            ->where('journal_entries.status_id', $approvedID)->get();
+            ->where('journal_entries.journal_entry_type_id', '!=', $unadjustedID)
+            ->where('journal_entries.status_id', $approvedID)
+            ->where('journal_entries.created_at', '<', $date)->get();
         $accounts = Account::orderBy('account_type_id', 'asc')->get();
 
         $path = $request->path();
-        return view('trialbalance.adjusted', compact('accounts','transactions', 'path'));
+        return view('trialbalance.adjusted', compact('accounts', 'transactions', 'path', 'date'));
     }
+
     public function closing(Request $request)
     {
         $accounts = Account::orderBy('account_type_id', 'asc')->get();
@@ -50,7 +65,6 @@ class TrialBalanceController extends Controller
         $path = $request->path();
         return view('trialbalance.closing', compact('accounts', 'path'));
     }
-
 
     /**
      * Show the form for creating a new resource.

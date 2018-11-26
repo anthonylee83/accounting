@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div class="float-right picker-wrap" style=" position: fixed; right: 50px">
+<div class="float-right picker-wrap" style=" position: absolute; right: 40px">
             As of
         <input class="date-picker-unadjusted" type="date" name="date" value="{{$date->format('Y-m-d')}}">
         <a id="date-setter-unadjusted" href="/trial/unadjusted">Update</a>

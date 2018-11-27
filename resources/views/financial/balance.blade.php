@@ -6,9 +6,9 @@
 
 
     <div class='col-xs-12 col-md-8 mx-auto'>
-        <h1>Trivial Accounting</h1>
-        <h1>Balance Sheet</h1>
-        <h2>as of <?php echo date("m/d/y")?></h2>
+        <h2 style = "line-height: 80%">Trivial Accounting</h2>
+        <h2 style = "line-height: 80%">Balance Sheet</h2>
+        <h3 style = "line-height: 80%">as of <?php echo date("m/d/y")?></h3>
         <table class="table table-striped">
             <tr>
                 <td ALIGN="LEFT"><b><u>Assets</u></b></td><td></td><td></td><td></td>
@@ -21,7 +21,7 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($currentAssetsTotal,2,'.',','); ?></b></td>
+                <td></td>
             </tr>
             <tr>
                 @php
@@ -61,12 +61,22 @@
             <tr>
                 <td id="SingLn" ALIGN="LEFT">
                     <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Current Assets</b>
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($currentAssetsTotal,2,'.',','); ?></b></td>
+            </tr>
+            <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
                         <b>Long Term Assets</b>
                     </span>
                 </td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($nonCurrentAssetsTotal,2,'.',','); ?></b></td>
+                <td></td>
             </tr>
             <tr>
                 @php
@@ -119,6 +129,16 @@
                     @endif
                 @empty
                 @endforelse
+                <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Long Term Assets</b>
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($nonCurrentAssetsTotal,2,'.',','); ?></b></td>
+            </tr>
             <tr>
                 <td ALIGN="LEFT" style = "border-top: 1px solid; border-bottom: 1px solid">
                     <span style = "float: left; position: relative; left: 20px">
@@ -141,7 +161,7 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($currentLiabilitiesTotal,2,'.',','); ?></b></td>
+                <td></td>
             </tr>
             <tr>
                 @php
@@ -179,6 +199,16 @@
                 </tr>
             @endforelse
             <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Current Liabilities</b>
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($currentLiabilitiesTotal,2,'.',','); ?></b></td>
+            </tr>
+            <tr>
             @if($nonCurrentLiabilitiesTotal > 0)
                 <td id="SingLn" ALIGN="LEFT">
                     <span style = "float: left; position: relative; left: 20px">
@@ -187,7 +217,7 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($nonCurrentLiabilitiesTotal,2,'.',','); ?></b></td>
+                <td></td>
             </tr>
             <tr>
                 @php
@@ -224,6 +254,16 @@
                     </td>
                 </tr>
             @endforelse
+            <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Long Term Liabilities</b>
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($nonCurrentLiabilitiesTotal,2,'.',','); ?></b></td>
+            </tr>
             @endif
             <tr>
                 <td id="SingLn" ALIGN="LEFT">
@@ -233,7 +273,7 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($equityTotal,2,'.',','); ?></b></td>
+                <td></td>
             </tr>
             <tr>
                 @php
@@ -279,6 +319,16 @@
             <td></td>
             <td ALIGN="RIGHT"><?php echo number_format($retainedEarningsValue,2,'.',','); ?></td>
             <td></td>
+            </tr>
+            <tr>
+                <td id="SingLn" ALIGN="LEFT">
+                    <span style = "float: left; position: relative; left: 20px">
+                        <b>Total Equity</b>
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($equityTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT" style = "border-top: 1px solid; border-bottom: 1px solid">

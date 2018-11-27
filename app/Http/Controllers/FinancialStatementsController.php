@@ -56,14 +56,14 @@ class FinancialStatementsController extends Controller
         $currentLiabilities = Account::where('account_type_id', $liabilityID)->where('account_subtype_id', $shortID)->get();
         $nonCurrentLiabilities = Account::where('account_type_id', $liabilityID)->where('account_subtype_id', $longID)->get();
         $currentAssetsTotal = $this->balanceTotal($currentAssets);
-        $nonCurrentAssetsTotal = $this->balanceTotal($nonCurrentAssets);
         $contraAssetsTotal = $this->balanceTotal($contraAssets);
-        $assetsTotal = $currentAssetsTotal + $nonCurrentAssetsTotal - $contraAssetsTotal;
-        $equityTotal = $this->balanceTotal($equities);
+        $nonCurrentAssetsTotal = ($this->balanceTotal($nonCurrentAssets)) - $contraAssetsTotal;
+        $assetsTotal = $currentAssetsTotal + $nonCurrentAssetsTotal;
+        $retainedEarningsValue = $this->retainedEarningsCalculation();
+        $equityTotal = ($this->balanceTotal($equities)) + $retainedEarningsValue;
         $currentLiabilitiesTotal = $this->balanceTotal($currentLiabilities);
         $nonCurrentLiabilitiesTotal = $this->balanceTotal($nonCurrentLiabilities);
-        $retainedEarningsValue = $this->retainedEarningsCalculation();
-        $equityLiabilitiesTotal = $currentLiabilitiesTotal + $nonCurrentLiabilitiesTotal + $equityTotal + $retainedEarningsValue;
+        $equityLiabilitiesTotal = $currentLiabilitiesTotal + $nonCurrentLiabilitiesTotal + $equityTotal;
         $path = $request->path();
         return view('financial.balance', compact('currentAssets', 'nonCurrentAssets', 'equities',
             'currentLiabilities', 'nonCurrentLiabilities', 'currentAssetsTotal', 'nonCurrentAssetsTotal', 'equityTotal',

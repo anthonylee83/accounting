@@ -47,11 +47,11 @@ class TrialBalanceController extends Controller
         } else {
             $date = Carbon::parse($date);
         }
-        $unadjustedID = JournalEntryType::where('type', 'Closing')->value('id');
+        $closingID = JournalEntryType::where('type', 'Closing')->value('id');
         $approvedID   = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')
-            ->where('journal_entries.journal_entry_type_id', '!=', $unadjustedID)
+            ->where('journal_entries.journal_entry_type_id', '!=', $closingID)
             ->where('journal_entries.status_id', $approvedID)
             ->where('journal_entries.created_at', '<', $date)->get();
         $accounts = Account::orderByRaw("FIELD(account_type_id, '1', '6', '4', '2', '5', '3') ASC")->get();

@@ -26,7 +26,7 @@ export default {
         }
     },
     created(){
-        if(this.path==this.all_path)
+        if('/' + this.path==this.all_path)
             this.deleted=true;
     },
     mounted(){

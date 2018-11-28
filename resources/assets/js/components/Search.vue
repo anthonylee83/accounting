@@ -37,7 +37,7 @@
             return {
                 searchString:"",
                 results:[],
-                error_msg
+                error_msg: null
             }
         },
         methods:{
@@ -54,7 +54,8 @@
                     
                  axios.get(this.search_url + val)
                 .then(response =>{
-                    this.results = response.data;
+                    if(this.searchString !== "")
+                        this.results = response.data;
                 })
                 .catch(error=>{
                     this.error_msg = ('An error has occurred');
@@ -74,12 +75,12 @@
     .results{
         background-color:#fff;
         width:60%;  
-        position:relative;
+        position:absolute;
         margin:0px auto;
     }
     .result{
         float:left;
-        position:absolute;
+        position:relative;
         padding:10px;
         background:#fff;
         border:1px solid #777;

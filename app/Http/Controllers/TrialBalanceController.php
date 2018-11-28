@@ -25,7 +25,7 @@ class TrialBalanceController extends Controller
         if ($date == null) {
             $date = Carbon::now();
         } else {
-            $date = Carbon::parse($date);
+            $date = Carbon::parse($date)->endOfDay();
         }
         $unadjustedID = JournalEntryType::where('type', 'Regular')->value('id');
         $approvedID   = Status::where('state', 'Approved')->value('id');
@@ -45,9 +45,9 @@ class TrialBalanceController extends Controller
         if ($date == null) {
             $date = Carbon::now();
         } else {
-            $date = Carbon::parse($date);
+            $date = Carbon::parse($date)->endOfDay();
         }
-        $closingID = JournalEntryType::where('type', 'Closing')->value('id');
+        $closingID    = JournalEntryType::where('type', 'Closing')->value('id');
         $approvedID   = Status::where('state', 'Approved')->value('id');
         $transactions = DB::table('transactions')
             ->join('journal_entries', 'transactions.journal_entry_id', '=', 'journal_entries.id')

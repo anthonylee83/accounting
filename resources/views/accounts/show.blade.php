@@ -37,6 +37,9 @@
             </select>
         </div>
         @include('errors')
+        @if(Session::has('error'))
+            <p class="alert alert-danger">{{ Session::get('error') }}</p>
+        @endif
         <div class="d-flex justify-content-around">
             <button type="submit" class="btn btn-default">Update</button>
             @if($account->deleted_at == null)

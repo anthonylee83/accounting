@@ -37,7 +37,7 @@
              <table class="table">
                 @foreach($je->transactions()->get() as $transaction)
                     <tr>
-                        <td class="{{ $transaction->debit ? 'debit-account' : 'credit-account'}}">{{ $transaction->account->name }}</td>
+                        <td class="{{ $transaction->debit ? 'debit-account' : 'credit-account'}}">{{ $transaction->account == null ? 'Account Deleted' : $transaction->account->name }}</td>
                         <td class="debit text-right">{{ $transaction->debit ? $transaction->formattedAmount : '' }}</td>
                         <td class="credit text-right">{{ !$transaction->debit ? $transaction->formattedAmount : '' }}</td>
                     </tr>

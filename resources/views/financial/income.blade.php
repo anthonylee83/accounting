@@ -6,9 +6,9 @@
 
 
     <div class='col-xs-12 col-md-8 mx-auto'>
-        <h1>Trivial Accounting</h1>
-        <h1>Income Statement</h1>
-        <h2>For the period ending <?php echo date("m/d/y")?></h2>
+        <h2 style = "line-height: 80%">Trivial Accounting</h2>
+        <h2 style = "line-height: 80%">Income Statement</h2>
+        <h3 style = "line-height: 80%">For the period ending <?php echo date("m/d/y")?></h3>
         <table class="table table-striped">
             <tr>
                 <td ALIGN="LEFT"><b>Revenue</b></td><td></td><td></td><td></td>
@@ -31,6 +31,9 @@
                             <td></td>
                             <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
                             <td></td>
+                            @php
+                            $counter += 1;
+                            @endphp
                         @elseif($counter > 0)
                             <td></td>
                             <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
@@ -49,7 +52,7 @@
                 <td ALIGN="LEFT"><b>Total Revenue</b></td>
                 <td></td>
                 <td></td>
-                <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($revenueTotal,2,'.',','); ?></b></td>
+                <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($revenueTotal,2,'.',','); ?></b></td>
             </tr>
             <tr>
                 <td ALIGN="LEFT"><b>Expenses</b></td><td></td><td></td><td></td>
@@ -72,6 +75,9 @@
                             <td></td>
                             <td ALIGN="RIGHT">$<?php echo number_format($accountBalance,2,'.',','); ?></td>
                             <td></td>
+                            @php
+                            $counter += 1;
+                            @endphp
                         @elseif($counter > 0)
                             <td></td>
                             <td ALIGN="RIGHT"><?php echo number_format($accountBalance,2,'.',','); ?></td>
@@ -90,7 +96,7 @@
                     <td ALIGN="LEFT"><b>Total Expenses</b></td>
                     <td></td>
                     <td></td>
-                    <td id="SingLn" ALIGN="RIGHT"><b>$<?php echo number_format($expenseTotal,2,'.',','); ?></b></td>
+                    <td id="SingLn" ALIGN="RIGHT" style="text-decoration: underline overline;"><b>$<?php echo number_format($expenseTotal,2,'.',','); ?></b></td>
                 </tr>
             <tr>
                 <td ALIGN="LEFT" style="border-top: 1px solid"><b>Net Income (Loss)</b></td>

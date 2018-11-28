@@ -86,7 +86,7 @@ class JournalController extends Controller
         }
         EventLog::create([
         'email'       => session('email'),
-        'action'      => 'Journalized a new transaction {$journal->reference}'
+        'action'      => "Journalized a new transaction {$journal->reference}"
         ]);
 
         return redirect()->action('JournalController@index');

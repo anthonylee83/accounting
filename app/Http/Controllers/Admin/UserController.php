@@ -132,12 +132,20 @@ class UserController extends Controller
     {
         $user = User::find($request->id);
         if ($request->start_date <= \Carbon\Carbon::now()) {
+			EventLog::create([
+			'email'       => session('email'),
+			'action'      => "Suspended User: {$user->email} until: {$request->end_date}"
+			]);
             $user->delete();
             ActivateUser::dispatch($user)->delay($request->end_date);
             return redirect()->action('Admin\UserController@showUsers');
         } else {
             SuspendUser::dispatch($user)->delay($request->start_date);
             ActivateUser::dispatch($user)->delay($request->end_date);
+			EventLog::create([
+			'email'       => session('email'),
+			'action'      => "Suspending User: {$user->email} starting: {$request->start_date} until: {$request->end_date}"
+			]);
             return redirect()->action('Admin\UserController@showUsers');
         }
     }

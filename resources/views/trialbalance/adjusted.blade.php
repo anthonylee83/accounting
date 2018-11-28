@@ -3,15 +3,15 @@
 
 
 @section('content')
-    <div class="float-right picker-wrap">
+    <div class="float-right picker-wrap" style=" position: absolute; right: 50px">
             As of
         <input class="date-picker-adjusted" type="date" name="date" value="{{$date->format('Y-m-d')}}">
         <a id="date-setter-adjusted" href="/trial/adjusted">Update</a>
     </div>
     <div class='col-xs-12 col-md-8 mx-auto'>
-        <h1>Trivial Accounting</h1>
-        <h1> Adjusted Trial Balance</h1>
-        <h2>as of {{ $date->format('m/d/y')}}</h2>
+        <h2 style = "line-height: 80%">Trivial Accounting</h2>
+        <h2 style = "line-height: 80%"> Adjusted Trial Balance</h2>
+        <h3 style = "line-height: 80%">as of {{ $date->format('m/d/y')}}</h3>
         <table class="table table-striped">
             <thread>
                 <th>Account</th>

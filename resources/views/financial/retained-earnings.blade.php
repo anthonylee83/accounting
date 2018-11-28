@@ -6,9 +6,9 @@
 
 
     <div class='col-xs-12 col-md-8 mx-auto'>
-        <h1>Trivial Accounting</h1>
-        <h1>Statement of Retained Earnings</h1>
-        <h2>For the period ending <?php echo date("m/d/y")?></h2>
+        <h2 style = "line-height: 80%">Trivial Accounting</h2>
+        <h2 style = "line-height: 80%">Statement of Retained Earnings</h2>
+        <h3 style = "line-height: 80%">For the period ending <?php echo date("m/d/y")?></h3>
         <table class="table table-striped">
             <tr>
                 <td ALIGN="LEFT">Beginning Retained Earnings</td>

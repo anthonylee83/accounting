@@ -278,12 +278,18 @@
             <tr>
                 @php
                     $counter = 0;
+                    $RE = false;
                 @endphp
                 @forelse($equities as $account)
                     @php
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
                     @endphp
                     @if($accountBalance > 0)
+                        @if($account->account_name == 'Retained Earnings')
+                            @php
+                            $RE = true;
+                            @endphp
+                        @endif
                         <td ALIGN="LEFT">
                             <span style = "float: left; position: relative; left: 40px">
                             {{$account->account_name}}
@@ -310,6 +316,7 @@
                     </td>
                 </tr>
             @endforelse
+            @if($RE == false)
             <tr>
             <td ALIGN="LEFT">
                             <span style = "float: left; position: relative; left: 40px">
@@ -320,6 +327,7 @@
             <td ALIGN="RIGHT"><?php echo number_format($retainedEarningsValue,2,'.',','); ?></td>
             <td></td>
             </tr>
+            @endif
             <tr>
                 <td id="SingLn" ALIGN="LEFT">
                     <span style = "float: left; position: relative; left: 20px">

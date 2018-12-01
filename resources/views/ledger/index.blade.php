@@ -11,11 +11,6 @@
             search_url="/accounts/search/"
             link_url="/accounts/"></search>
         <h1>Chart of Accounts</h1>
-        <dropdown-navigation
-            path="{{$path}}"
-            all_path="/accounts/all"
-            base_path="/accounts"
-            model="Accounts"></dropdown-navigation>
         <table class="table table-striped">
             <thead>
             <th>Acct #</th>

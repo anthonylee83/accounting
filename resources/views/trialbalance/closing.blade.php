@@ -22,6 +22,7 @@
                     $creditTotal = 0.00;
                     $debitDollarSign = 0;
                     $creditDollarSign = 0;
+                    $RE = false;
                 @endphp
                 @forelse($accounts as $account)
                     @if($account->account_type_id == 1 ||$account->account_type_id == 6 || $account->account_type_id == 4
@@ -30,6 +31,11 @@
                         $accountBalance = preg_replace("/[^0-9.]/", "", "$account->account_balance");
                     @endphp
                     @if($accountBalance > 0)
+                        @if($account->account_name == 'Retained Earnings')
+                            @php
+                            $RE = true;
+                            @endphp
+                        @endif
                         <td ALIGN="LEFT">{{$account->account_name}}</td>
                         @if($account->account_normal_side_id == 1)
                             @if($debitDollarSign == 0)
@@ -68,14 +74,16 @@
                     </td>
                 </tr>
             @endforelse
-            <tr>
-                <td ALIGN="LEFT">Retained Earnings</td>
-                <td> </td>
-                <td ALIGN="RIGHT"><?php echo number_format($retainedEarningsValue,2,'.',','); ?></td>
-            </tr>
-            @php
-            $creditTotal += $retainedEarningsValue;
-            @endphp
+            @if($RE == false)
+                <tr>
+                    <td ALIGN="LEFT">Retained Earnings</td>
+                    <td> </td>
+                    <td ALIGN="RIGHT"><?php echo number_format($retainedEarningsValue,2,'.',','); ?></td>
+                </tr>
+                @php
+                $creditTotal += $retainedEarningsValue;
+                @endphp
+            @endif
             <tr>
                 <td><b>Total Balances</b></td>
                 <td id="totalDr" ALIGN="RIGHT"><b>$<?php echo number_format($debitTotal,2,'.',','); ?></b></td>

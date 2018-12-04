@@ -59,8 +59,15 @@ class FinancialStatementsController extends Controller
         $contraAssetsTotal = $this->balanceTotal($contraAssets);
         $nonCurrentAssetsTotal = ($this->balanceTotal($nonCurrentAssets)) - $contraAssetsTotal;
         $assetsTotal = $currentAssetsTotal + $nonCurrentAssetsTotal;
-        $retainedEarningsValue = $this->retainedEarningsCalculation();
-        $equityTotal = ($this->balanceTotal($equities)) + $retainedEarningsValue;
+        $retainedEarnings = Account::where('account_name', 'Retained Earnings')->first();
+        $retainedEarningsValue = preg_replace("/[^0-9.]/", "", "$retainedEarnings->account_balance");
+        if($retainedEarningsValue == 0)
+        {
+            $retainedEarningsValue = $this->retainedEarningsCalculation();
+            $equityTotal = ($this->balanceTotal($equities)) + $retainedEarningsValue;
+        }
+        else
+            $equityTotal = ($this->balanceTotal($equities));
         $currentLiabilitiesTotal = $this->balanceTotal($currentLiabilities);
         $nonCurrentLiabilitiesTotal = $this->balanceTotal($nonCurrentLiabilities);
         $equityLiabilitiesTotal = $currentLiabilitiesTotal + $nonCurrentLiabilitiesTotal + $equityTotal;
